@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline | IBCOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        .content-wrap { position: relative; z-index: 2; padding: 0 20px 40px; max-width: 1200px; margin: 0 auto; }
+        .timeline-wrapper { position: relative; padding: 20px 0; }
+        .timeline-wrapper::before {
+            content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--teal-mid), var(--primary-teal), var(--teal-mid), transparent);
+            transform: translateX(-50%); opacity: 0.5;
+        }
+        .module-container { position: relative; width: 100%; margin-bottom: 100px; display: flex; justify-content: flex-start; }
+        .module-container:nth-child(even) { justify-content: flex-end; }
+        .tech-card {
+            position: relative; width: 40%; max-width: 480px;
+            background: var(--glass-frost); border: 1px solid var(--border-teal);
+            backdrop-filter: blur(15px); box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+            padding: 35px; border-radius: 4px; margin-left: 5%; margin-right: 5%;
+        }
+        .tech-card::before, .tech-card::after { content: ''; position: absolute; width: 20px; height: 20px; border: 2px solid var(--primary-teal); z-index: 5; }
+        .tech-card::before { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+        .tech-card::after { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+        .phase-id { display: inline-block; background: var(--primary-teal); color: var(--bg-deep); padding: 5px 16px; font-size: 0.78rem; font-weight: 800; letter-spacing: 2.5px; margin-bottom: 16px; border-radius: 3px; }
+        .date-text { display: block; color: var(--icy-highlight); font-size: clamp(1rem,4vw,1.15rem); font-weight: 800; margin-bottom: 14px; }
+        .tech-card h2 { margin: 0 0 18px; font-size: clamp(1.2rem,5vw,1.5rem); text-transform: uppercase; letter-spacing: 2px; color: var(--primary-teal); border-bottom: 1px solid var(--border-teal); padding-bottom: 10px; }
+        .details-list { list-style: none; padding: 0; margin: 0; }
+        .details-list li { position: relative; padding-left: 28px; margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: var(--slate-grey); }
+        .details-list li::before { content: "■"; position: absolute; left: 0; top: 0.35em; color: var(--teal-mid); font-size: 1.1rem; line-height: 1; }
+        .cta-section { text-align: center; padding: 100px 20px; }
+        .cta-title { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
+        .signup-btn {
+            display: inline-block; padding: 18px 50px; border-radius: 50px; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 4px; font-weight: 800; font-size: 0.95rem;
+            transition: all 0.3s ease; min-width: 240px; text-align: center;
+            background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--icy-highlight);
+            box-shadow: 0 10px 30px rgba(220,242,255,0.2);
+        }
+        .signup-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(220,242,255,0.4); background: white; }
+        .note-box { text-align: center; max-width: 800px; margin: 30px auto 60px; padding: 0 20px; color: var(--teal-dark); font-size: 0.95rem; line-height: 1.7; }
+        @media (max-width: 850px) {
+            .timeline-wrapper::before { display: none; }
+            .module-container, .module-container:nth-child(even) { justify-content: center; margin-bottom: 60px; }
+            .tech-card { width: 100%; max-width: 100%; margin: 0; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="page-content">
+<div class="section-header reveal" style="padding: 0 20px;">
+    <h2>Timeline</h2>
+    <p>Roadmap to IBCOL 2026</p>
+</div>
+<div class="content-wrap">
+    <div class="timeline-wrapper">
+        <div class="module-container reveal">
+            <div class="tech-card">
+                <span class="phase-id">PHASE 0</span>
+                <span class="date-text">JULY 2026 – AUGUST 2026</span>
+                <h2>Trial Period</h2>
+                <ul class="details-list">
+                    <li><strong>Optional</strong> but highly recommended for all participants.</li>
+                    <li>Submit Project materials for early review by <strong>subject matter experts</strong>.</li>
+                    <li>Receive specialized feedback and guidance.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="module-container reveal">
+            <div class="tech-card">
+                <span class="phase-id">PHASE 1</span>
+                <span class="date-text">SEPTEMBER 2026 – OCTOBER 2026</span>
+                <h2>Qualifier Round</h2>
+                <ul class="details-list">
+                    <li>Formal submission for <strong>official evaluation</strong>.</li>
+                    <li>Projects undergo a rigorous technical review.</li>
+                    <li>Results: <strong>invitation, conditional invitation, or rejection</strong>.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="module-container reveal">
+            <div class="tech-card">
+                <span class="phase-id">PHASE 2</span>
+                <span class="date-text">NOVEMBER 2026 – DECEMBER 2026</span>
+                <h2>Final Round</h2>
+                <ul class="details-list">
+                    <li><strong>In-real-life event</strong> at the Host City.</li>
+                    <li><strong>Olympiad Exhibition:</strong> Physical posterboard presentations.</li>
+                    <li><strong>Olympiad Symposium:</strong> High-impact pitch presentations.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="note-box">Note: IBCOL accolades are based only on scores from the Olympiad Exhibition; ETO accolades are based on Sponsors' scores from the Olympiad Symposium.</div>
+    <div class="cta-section reveal">
+        <h2 class="cta-title">Ready to Begin Your Journey?</h2>
+        <a href="registration.html" class="signup-btn">Register NOW</a>
+    </div>
+</div>
+</div>
+
+<footer>
+    <div class="footer-divider"></div>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>IBCOL: International Blockchain Olympiad</h4>
+                <div class="footer-icons">
+                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>KBI: Königsberger Bridges Institute</h4>
+                <div class="footer-icons">
+                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | IBCOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        .roi-container { margin: 50px auto; max-width: 800px; }
+        .roi-card {
+            display: flex; flex-direction: column; align-items: center; padding: 50px 30px;
+            background: var(--glass-frost); border: 1px solid var(--border-teal); border-radius: 12px;
+            text-align: center; backdrop-filter: blur(15px); text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1); position: relative; overflow: hidden;
+        }
+        .roi-card:hover { transform: translateY(-5px); border-color: var(--primary-teal); box-shadow: 0 0 30px rgba(92,201,231,0.2); }
+        .roi-icon { color: var(--primary-teal); margin-bottom: 20px; filter: drop-shadow(0 0 8px rgba(92,201,231,0.5)); }
+        .roi-card h3 { color: var(--icy-highlight); font-size: 2rem; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px; font-weight: 800; }
+        .roi-card p { color: var(--slate-grey); font-size: 1.1rem; margin: 0 0 30px; max-width: 500px; }
+        .btn-roi { background: var(--primary-teal); color: var(--bg-deep); padding: 16px 50px; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(92,201,231,0.2); }
+        .roi-card:hover .btn-roi { background: var(--icy-highlight); transform: scale(1.05); box-shadow: 0 0 20px var(--primary-teal); }
+        .status-badge { margin-top: 30px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--teal-mid); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .pulse-square { width: 10px; height: 10px; background: var(--primary-teal); animation: pulse-sq 2s infinite; }
+        @keyframes pulse-sq { 0% { transform:scale(0.9); box-shadow:0 0 0 0 rgba(92,201,231,0.7); } 70% { transform:scale(1.1); box-shadow:0 0 0 8px rgba(92,201,231,0); } 100% { transform:scale(0.9); } }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin-bottom: 50px; }
+        .info-box h3 { color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid var(--teal-mid); padding-bottom: 10px; margin-bottom: 15px; font-size: 1.25rem; font-weight: 800; }
+        .category-list { list-style: none; padding: 0; margin: 12px 0; }
+        .category-list li { margin-bottom: 10px; font-weight: 600; color: var(--icy-highlight); }
+        .category-list li::before { content: "■ "; color: var(--teal-mid); margin-right: 10px; }
+        .collapsible-container { margin-top: 30px; }
+        .collapsible-item { background: var(--glass-frost); border: 1px solid var(--border-teal); margin-bottom: 12px; backdrop-filter: blur(15px); }
+        .collapsible-trigger {
+            width: 100%; padding: 18px 24px; background: rgba(92,201,231,0.12); border: none;
+            color: var(--primary-teal); text-align: left; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.95rem;
+            font-family: var(--font-main);
+        }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: all 0.4s ease-out; padding: 0 24px; color: var(--slate-grey); font-size: 0.95rem; }
+        .collapsible-item.active .collapsible-content { max-height: 4800px; padding: 24px; }
+        .fee-section { margin-bottom: 28px; }
+        .fee-section b { color: var(--icy-highlight); display: block; margin-bottom: 10px; font-size: 1.05rem; }
+        .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--teal-dark); font-size: 0.85rem; line-height: 1.7; }
+        @media (max-width: 850px) { .info-grid { grid-template-columns: 1fr; } .roi-card h3 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="page-content">
+<div class="container">
+    <div class="section-header reveal"><h1>Registration</h1><p>IBCOL 2026 Participation</p></div>
+    <div class="reveal" style="text-align:center; color:var(--slate-grey); max-width:900px; margin:0 auto 30px; font-size:1.05rem;">
+        <p>Spots are limited. Teams that register early gain priority access to the official handbook, competition portal, and preparation resources before the general public.</p>
+    </div>
+    <div class="roi-container reveal">
+        <a href="https://forms.gle/bqvQ7bkBXrY82DEt6" target="_blank" class="roi-card">
+            <div class="roi-icon"><i data-lucide="bell-ring" size="48"></i></div>
+            <h3>Secure Your Place</h3>
+            <p>Don't wait for the announcement — be the first in line when registration opens.</p>
+            <div class="btn-roi">Register Your Interest Now</div>
+            <div class="status-badge"><div class="pulse-square"></div> Applications Open</div>
+        </a>
+    </div>
+    <div class="divider reveal"></div>
+    <div class="section-header reveal"><h2>Registration Fee</h2></div>
+    <div class="info-grid reveal">
+        <div class="info-box">
+            <h3>How are fees levied?</h3>
+            <p>Registration fees are <b>only collected from teams invited to the IBCOL finals</b>. Payment details are provided with the invitation letter. Fee depends on country income level:</p>
+            <ul class="category-list">
+                <li>Category A: High income.</li>
+                <li>Category B: Upper middle income.</li>
+                <li>Category C: Low and lower middle income.</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h3>Why are fees levied?</h3>
+            <p>The fees contribute to costs including logistics, food, beverages, and posterboard printing. <i>No profits are extracted from these fees.</i></p>
+        </div>
+    </div>
+    <div class="collapsible-container reveal">
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">Country Category A <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content">American Samoa, Andorra, Antigua &amp; Barbuda, Aruba, Australia, Austria, Bahamas, Bahrain, Barbados, Belgium, Bermuda, British Virgin Is., Brunei, Bulgaria, Canada, Cayman Is., Channel Is., Chile, Croatia, Curaçao, Cyprus, Czech Rep., Denmark, Estonia, Faroe Is., Finland, France, French Polynesia, Germany, Gibraltar, Greece, Greenland, Guam, Guyana, Hong Kong, Hungary, Iceland, Ireland, Isle of Man, Israel, Italy, Japan, Korea Rep., Kuwait, Latvia, Liechtenstein, Lithuania, Luxembourg, Macao, Malta, Monaco, Nauru, Netherlands, New Caledonia, New Zealand, Northern Mariana Is., Norway, Oman, Palau, Panama, Poland, Portugal, Puerto Rico, Qatar, Romania, Russian Fed., San Marino, Saudi Arabia, Seychelles, Singapore, Sint Maarten, Slovak Rep., Slovenia, Spain, St. Kitts and Nevis, St. Martin, Sweden, Switzerland, Taiwan, Trinidad and Tobago, Turks and Caicos Islands, United Arab Emirates, United Kingdom, United States, Uruguay, Virgin Islands (US).</div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">Country Category B <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content">Albania, Algeria, Argentina, Armenia, Azerbaijan, Belarus, Belize, Bosnia and Herzegovina, Botswana, Brazil, China, Colombia, Costa Rica, Cuba, Dominica, Dominican Republic, Ecuador, El Salvador, Equatorial Guinea, Fiji, Gabon, Georgia, Grenada, Guatemala, Indonesia, Iran, Iraq, Jamaica, Kazakhstan, Kosovo, Libya, Malaysia, Maldives, Marshall Is., Mauritius, Mexico, Moldova, Mongolia, Montenegro, Namibia, North Macedonia, Paraguay, Peru, Serbia, South Africa, St. Lucia, St. Vincent and the Grenadines, Suriname, Thailand, Tonga, Türkiye, Turkmenistan, Tuvalu, Ukraine.</div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">Country Category C <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content">Afghanistan, Angola, Bangladesh, Benin, Bhutan, Bolivia, Burkina Faso, Burundi, Cabo Verde, Cambodia, Cameroon, Central African Rep., Chad, Comoros, Congo Dem. Rep., Congo Rep., Côte d'Ivoire, Djibouti, Egypt, Eritrea, Eswatini, Ethiopia, Gambia, Ghana, Guinea, Guinea-Bissau, Haiti, Honduras, India, Jordan, Kenya, Kiribati, Korea (Dem. People's Rep.), Kyrgyzstan, Lao PDR, Lebanon, Lesotho, Liberia, Madagascar, Malawi, Mali, Mauritania, Micronesia, Morocco, Mozambique, Myanmar, Nepal, Nicaragua, Niger, Nigeria, Pakistan, Palestine, Papua New Guinea, Philippines, Rwanda, Samoa, São Tomé and Principe, Senegal, Sierra Leone, Solomon Is., Somalia, South Sudan, Sri Lanka, Sudan, Syria, Tajikistan, Tanzania, Timor-Leste, Togo, Tunisia, Uganda, Uzbekistan, Vanuatu, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.</div>
+        </div>
+    </div>
+    <div class="divider reveal"></div>
+    <div class="section-header reveal"><h2>Fee Structures</h2><p>Anticipated standard fees for 2026 (per team)</p></div>
+    <div class="collapsible-container reveal">
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇺🇸 USD: US Dollar <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $408.41</li><li>Category B: $353.38</li><li>Category C: $183.85</li></ul></div></div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇪🇺 EUR: Euro <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: €314.16</li><li>Category B: €271.83</li><li>Category C: €141.42</li></ul></div></div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇭🇰 HKD: Hong Kong Dollar <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $3,141.59</li><li>Category B: $2,718.28</li><li>Category C: $1,414.21</li></ul></div></div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇯🇵 JPY: Japanese Yen <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: ¥62,832</li><li>Category B: ¥54,366</li><li>Category C: ¥28,284</li></ul></div></div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇨🇦 CAD: Canadian Dollar <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $565.49</li><li>Category B: $489.29</li><li>Category C: $254.56</li></ul></div></div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇦🇺 AUD: Australian Dollar <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $628.32</li><li>Category B: $543.66</li><li>Category C: $282.84</li></ul></div></div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">🇳🇿 NZD: New Zealand Dollar <i data-lucide="chevron-down"></i></button>
+            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $691.15</li><li>Category B: $598.02</li><li>Category C: $311.13</li></ul></div></div>
+        </div>
+    </div>
+    <div class="note-box">Source: Gross national income (GNI) per capita classification. The World Bank, July 1, 2024.</div>
+</div>
+</div>
+
+<footer>
+    <div class="footer-divider"></div>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>IBCOL: International Blockchain Olympiad</h4>
+                <div class="footer-icons">
+                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>KBI: Königsberger Bridges Institute</h4>
+                <div class="footer-icons">
+                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script>
+lucide.createIcons();
+document.querySelectorAll('.collapsible-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+        const item = trigger.parentElement;
+        const isOpen = item.classList.contains('active');
+        item.classList.toggle('active');
+        const icon = trigger.querySelector('[data-lucide]');
+        icon.setAttribute('data-lucide', isOpen ? 'chevron-down' : 'chevron-up');
+        lucide.createIcons();
+    });
+});
+</script>
+</body>
+</html>

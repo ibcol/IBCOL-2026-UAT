@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | IBCOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        h2 {
+            font-size: clamp(2.2rem, 7vw, 2.7rem);
+            text-transform: uppercase;
+            letter-spacing: clamp(6px, 2vw, 12px);
+            color: var(--icy-highlight);
+            margin: 0 0 20px;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(92,201,231,0.35);
+            background: linear-gradient(90deg, transparent, var(--teal-mid), transparent);
+            background-size: 100% 1px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+        .section-header p {
+            font-size: 0.95rem; color: var(--teal-mid);
+            text-transform: uppercase; letter-spacing: 3px;
+            margin: 20px 0 30px; font-weight: 700;
+        }
+        .sub-text { font-size: 0.95rem; color: var(--slate-grey); line-height: 1.75; }
+        .flex-grid { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; margin-bottom: 70px; }
+        .flex-half { flex: 1; min-width: 320px; }
+        .side-logo { width: 100%; max-width: 480px; height: auto; }
+        .org-list { list-style: none; padding: 0; }
+        .org-list li { margin-bottom: 14px; position: relative; padding-left: 24px; color: var(--slate-grey); }
+        .org-list li::before { content: "■"; position: absolute; left: 0; color: var(--teal-mid); font-size: 1.1rem; }
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .member-card {
+            background: var(--glass-frost); border: 1px solid var(--border-teal);
+            padding: 30px 20px; text-align: center; border-radius: 4px;
+            backdrop-filter: blur(15px); opacity: 0; transform: scale(0.92);
+            transition: all 0.5s ease-out;
+        }
+        .member-card.revealed { opacity: 1; transform: scale(1); }
+        .member-card img {
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 2px solid var(--primary-teal); margin-bottom: 16px;
+            object-fit: cover; box-shadow: 0 0 20px rgba(92,201,231,0.25);
+        }
+        .member-name { color: var(--icy-highlight); font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+        .member-role { color: var(--primary-teal); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; font-weight: 700; }
+        @media (max-width: 850px) {
+            .flex-grid { flex-direction: column; text-align: center; gap: 40px; }
+            .side-logo { max-width: 320px; }
+            .committee-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 2.1rem; letter-spacing: 8px; }
+        }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="page-content">
+<div class="container">
+
+    <section class="flex-grid reveal">
+        <div class="flex-half" style="text-align:center;">
+            <img src="https://cdn.kb.institute/KBI-logo-light.png" class="side-logo" alt="KBI Logo">
+        </div>
+        <div class="flex-half">
+            <h2>Our Story</h2>
+            <div class="section-header"><p>Foundations &amp; Vision</p></div>
+            <p class="sub-text">
+                Founded in 2017, the Königsberger Bridges Institute (KBI) is an Estonian non-profit inspired by the Seven Bridges of Königsberg, a problem that sparked graph theory. We connect global innovators in AI, data science, blockchain, and trust technology, fostering skills through training, competitions, and a commitment to Sustainable Development Goals.
+            </p>
+        </div>
+    </section>
+
+    <div class="divider reveal"></div>
+
+    <section class="flex-grid reveal" style="flex-direction:row-reverse;">
+        <div class="flex-half" style="text-align:center;">
+            <img src="https://cdn.kb.institute/eto-2026/general/others/country-wall.jpg" class="side-logo" alt="Global Reach">
+        </div>
+        <div class="flex-half">
+            <h2>Official Organizer</h2>
+            <div class="section-header"><p>Flagship Competitions</p></div>
+            <p class="sub-text">KBI is the official organizer of three flagship global competitions:</p>
+            <ul class="org-list">
+                <li class="sub-text"><strong>IDSOL 2026</strong> — International Data Science Olympiad</li>
+                <li class="sub-text"><strong>IBCOL 2026</strong> — International Blockchain Olympiad</li>
+                <li class="sub-text"><strong>IQCOL 2026</strong> — International Quantum Computing Olympiad</li>
+            </ul>
+            <p class="sub-text">
+                Over the last eight years, KBI has assisted tens of thousands of participants globally from renowned education institutions including Cornell, Cambridge, Peking University, and The University of Hong Kong, leading to the development of more than 500 incubated projects globally.
+            </p>
+        </div>
+    </section>
+
+    <div class="divider reveal"></div>
+
+    <section style="text-align:center; padding-top:60px;" class="reveal">
+        <h2>Organizing Committee</h2>
+        <div class="section-header"><p>2026 Competitions Committee Chairs</p></div>
+        <div class="committee-grid">
+            <div class="member-card">
+                <img src="https://cdn.kb.institute/eto-2026/general/personnel/kbi-profile-marina-danylyuk.jpg" alt="Maryna Danylyuk">
+                <div class="member-name">Maryna Danylyuk</div>
+                <div class="member-role">IBCOL</div>
+            </div>
+            <div class="member-card">
+                <img src="https://cdn.kb.institute/eto-2026/general/personnel/kbi-profile-david-fortini.jpg" alt="David Fortini">
+                <div class="member-name">David Fortini</div>
+                <div class="member-role">IDSOL</div>
+            </div>
+            <div class="member-card">
+                <img src="https://cdn.kb.institute/eto-2026/general/personnel/kbi-profile-andreea-moga.jpg" alt="Andreea Moga">
+                <div class="member-name">Andreea Moga</div>
+                <div class="member-role">IQCOL</div>
+            </div>
+        </div>
+    </section>
+
+</div>
+</div>
+
+<footer>
+    <div class="footer-divider"></div>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>IBCOL: International Blockchain Olympiad</h4>
+                <div class="footer-icons">
+                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>KBI: Königsberger Bridges Institute</h4>
+                <div class="footer-icons">
+                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script>
+lucide.createIcons();
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            if (entry.target.querySelector('.committee-grid')) {
+                entry.target.querySelectorAll('.member-card').forEach((card, i) => {
+                    setTimeout(() => card.classList.add('revealed'), i * 200 + 100);
+                });
+            }
+        }
+    });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

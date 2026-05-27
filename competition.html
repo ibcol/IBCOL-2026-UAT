@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Competition | IBCOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        .page-title-section { text-align: center; margin: 40px 0 50px; }
+        .page-title-section h1 {
+            font-size: clamp(1.8rem, 8vw, 3.2rem); text-transform: uppercase;
+            letter-spacing: clamp(6px,2vw,12px); color: var(--icy-highlight); margin: 0; font-weight: 900;
+            background: linear-gradient(90deg, transparent, var(--teal-mid), transparent);
+            background-size: 100% 1px; background-repeat: no-repeat; background-position: bottom; padding-bottom: 15px;
+        }
+        .hero-split {
+            display: grid; grid-template-columns: 1fr 1.2fr;
+            background: var(--glass-frost); border: 1px solid var(--border-teal); border-radius: 4px;
+            overflow: hidden; backdrop-filter: blur(15px); margin-bottom: 60px; align-items: stretch;
+        }
+        .hero-visual {
+            min-height: 250px;
+            background-image: url('https://cdn.kb.institute/eto-2026/general/others/2024_ETO.JPG');
+            background-size: cover; background-position: center;
+        }
+        .hero-text { padding: clamp(25px,5vw,45px); display: flex; align-items: center; }
+        .hero-text h1 { font-weight: 400; font-size: clamp(1.1rem,4vw,1.4rem); color: var(--slate-grey); margin: 0; line-height: 1.65; }
+        .hero-text b { color: var(--icy-highlight); font-weight: 700; }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .mission-sequence { display: flex; gap: 0; margin-bottom: 60px; min-height: 200px; }
+        .mission-box {
+            flex: 1; position: relative; background: var(--glass-frost); border: 1px solid var(--border-teal);
+            padding: 30px 50px 30px 30px; display: flex; flex-direction: column; justify-content: center;
+            clip-path: polygon(0% 0%, calc(100% - 40px) 0%, 100% 50%, calc(100% - 40px) 100%, 0% 100%, 40px 50%);
+            transition: all 0.4s ease; backdrop-filter: blur(15px);
+        }
+        .mission-box::before {
+            content: ""; position: absolute; left: 0; top: 0; width: 42px; height: 100%;
+            background: var(--primary-teal); opacity: 0.4;
+            clip-path: polygon(0% 0%, 40px 50%, 0% 100%, 4px 100%, 44px 50%, 4px 0%);
+            pointer-events: none;
+        }
+        .mission-box:first-child { clip-path: polygon(0% 0%, calc(100% - 40px) 0%, 100% 50%, calc(100% - 40px) 100%, 0% 100%); }
+        .mission-box:first-child::before { display: none; }
+        .mission-box:last-child { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 40px 50%); padding-right: 30px; }
+        .mission-box:not(:first-child) { margin-left: -40px; padding-left: 70px; }
+        .mission-box h4 { color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 10px; font-size: 0.95rem; font-weight: 800; }
+        .mission-box p { margin: 0; font-size: 0.9rem; color: var(--slate-grey); font-weight: 300; line-height: 1.5; }
+        .stream-arena { display: flex; flex-direction: column; gap: 20px; }
+        .arena-card {
+            display: grid; grid-template-columns: 140px 1fr; background: var(--glass-frost);
+            border: 1px solid var(--border-teal); border-radius: 4px; overflow: hidden;
+            align-items: stretch; min-height: 150px; backdrop-filter: blur(15px); transition: all 0.3s ease;
+        }
+        .arena-card:hover { transform: translateY(-4px) scale(1.015); border-color: var(--primary-teal); box-shadow: 0 12px 32px rgba(92,201,231,0.18); }
+        .arena-label {
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(92,201,231,0.12); font-size: 1.4rem; font-weight: 900;
+            color: var(--icy-highlight); letter-spacing: 3px; border-right: 1px solid var(--border-teal);
+        }
+        .arena-info { padding: 25px; display: flex; flex-direction: column; justify-content: center; }
+        .arena-info h3 { margin: 0 0 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary-teal); font-size: 1.1rem; font-weight: 800; }
+        .arena-info p { margin: 0; font-size: 0.95rem; color: var(--slate-grey); line-height: 1.5; }
+        .cta-section { text-align: center; padding: 80px 20px 100px; }
+        .cta-section h2 { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: clamp(4px,1.8vw,8px); text-transform: uppercase; margin-bottom: 16px; color: var(--icy-highlight); font-weight: 900; }
+        .cta-section p { font-size: 1.05rem; color: var(--slate-grey); opacity: 0.9; margin-bottom: 35px; }
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        @media (max-width: 850px) {
+            .hero-split, .arena-card { grid-template-columns: 1fr; }
+            .arena-label { padding: 15px; border-right: none; border-bottom: 1px solid var(--border-teal); }
+            .mission-sequence { flex-direction: column; gap: 15px; }
+            .mission-box { clip-path: none !important; padding: 25px !important; margin: 0 !important; border-radius: 4px; }
+            .mission-box::before { display: none; }
+            .btn { min-width: 100%; padding: 14px 30px; font-size: 0.85rem; }
+        }
+        @media (max-width: 600px) { .container { padding: 15px; } .cta-section { padding: 60px 15px 80px; } }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="page-content">
+<div class="container">
+    <div class="page-title-section reveal">
+        <h1>The Olympiad</h1>
+    </div>
+    <div class="hero-split reveal">
+        <div class="hero-visual"></div>
+        <div class="hero-text">
+            <h1>The <b>9th International Blockchain Olympiad (IBCOL 2026)</b> is a design competition where students apply first principles to propose practical use cases for <b>Blockchain and Trust Technologies (BCTT)</b>.</h1>
+        </div>
+    </div>
+    <div class="divider reveal"></div>
+    <div class="section-header reveal"><h2>Mission &amp; Vision</h2></div>
+    <div class="mission-sequence">
+        <div class="mission-box reveal stagger-1">
+            <h4>The Problem</h4>
+            <p>Traditional education often fails to test the complexities of real-world data application and architectural resilience.</p>
+        </div>
+        <div class="mission-box reveal stagger-2">
+            <h4>The Solution</h4>
+            <p>IBCOL 2026 provides a global stage for <b>Blockchain Technologies</b>, where engineering rigor meets creative problem-solving.</p>
+        </div>
+        <div class="mission-box reveal stagger-3">
+            <h4>The Goal</h4>
+            <p>Bridging the gap between academic theory and enterprise-ready solutions through standardized benchmarking.</p>
+        </div>
+    </div>
+    <div class="divider reveal"></div>
+    <div class="section-header reveal"><h2>Competition Categories</h2></div>
+    <div class="stream-arena">
+        <div class="arena-card reveal stagger-1">
+            <div class="arena-label">ARC</div>
+            <div class="arena-info">
+                <h3>Solution Architecture</h3>
+                <p>A design-centric category focusing on the first principles of BCTT to architect resilient, large-scale trust frameworks and decentralized infrastructures for enterprise and social impact.</p>
+            </div>
+        </div>
+        <div class="arena-card reveal stagger-2">
+            <div class="arena-label">DEV</div>
+            <div class="arena-info">
+                <h3>Solution Development</h3>
+                <p>An execution-focused category prioritizing technical engineering and modularity to build robust decentralized applications, secure smart contracts, and integrated trust frameworks.</p>
+            </div>
+        </div>
+    </div>
+    <div class="cta-section reveal">
+        <h2>Design the Future</h2>
+        <p>Is your project elite enough to qualify for IBCOL 2026?</p>
+        <div class="btn-group">
+            <a href="eligibility.html" class="btn btn-outline">View Requirements</a>
+            <a href="registration.html" class="btn btn-primary">Register Now!</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer>
+    <div class="footer-divider"></div>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>IBCOL: International Blockchain Olympiad</h4>
+                <div class="footer-icons">
+                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>KBI: Königsberger Bridges Institute</h4>
+                <div class="footer-icons">
+                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

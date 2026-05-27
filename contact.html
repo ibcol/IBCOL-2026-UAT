@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | IBCOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        .section-header { margin: 100px 0 70px; }
+        .contact-info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 25px; }
+        .info-card-link { text-decoration: none; color: inherit; display: block; }
+        .info-card {
+            padding: 50px 30px; background: var(--glass-frost); border: 1px solid var(--border-teal);
+            border-radius: 4px; text-align: center; transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+            backdrop-filter: blur(15px);
+        }
+        .info-card:hover {
+            border-color: var(--primary-teal); background: rgba(92,201,231,0.16);
+            transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.45), 0 0 50px rgba(92,201,231,0.28);
+        }
+        .icon-box { margin-bottom: 20px; color: var(--teal-mid); transition: transform 0.3s ease, color 0.3s ease; }
+        .info-card:hover .icon-box { transform: scale(1.1); color: var(--icy-highlight); }
+        .info-card h4 { margin: 0 0 15px; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; color: var(--primary-teal); font-weight: 800; }
+        .info-card p { margin: 0; color: var(--icy-highlight); font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; }
+        .click-hint { display: block; margin-top: 20px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--teal-dark); transition: color 0.3s ease; }
+        .info-card:hover .click-hint { color: var(--teal-mid); }
+        @media (max-width: 850px) { .contact-info-grid { grid-template-columns: 1fr; gap: 20px; } .section-header { margin: 80px 0 40px; } }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="page-content">
+<div class="section-header reveal">
+    <h2>Connect with Us</h2>
+</div>
+<div class="container">
+    <div class="contact-info-grid">
+        <a href="mailto:2026@ibcol.org?subject=General Inquiry - IBCOL 2026" class="info-card-link reveal">
+            <div class="info-card">
+                <div class="icon-box"><i data-lucide="mail" size="28"></i></div>
+                <h4>General Enquiries</h4>
+                <p>2026@ibcol.org</p>
+                <span class="click-hint">Click to Compose</span>
+            </div>
+        </a>
+        <a href="mailto:volunteer@ibcol.org?subject=Volunteer Application: [Your Name]" class="info-card-link reveal">
+            <div class="info-card">
+                <div class="icon-box"><i data-lucide="users" size="28"></i></div>
+                <h4>Join as a Volunteer</h4>
+                <p>volunteer@ibcol.org</p>
+                <span class="click-hint">Click to Compose</span>
+            </div>
+        </a>
+        <a href="mailto:pr@ibcol.org?subject=Media/Press Inquiry - IBCOL 2026" class="info-card-link reveal">
+            <div class="info-card">
+                <div class="icon-box"><i data-lucide="award" size="28"></i></div>
+                <h4>Media &amp; Press</h4>
+                <p>pr@ibcol.org</p>
+                <span class="click-hint">Click to Compose</span>
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+
+<footer>
+    <div class="footer-divider"></div>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>IBCOL: International Blockchain Olympiad</h4>
+                <div class="footer-icons">
+                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>KBI: Königsberger Bridges Institute</h4>
+                <div class="footer-icons">
+                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
