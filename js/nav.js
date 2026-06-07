@@ -33,7 +33,7 @@
                 </ul>
             </li>
             <li>
-                <a href="registration.html" class="${path === 'registration.html' ? 'active' : ''}">Registration</a>
+                <a href="faq.html" class="${path === 'faq.html' ? 'active' : ''}">FAQ</a>
             </li>
             <li>
                 <a href="contact.html" class="${path === 'contact.html' ? 'active' : ''}">Contact</a>
@@ -67,7 +67,7 @@
                     <a href="accolades.html">Accolades</a>
                 </div>
             </li>
-            <li><a href="registration.html">Registration</a></li>
+            <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="nav-mobile-register">

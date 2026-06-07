@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timeline | IBCOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
         .content-wrap { position: relative; z-index: 2; padding: 0 20px 40px; max-width: 1200px; margin: 0 auto; }
@@ -31,6 +31,8 @@
         .details-list { list-style: none; padding: 0; margin: 0; }
         .details-list li { position: relative; padding-left: 28px; margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: var(--slate-grey); }
         .details-list li::before { content: "■"; position: absolute; left: 0; top: 0.35em; color: var(--teal-mid); font-size: 1.1rem; line-height: 1; }
+        .tech-card--spacious .details-list { min-height: 150px; padding-top: 18px; padding-bottom: 18px; }
+        .tech-card--spacious .details-list li { margin-bottom: 22px; padding-top: 5px; padding-bottom: 5px; }
         .cta-section { text-align: center; padding: 100px 20px; }
         .cta-title { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
         .signup-btn {
@@ -59,38 +61,52 @@
 <div class="content-wrap">
     <div class="timeline-wrapper">
         <div class="module-container reveal">
-            <div class="tech-card">
+            <div class="tech-card tech-card--spacious">
                 <span class="phase-id">PHASE 0</span>
-                <span class="date-text">JULY 2026 – AUGUST 2026</span>
-                <h2>Trial Period</h2>
+                <span class="date-text">JUN – JUL 2026</span>
+                <h2>Pre-IBCOL</h2>
                 <ul class="details-list">
-                    <li><strong>Optional</strong> but highly recommended for all participants.</li>
-                    <li>Submit Project materials for early review by <strong>subject matter experts</strong>.</li>
-                    <li>Receive specialized feedback and guidance.</li>
+                    <li><strong>28 Jun</strong> — Briefing session 1 (online)</li>
+                    <li><strong>5 Jul</strong> — Briefing session 2</li>
                 </ul>
             </div>
         </div>
         <div class="module-container reveal">
             <div class="tech-card">
                 <span class="phase-id">PHASE 1</span>
-                <span class="date-text">SEPTEMBER 2026 – OCTOBER 2026</span>
-                <h2>Qualifier Round</h2>
+                <span class="date-text">JUL – SEP 2026</span>
+                <h2>IBCOL Qualifiers</h2>
                 <ul class="details-list">
-                    <li>Formal submission for <strong>official evaluation</strong>.</li>
-                    <li>Projects undergo a rigorous technical review.</li>
-                    <li>Results: <strong>invitation, conditional invitation, or rejection</strong>.</li>
+                    <li><strong>7 Jul</strong> — Early bird payment deadline</li>
+                    <li><strong>8 Aug</strong> — Regular payment deadline</li>
+                    <li><strong>30 Aug</strong> — Regular whitepaper submission</li>
+                    <li><strong>9 Sep</strong> — Late bird payment deadline</li>
+                    <li><strong>31 Aug – 18 Sep</strong> — Regional judging; qualifications released on a rolling basis</li>
                 </ul>
             </div>
         </div>
         <div class="module-container reveal">
-            <div class="tech-card">
+            <div class="tech-card tech-card--spacious">
                 <span class="phase-id">PHASE 2</span>
-                <span class="date-text">NOVEMBER 2026 – DECEMBER 2026</span>
-                <h2>Final Round</h2>
+                <span class="date-text">SEP – OCT 2026</span>
+                <h2>ETO</h2>
                 <ul class="details-list">
-                    <li><strong>In-real-life event</strong> at the Host City.</li>
-                    <li><strong>Olympiad Exhibition:</strong> Physical posterboard presentations.</li>
-                    <li><strong>Olympiad Symposium:</strong> High-impact pitch presentations.</li>
+                    <li>Open to the <strong>top 12</strong> qualified IBCOL teams.</li>
+                    <li><strong>20 Sep</strong> — Pitch deck and posterboard submission</li>
+                    <li><strong>8–9 Oct</strong> — Western ETO</li>
+                    <li><strong>10–11 Oct</strong> — Eastern ETO</li>
+                </ul>
+            </div>
+        </div>
+        <div class="module-container reveal">
+            <div class="tech-card tech-card--spacious">
+                <span class="phase-id">PHASE 3</span>
+                <span class="date-text">NOV – DEC 2026</span>
+                <h2>IBCOL International</h2>
+                <ul class="details-list">
+                    <li><strong>30 Nov</strong> — Whitepaper resubmission due</li>
+                    <li><strong>30 Nov – 18 Dec</strong> — International judging</li>
+                    <li><strong>25 Dec</strong> — Results announced</li>
                 </ul>
             </div>
         </div>
@@ -102,6 +118,7 @@
     </div>
 </div>
 </div>
+
 
 <footer>
     <div class="footer-divider"></div>

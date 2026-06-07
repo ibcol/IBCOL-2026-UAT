@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eligibility | IBCOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
         .eligibility-table {
@@ -35,6 +35,8 @@
         .validity-box { background: var(--glass-frost); border: 1px solid var(--border-teal); padding: 35px; border-radius: 4px; backdrop-filter: blur(15px); }
         .validity-box h3 { color: var(--primary-teal); font-size: 1.25rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; border-bottom: 1px solid var(--teal-mid); padding-bottom: 12px; font-weight: 800; }
         .param-item { margin-bottom: 18px; position: relative; padding-left: 24px; }
+        .validity-box:nth-child(2) .param-item,
+        .validity-box:nth-child(3) .param-item { margin-bottom: 28px; padding-top: 4px; padding-bottom: 4px; }
         .param-item::before { content: "■"; position: absolute; left: 0; color: var(--teal-mid); font-size: 1.1rem; }
         .param-item b { color: var(--icy-highlight); font-size: 0.97rem; display: block; margin-bottom: 4px; }
         .param-item p { margin: 0; font-size: 0.92rem; color: var(--slate-grey); }
@@ -102,21 +104,20 @@
     <div class="validity-grid reveal">
         <div class="validity-box">
             <h3>Team Validity</h3>
-            <div class="param-item"><b>Team Name</b><p>Must match the project name exactly.</p></div>
-            <div class="param-item"><b>Team Size</b><p>1 to 6 eligible participants per team.</p></div>
-            <div class="param-item"><b>Leadership (C/AC)</b><p>Captain and Assistant must be designated for communication.</p></div>
+            <div class="param-item"><b>Team Size</b><p>1 or more eligible participants per team.</p></div>
+            <div class="param-item"><b>Leadership (C/AC)</b><p>Captain and Assistant Captain must be designated for communication.</p></div>
             <div class="param-item"><b>Supervision</b><p>Required (18+) if all members are minors.</p></div>
-            <div class="param-item"><b>Representation</b><p>Determined by the majority of teammates.</p></div>
+            <div class="param-item"><b>Country Representation</b><p>Decided among team members.</p></div>
         </div>
         <div class="validity-box">
             <h3>Project Validity</h3>
-            <div class="param-item"><b>Project Name</b><p>Must match the team name exactly.</p></div>
+            <div class="param-item"><b>Project Name</b><p>Must align with Name Validity.</p></div>
             <div class="param-item"><b>Project Type</b><p>Classified as Architecture (ARC) or Development (DEV).</p></div>
-            <div class="param-item"><b>Representation</b><p>Must align with Team Representation.</p></div>
+            <div class="param-item"><b>Representation</b><p>Must align with Team Validity.</p></div>
         </div>
         <div class="validity-box">
             <h3>Name Validity</h3>
-            <div class="param-item"><b>Meaning &amp; IP</b><p>Names must be descriptive and respect existing intellectual property.</p></div>
+            <div class="param-item"><b>Meaning &amp; IP</b><p>Project names must be descriptive and respect existing intellectual property.</p></div>
             <div class="param-item"><b>Harmonious</b><p>No offensive, political, or unethical content allowed.</p></div>
             <div class="param-item"><b>Length</b><p>3-4 words maximum; taglines are encouraged.</p></div>
         </div>
@@ -131,6 +132,7 @@
     </div>
 </div>
 </div>
+
 
 <footer>
     <div class="footer-divider"></div>

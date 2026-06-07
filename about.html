@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | IBCOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
         h2 {
@@ -22,13 +22,24 @@
             padding-bottom: 15px;
             display: inline-block;
         }
-        .section-header p {
-            font-size: 0.95rem; color: var(--teal-mid);
-            text-transform: uppercase; letter-spacing: 3px;
-            margin: 20px 0 30px; font-weight: 700;
+        .section-subheading {
+            font-size: 0.95rem;
+            color: var(--teal-mid);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 20px;
+            font-weight: 700;
         }
+        .flex-half .section-subheading { text-align: left; }
+        section[style*="text-align:center"] .section-subheading { text-align: center; }
         .sub-text { font-size: 0.95rem; color: var(--slate-grey); line-height: 1.75; }
         .flex-grid { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; margin-bottom: 70px; }
+        .container > section.flex-grid:first-of-type {
+            min-height: calc(100vh - var(--nav-height));
+            min-height: calc(100dvh - var(--nav-height));
+            align-items: center;
+            margin-bottom: 70px;
+        }
         .flex-half { flex: 1; min-width: 320px; }
         .side-logo { width: 100%; max-width: 480px; height: auto; }
         .org-list { list-style: none; padding: 0; }
@@ -73,7 +84,7 @@
         </div>
         <div class="flex-half">
             <h2>Our Story</h2>
-            <div class="section-header"><p>Foundations &amp; Vision</p></div>
+            <p class="section-subheading">Foundations &amp; Vision</p>
             <p class="sub-text">
                 Founded in 2017, the Königsberger Bridges Institute (KBI) is an Estonian non-profit inspired by the Seven Bridges of Königsberg, a problem that sparked graph theory. We connect global innovators in AI, data science, blockchain, and trust technology, fostering skills through training, competitions, and a commitment to Sustainable Development Goals.
             </p>
@@ -88,7 +99,7 @@
         </div>
         <div class="flex-half">
             <h2>Official Organizer</h2>
-            <div class="section-header"><p>Flagship Competitions</p></div>
+            <p class="section-subheading">Flagship Competitions</p>
             <p class="sub-text">KBI is the official organizer of three flagship global competitions:</p>
             <ul class="org-list">
                 <li class="sub-text"><strong>IDSOL 2026</strong> — International Data Science Olympiad</li>
@@ -105,7 +116,7 @@
 
     <section style="text-align:center; padding-top:60px;" class="reveal">
         <h2>Organizing Committee</h2>
-        <div class="section-header"><p>2026 Competitions Committee Chairs</p></div>
+        <p class="section-subheading">2026 Competitions Committee Chairs</p>
         <div class="committee-grid">
             <div class="member-card">
                 <img src="https://cdn.kb.institute/eto-2026/general/personnel/kbi-profile-marina-danylyuk.jpg" alt="Maryna Danylyuk">
@@ -127,6 +138,25 @@
 
 </div>
 </div>
+
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/footer.js"></script>
+<script>
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            if (entry.target.querySelector('.committee-grid')) {
+                entry.target.querySelectorAll('.member-card').forEach((card, i) => {
+                    setTimeout(() => card.classList.add('revealed'), i * 200 + 100);
+                });
+            }
+        }
+    });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
 
 <footer>
     <div class="footer-divider"></div>
@@ -152,24 +182,9 @@
         <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
     </div>
 </footer>
-
 <script src="js/bg-canvas.js"></script>
 <script src="js/nav.js"></script>
-<script>
-lucide.createIcons();
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            if (entry.target.querySelector('.committee-grid')) {
-                entry.target.querySelectorAll('.member-card').forEach((card, i) => {
-                    setTimeout(() => card.classList.add('revealed'), i * 200 + 100);
-                });
-            }
-        }
-    });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-</script>
+<script src="js/registration-fee.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
