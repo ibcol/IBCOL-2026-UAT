@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
     <style>
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-padding-top: var(--nav-height);
+        }
+
         body {
             background:
                 radial-gradient(ellipse at 50% 25%, rgba(92,201,231,0.055) 0%, rgba(92,201,231,0.012) 45%, transparent 50%),
@@ -16,17 +21,69 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
+        .home-snap {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .home-snap .snap-panel {
+            min-height: calc(100vh - var(--nav-height));
+            min-height: calc(100dvh - var(--nav-height));
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 0 20px;
+        }
+
+        .home-snap .section-header { margin: 1.5rem 0 1rem; }
+
+        /* Hero */
         #hero-section {
+            position: relative;
             width: 100%;
             max-width: 1200px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            padding: 140px 20px 180px;
+            padding: 1rem 20px 2.5rem;
             text-align: center;
+            box-sizing: border-box;
+        }
+        #hero-section.snap-panel {
+            justify-content: flex-start;
+            padding-top: clamp(2.5rem, 8vh, 5rem);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .scroll-chevron {
+            display: block;
+            font-size: 1.75rem;
+            line-height: 1;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.85; }
+            50% { transform: translateY(8px); opacity: 1; }
         }
 
         .reveal-hero { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(20px); animation: curtainReveal 1.4s cubic-bezier(0.19,1,0.22,1) forwards; }
@@ -35,22 +92,22 @@
 
         @keyframes curtainReveal { 0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(20px); } 100% { opacity:1; clip-path:inset(0% 0 0 0); transform:translateY(0); } }
         @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
-        @keyframes blink { 50% { opacity:0; } }
+        @keyframes blink { 0%, 100% { opacity:1; } 50% { opacity:0; } }
 
-        .main-logo { width: 420px; max-width: 88%; height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 25px rgba(92,201,231,0.35)); }
+        .main-logo { width: min(420px, 70vw); max-width: 88%; height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 25px rgba(92,201,231,0.35)); }
 
         .brand-title {
             font-size: 26px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase;
-            margin-bottom: 60px; text-shadow: 0 0 15px rgba(92,201,231,0.5); color: var(--icy-highlight);
+            margin-bottom: 20px; text-shadow: 0 0 15px rgba(92,201,231,0.5); color: var(--icy-highlight);
         }
 
         .countdown-subheader {
             font-size: 17px; font-weight: 500; letter-spacing: 6px; text-transform: uppercase;
-            color: var(--icy-highlight); margin-bottom: 25px; text-shadow: 0 0 10px rgba(92,201,231,0.6);
+            color: var(--icy-highlight); margin-bottom: 16px; text-shadow: 0 0 10px rgba(92,201,231,0.6);
             border-bottom: 2px solid var(--primary-teal); padding-bottom: 10px; display: inline-block;
         }
 
-        .countdown-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+        .countdown-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
 
         .time-box {
             display: flex; flex-direction: column; align-items: center;
@@ -60,15 +117,16 @@
         .time-value { font-size: 48px; font-weight: 900; line-height: 1; font-family: var(--font-mono); color: var(--icy-highlight); }
         .time-label { font-size: 10px; font-weight: 800; color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
 
-        .typed-line { font-family: var(--font-mono); font-size: 1rem; color: var(--icy-highlight); margin-top: 20px; padding: 0 10px; }
-        .cursor { display: inline-block; background-color: var(--icy-highlight); width: 3px; height: 20px; margin-left: 5px; animation: blink 1s infinite; vertical-align: text-bottom; }
+        .typed-line { font-family: var(--font-mono); font-size: 1rem; color: var(--icy-highlight); margin-top: 12px; padding: 0 10px; }
+        .cursor { display: inline-block; background-color: var(--icy-highlight); width: 3px; height: 20px; margin-left: 5px; animation: blink 1s infinite; vertical-align: middle; }
 
-        .stats-wrapper { width: 100%; max-width: 1000px; margin: 20px auto; text-align: center; }
+        /* Stats */
+        .stats-wrapper { width: 100%; max-width: 1000px; margin: 0 auto; text-align: center; padding: 0; }
         .stats-section {
             display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px;
             opacity: 0; transform: translateY(30px); transition: all 1s ease;
         }
-        .stats-section.active { opacity: 1; transform: translateY(0); }
+        .stats-section.revealed { opacity: 1; transform: translateY(0); }
         .stat-card {
             background: var(--glass-frost); border: 1px solid var(--border-teal);
             padding: 25px; border-radius: 20px; min-width: 220px; transition: all 0.3s ease;
@@ -77,123 +135,267 @@
         .stat-number { display: block; font-size: 3rem; font-weight: 900; color: var(--icy-highlight); font-family: var(--font-mono); margin-bottom: 5px; }
         .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-grey); opacity: 0.9; }
 
+        /* Journey roadmap */
+        #section-journey {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding-bottom: 8px;
+            scroll-snap-stop: normal;
+        }
+        #section-journey .section-header {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        #section-journey.revealed .section-header {
+            opacity: 1;
+            transition-delay: 0s;
+        }
+        #section-journey .roadmap-container { flex: 0 1 auto; }
         .roadmap-container {
-            position: relative; max-width: 1400px; margin: 0 auto; padding: 80px 20px 150px; width: 100%;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 16px;
+            width: 100%;
+            min-height: 220px;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 12px;
+            box-sizing: border-box;
         }
         .roadmap-container::before {
-            content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--teal-dark) 10%, var(--primary-teal) 50%, var(--icy-highlight) 90%, transparent);
-            transform: translateX(-50%); z-index: 0;
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--teal-dark) 15%, var(--primary-teal) 50%, var(--teal-dark) 85%, transparent);
+            transform: translateY(-50%);
+            z-index: 0;
+            pointer-events: none;
         }
         .step {
-            position: relative; margin-bottom: 100px; width: 100%; display: flex;
-            justify-content: center; align-items: center; opacity: 0; transform: translateY(50px);
-            transition: all 0.8s ease-out; z-index: 1;
+            position: relative;
+            flex: 1 1 220px;
+            min-width: 180px;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .step.active { opacity: 1; transform: translateY(0); }
-        .step:nth-child(even) { flex-direction: row-reverse; }
-        .card {
-            width: 90%; max-width: 650px; padding: 30px 40px;
-            background: var(--glass-frost); backdrop-filter: blur(20px);
-            border: 1px solid var(--border-teal); border-radius: 20px; box-shadow: 0 15px 45px rgba(0,0,0,0.5);
+        #section-journey.revealed .step:nth-child(1) { opacity: 1; transition-delay: 0.12s; }
+        #section-journey.revealed .step:nth-child(3) { opacity: 1; transition-delay: 0.42s; }
+        #section-journey.revealed .step:nth-child(5) { opacity: 1; transition-delay: 0.72s; }
+        #section-journey.revealed .step:nth-child(7) { opacity: 1; transition-delay: 1.02s; }
+        .step-card {
+            position: relative;
+            width: 100%;
+            padding: 28px 24px;
+            min-height: 200px;
+            height: 100%;
+            box-sizing: border-box;
+            background: var(--glass-frost);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-teal);
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
         }
-        .card h2 { color: var(--icy-highlight); margin-top: 0; }
-        .card p { color: var(--slate-grey); }
-
-        /* Logo wall */
-        .logo-wall { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; max-width: 1250px; margin-left: auto; margin-right: auto; }
-        @keyframes logoFadeIn { 0% { opacity:0; transform:scale(0.9); } 100% { opacity:1; transform:scale(1); } }
-        @keyframes logoFadeOut { 0% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(0.9); } }
-        .logo-container {
-            padding: 0; margin: 8px; display: flex; justify-content: center; align-items: center;
-            max-width: 180px; height: 100px; position: relative; background: white; border-radius: 12px;
-            animation-duration: 0.5s; animation-fill-mode: both; animation-timing-function: ease-in-out;
-            transition: transform 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        .step-card::before, .step-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-teal);
+            z-index: 5;
         }
-        .show-front .logo-container { animation-name: logoFadeIn; }
-        .show-back .logo-container { animation-name: logoFadeOut; }
-        .logo-container img { object-fit: contain; width: 80%; height: 80%; }
-        @media (min-width: 1200px) { .logo-container { width: calc(20% - 16px); } }
-        @media (min-width: 600px) and (max-width: 1199px) { .logo-container { width: calc(33% - 16px); } }
+        .step-card::before { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+        .step-card::after { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+        .step-card h2 {
+            margin: 0 0 12px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-teal);
+            border-bottom: 1px solid var(--border-teal);
+            padding-bottom: 10px;
+        }
+        .step-card p { color: var(--slate-grey); margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .roadmap-connector {
+            position: relative;
+            flex: 0 0 auto;
+            align-self: center;
+            width: 28px;
+            text-align: center;
+            color: var(--icy-highlight);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+        .roadmap-connector::before { content: '›'; }
+        #section-journey.revealed .roadmap-connector:nth-child(2) { opacity: 1; transition-delay: 0.28s; }
+        #section-journey.revealed .roadmap-connector:nth-child(4) { opacity: 1; transition-delay: 0.58s; }
+        #section-journey.revealed .roadmap-connector:nth-child(6) { opacity: 1; transition-delay: 0.88s; }
 
         /* Testimonials */
-        .testimonial-slider { width: 100%; max-width: 1100px; margin: 40px auto 150px; position: relative; padding: 20px 80px; }
+        #section-testimonials .testimonial-slider { flex: 0 1 auto; width: 100%; }
+        .testimonial-slider { width: 100%; max-width: 1100px; margin: 0 auto; position: relative; padding: 12px 80px; }
         .testimonial-container { width: 100%; overflow: hidden; border-radius: 30px; }
         .testimonial-track { display: flex; transition: transform 0.6s cubic-bezier(0.23,1,0.32,1); }
         .testimonial-track.no-anim { transition: none !important; }
         .t-card {
-            min-width: 100%; padding: 60px 50px;
+            min-width: 100%; padding: 32px 28px;
             background: var(--glass-frost); border: 1px solid var(--border-teal); backdrop-filter: blur(12px);
-            display: flex; flex-direction: column; align-items: center; text-align: center;
+            display: flex; flex-direction: column; align-items: center; text-align: center; border-radius: 30px;
         }
-        .t-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-teal); margin-bottom: 15px; }
-        .t-info h3 { margin: 0; font-size: 1.5rem; color: #fff; }
+        .t-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-teal); margin-bottom: 12px; }
+        .t-info h3 { margin: 0; font-size: 1.4rem; color: #fff; }
         .t-info span { color: var(--icy-highlight); font-size: 0.9rem; font-weight: 700; }
-        .t-body { font-size: 1.15rem; line-height: 1.7; color: var(--slate-grey); font-style: italic; max-width: 800px; }
+        .t-body { font-size: 1rem; line-height: 1.55; color: var(--slate-grey); font-style: italic; max-width: 750px; margin-top: 12px; }
+        .t-body p { margin: 0; }
         .arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 60px; height: 60px; background: rgba(92,201,231,0.08); border: 1px solid rgba(92,201,231,0.18);
+            width: 55px; height: 55px; background: rgba(92,201,231,0.08); border: 1px solid rgba(92,201,231,0.18);
             border-radius: 50%; color: var(--icy-highlight); display: flex; align-items: center;
-            justify-content: center; cursor: pointer; z-index: 10; transition: background 0.3s;
-            font-size: 1.2rem;
+            justify-content: center; cursor: pointer; z-index: 10; transition: background 0.3s; font-size: 1.2rem;
         }
         .arrow:hover { background: rgba(92,201,231,0.2); }
         .arrow.prev { left: 10px; }
         .arrow.next { right: 10px; }
         .dot { width: 10px; height: 10px; background: rgba(92,201,231,0.25); border-radius: 50%; cursor: pointer; transition: 0.3s; }
         .dot.active { background: var(--icy-highlight); transform: scale(1.4); }
-        .carousel-controls { display: flex; justify-content: center; gap: 15px; margin-top: 40px; }
+        .carousel-controls { display: flex; justify-content: center; gap: 15px; margin-top: 16px; }
 
-        /* Final CTA */
-        .final-cta-wrapper {
-            width: 100%; min-height: 550px; padding: 80px 20px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
+        /* Logo wall */
+        #logo-wall-container {
+            width: 100%;
+            min-height: 580px;
+            position: relative;
+            flex: 0 0 auto;
         }
-        .brand-zone { position: relative; width: 460px; height: 400px; display: flex; justify-content: center; align-items: center; }
+        .logo-wall {
+            margin-top: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1250px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+            min-height: inherit;
+            align-content: flex-start;
+        }
+        @keyframes logoFadeIn { 0% { opacity:0; transform:scale(0.96); } 100% { opacity:1; transform:scale(1); } }
+        @keyframes logoFadeOut { 0% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(0.96); } }
+        .logo-container {
+            padding: 0; margin: 8px; display: flex; justify-content: center; align-items: center;
+            max-width: 180px; height: 100px; background: white; border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            animation-duration: 0.5s; animation-fill-mode: both; animation-timing-function: ease-in-out;
+        }
+        .show-front .logo-container { animation-name: logoFadeIn; }
+        .show-back .logo-container { animation-name: logoFadeOut; }
+        .logo-container img { object-fit: contain; width: 80%; height: 80%; }
+        @media (min-width: 1200px) { .logo-container { width: calc(20% - 16px); } }
+        @media (min-width: 600px) and (max-width: 1199px) {
+            .logo-container { width: calc(33% - 16px); }
+            #logo-wall-container { min-height: 812px; }
+        }
+        @media (max-width: 599px) {
+            .logo-container { width: calc(50% - 16px); height: 80px; }
+            #logo-wall-container { min-height: 400px; overflow: hidden; }
+        }
+
+        /* CTA + footer final panel */
+        #section-final {
+            max-width: 100%;
+            padding: 0;
+            justify-content: space-between;
+        }
+        #section-final .cta-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            padding: 40px 20px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        #section-final footer {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .cta-anim-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 1; }
+        .cta-content { position: relative; z-index: 4; }
+        .cta-title {
+            font-size: clamp(1.5rem, 5vw, 2.2rem); letter-spacing: 6px; text-transform: uppercase;
+            color: var(--icy-highlight); margin-bottom: 15px; font-weight: 900;
+        }
+        .cta-sub { color: var(--slate-grey); margin-bottom: 24px; font-size: 1rem; }
+        .cta-btn-hero {
+            display: inline-flex; padding: 18px 50px; border-radius: 50px; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 4px; font-weight: 800; font-size: 1rem;
+            transition: all 0.3s ease; align-items: center; gap: 12px;
+            background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--primary-teal);
+        }
+        .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
+        .brand-zone {
+            position: relative; width: min(70vw, 380px); height: min(60vw, 320px);
+            display: flex; justify-content: center; align-items: center; opacity: 0.35;
+        }
         #traceCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; transition: opacity 1s ease; }
         #logo-reveal-img {
-            width: 460px; z-index: 1; opacity: 0; transform: scale(0.85);
+            width: min(80vw, 460px); z-index: 1; opacity: 0; transform: scale(0.85);
             filter: drop-shadow(0 0 35px rgba(92,201,231,0.55)); transition: all 1.2s cubic-bezier(0.16,1,0.3,1);
         }
         .brand-zone.revealed-inner #logo-reveal-img { opacity: 1; transform: scale(1); }
         .brand-zone.revealed-inner #traceCanvas { opacity: 0; pointer-events: none; }
-        .ready-play-overlay {
-            position: absolute; top: 20px; font-family: var(--font-mono); font-size: 1.8rem;
-            font-weight: 900; letter-spacing: 10px; text-transform: uppercase; color: var(--icy-highlight);
-            opacity: 0; transition: 1s ease; text-shadow: 0 0 20px rgba(92,201,231,0.6); z-index: 3;
-        }
-        .brand-zone.revealed-inner .ready-play-overlay { opacity: 1; }
-        .cta-zone {
-            margin-top: -20px; opacity: 0; transform: translateY(20px); transition: 1s ease 0.5s;
-            text-align: center; z-index: 4;
-        }
-        .brand-zone.revealed-inner + .cta-zone { opacity: 1; transform: translateY(0); }
-        .cta-btn-hero {
-            display: inline-flex; padding: 18px 45px; border-radius: 50px; text-decoration: none;
-            text-transform: uppercase; letter-spacing: 4px; font-weight: 800; font-size: 0.9rem;
-            transition: all 0.3s ease; align-items: center; gap: 12px;
-            background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--primary-teal); cursor: pointer;
-            box-shadow: 0 10px 30px rgba(92,201,231,0.3);
-        }
-        .cta-btn-hero:hover { background: white; transform: translateY(-3px); box-shadow: 0 15px 40px rgba(92,201,231,0.5); }
 
         @media (max-width: 768px) {
-            #hero-section { padding: 100px 15px 100px; }
-            .brand-title { font-size: 17px; letter-spacing: 3px; }
+            #hero-section { padding: 0.5rem 15px 2.5rem; }
+            .brand-title { font-size: 17px; letter-spacing: 3px; margin-bottom: 14px; }
             .time-box { width: 80px; padding: 15px 0; }
             .time-value { font-size: 32px; }
-            .roadmap-container::before { left: 20px; }
-            .step { justify-content: flex-start; margin-bottom: 50px; }
-            .step:nth-child(even) { flex-direction: row; }
-            .card { width: calc(100% - 50px); margin-left: 40px; padding: 20px; text-align: left; }
-            .testimonial-slider { padding: 20px 10px; margin-bottom: 80px; }
-            .t-card { padding: 40px 20px; }
-            .t-body { font-size: 1rem; }
+            .roadmap-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 16px 12px;
+                gap: 8px;
+            }
+            .roadmap-container::before {
+                left: 50%;
+                right: auto;
+                top: 8%;
+                bottom: 8%;
+                width: 2px;
+                height: auto;
+                transform: translateX(-50%);
+            }
+            .step { flex: 0 0 auto; width: 100%; max-width: 520px; min-width: 0; }
+            .step-card { min-height: 0; padding: 20px 18px; }
+            .roadmap-connector { width: auto; padding: 4px 0; }
+            .roadmap-connector::before { content: '⌄'; }
+            .testimonial-slider { padding: 12px 10px; }
+            .t-card { padding: 28px 18px; }
+            .t-body { font-size: 0.95rem; }
             .arrow { width: 40px; height: 40px; }
-            .brand-zone { width: 100%; height: auto; aspect-ratio: 1/1; }
-            #logo-reveal-img { width: 88%; }
-            .ready-play-overlay { font-size: 1.1rem; letter-spacing: 5px; }
-            .logo-container { width: calc(50% - 16px) !important; height: 80px; }
+            .stat-card { min-width: 140px; padding: 15px; }
+            .stat-number { font-size: 2rem; }
+            .brand-zone { width: min(75vw, 320px); height: min(55vw, 260px); }
         }
     </style>
 </head>
@@ -201,9 +403,10 @@
 
 <canvas id="bg-canvas"></canvas>
 
-<div class="page-content">
+<main class="home-snap">
 
-<div id="hero-section">
+<!-- Hero -->
+<section id="hero-section" class="snap-panel">
     <div class="reveal-hero">
         <img src="https://cdn.kb.institute/eto-2026/IBCOL/Logo/Square_Dark_Background_2026_500.png" class="main-logo" alt="IBCOL Logo">
         <div class="brand-title">International Blockchain Olympiad 2026</div>
@@ -219,88 +422,104 @@
             <div class="time-box"><span class="time-value" id="seconds">00</span><span class="time-label">Secs</span></div>
         </div>
         <div class="typed-line">
-            > <span id="typed-text"></span><span class="cursor"></span>
+            &gt; <span id="typed-text"></span><span class="cursor"></span>
         </div>
     </div>
-</div>
+    <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron">⌄</span>
+    </div>
+</section>
 
-<div class="stats-wrapper">
+<!-- Stats -->
+<section class="stats-wrapper snap-panel">
     <div class="section-header"><h2>Competition Impact</h2></div>
     <div class="stats-section" id="stats-container">
         <div class="stat-card"><span class="stat-number" data-target="120">0</span><span class="stat-label">Participating Countries</span></div>
         <div class="stat-card"><span class="stat-number" data-target="1000">0</span><span class="stat-label">Global Participants</span></div>
         <div class="stat-card"><span class="stat-number" data-target="200">0</span><span class="stat-label">Academic Institutions</span></div>
     </div>
-</div>
+</section>
 
-<div class="section-header"><h1>The Journey</h1></div>
-<div class="roadmap-container" id="journey-roadmap">
-    <div class="step"><div class="card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IBCOL ecosystem.</p></div></div>
-    <div class="step"><div class="card"><h2>Training</h2><p>Master advanced methodologies in KBI's Skillsprint to elevate your technical proficiency.</p></div></div>
-    <div class="step"><div class="card"><h2>Creation</h2><p>Architect an original project that translates complex insights into real-world solutions.</p></div></div>
-    <div class="step"><div class="card"><h2>Submission</h2><p>Finalize and upload your project for evaluation by our international board of experts.</p></div></div>
-</div>
+<!-- Journey -->
+<section class="snap-panel" id="section-journey">
+    <div class="section-header"><h1>The Journey</h1></div>
+    <div class="roadmap-container">
+        <div class="step"><div class="step-card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IBCOL ecosystem.</p></div></div>
+        <span class="roadmap-connector" aria-hidden="true"></span>
+        <div class="step"><div class="step-card"><h2>Training</h2><p>Master advanced methodologies in KBI's Skillsprint to elevate your technical proficiency.</p></div></div>
+        <span class="roadmap-connector" aria-hidden="true"></span>
+        <div class="step"><div class="step-card"><h2>Creation</h2><p>Architect an original project that translates complex insights into real-world solutions.</p></div></div>
+        <span class="roadmap-connector" aria-hidden="true"></span>
+        <div class="step"><div class="step-card"><h2>Submission</h2><p>Finalize and upload your project for evaluation by our international board of experts.</p></div></div>
+    </div>
+</section>
 
-<div class="section-header"><h1>Alumni & Partner Impact</h1></div>
-<div class="testimonial-slider">
-    <button class="arrow prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="arrow next" onclick="moveSlide(1)">&#10095;</button>
-    <div class="testimonial-container">
-        <div class="testimonial-track" id="t-track">
-            <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-brian-kim.jpg" class="t-img" alt="Brian Kim">
-                <div class="t-info"><h3>Brian Kim</h3><span>🇺🇸 Cornell University (CU)</span></div>
-                <div class="t-body"><p>"IBCOL acted as a bridge, bringing together like-minded, passionate builders from around the world."</p></div>
-            </div>
-            <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-sophia-liu.jpg" class="t-img" alt="Sophia Liu">
-                <div class="t-info"><h3>Sophia Liu</h3><span>🇭🇰 Diocesan Girls' School (DGS) 🇺🇸 Lawrenceville School</span></div>
-                <div class="t-body"><p>"IBCOL educators bestowed imparted state-of-the-art knowledge to young women indiscriminately, with a purpose to making this field more inclusive and representative of diverse perspectives."</p></div>
-            </div>
-            <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-danielle-cadoret.jpg" class="t-img" alt="Danielle Cadoret">
-                <div class="t-info"><h3>Danielle Cadoret</h3><span>🇨🇦 University of Waterloo (UW)</span></div>
-                <div class="t-body"><p>"The blockchain training program was a very eye-opening experience. Besides adding privacy and blockchain into my thesis, I also explored the idea of blockchain in healthcare, and decided to tackle a problem that is very personal for me."</p></div>
-            </div>
-            <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-aniruddha-ganguly.jpg" class="t-img" alt="Aniruddha Ganguly">
-                <div class="t-info"><h3>Aniruddha Ganguly</h3><span>🇧🇩 Bangladesh University of Engineering and Technology (BUET) 🇺🇸 Stony Brook University (SBU)</span></div>
-                <div class="t-body"><p>"After IBCOL, I was placed as a blockchain developer in the Advanced Blockchain Development Internship, supervised by KBI subject matter experts."</p></div>
-            </div>
-            <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-adrian-alexandrescu.jpg" class="t-img" alt="Dr. Prof. Adrian Alexandrescu">
-                <div class="t-info"><h3>Dr. Prof. Adrian Alexandrescu</h3><span>🇷🇴 Gheorghe Asachi Technical University of Iași (TUIASI)</span></div>
-                <div class="t-body"><p>"Participating at IBCOL as team coordinator was a wonderful experience. It gave me the opportunity to explore a variety of innovative projects and be part of an open and supportive community, even among competitors."</p></div>
+<!-- Testimonials -->
+<section class="snap-panel" id="section-testimonials">
+    <div class="section-header reveal"><h1>Alumni &amp; Partner Impact</h1></div>
+    <div class="testimonial-slider">
+        <div class="arrow prev" role="button" tabindex="0" aria-label="Previous" onclick="moveSlide(-1)">&#10094;</div>
+        <div class="arrow next" role="button" tabindex="0" aria-label="Next" onclick="moveSlide(1)">&#10095;</div>
+        <div class="testimonial-container">
+            <div class="testimonial-track" id="t-track">
+                <div class="t-card">
+                    <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-brian-kim.jpg" class="t-img" alt="Brian Kim">
+                    <div class="t-info"><h3>Brian Kim</h3><span>🇺🇸 Cornell University (CU)</span></div>
+                    <div class="t-body"><p>"IBCOL acted as a bridge, bringing together like-minded, passionate builders from around the world."</p></div>
+                </div>
+                <div class="t-card">
+                    <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-sophia-liu.jpg" class="t-img" alt="Sophia Liu">
+                    <div class="t-info"><h3>Sophia Liu</h3><span>🇭🇰 Diocesan Girls' School (DGS) 🇺🇸 Lawrenceville School</span></div>
+                    <div class="t-body"><p>"IBCOL educators bestowed imparted state-of-the-art knowledge to young women indiscriminately, with a purpose to making this field more inclusive and representative of diverse perspectives."</p></div>
+                </div>
+                <div class="t-card">
+                    <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-danielle-cadoret.jpg" class="t-img" alt="Danielle Cadoret">
+                    <div class="t-info"><h3>Danielle Cadoret</h3><span>🇨🇦 University of Waterloo (UW)</span></div>
+                    <div class="t-body"><p>"The blockchain training program was a very eye-opening experience. Besides adding privacy and blockchain into my thesis, I also explored the idea of blockchain in healthcare, and decided to tackle a problem that is very personal for me."</p></div>
+                </div>
+                <div class="t-card">
+                    <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-aniruddha-ganguly.jpg" class="t-img" alt="Aniruddha Ganguly">
+                    <div class="t-info"><h3>Aniruddha Ganguly</h3><span>🇧🇩 Bangladesh University of Engineering and Technology (BUET) 🇺🇸 Stony Brook University (SBU)</span></div>
+                    <div class="t-body"><p>"After IBCOL, I was placed as a blockchain developer in the Advanced Blockchain Development Internship, supervised by KBI subject matter experts."</p></div>
+                </div>
+                <div class="t-card">
+                    <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-adrian-alexandrescu.jpg" class="t-img" alt="Dr. Prof. Adrian Alexandrescu">
+                    <div class="t-info"><h3>Dr. Prof. Adrian Alexandrescu</h3><span>🇷🇴 Gheorghe Asachi Technical University of Iași (TUIASI)</span></div>
+                    <div class="t-body"><p>"Participating at IBCOL as team coordinator was a wonderful experience. It gave me the opportunity to explore a variety of innovative projects and be part of an open and supportive community, even among competitors."</p></div>
+                </div>
             </div>
         </div>
+        <div class="carousel-controls" id="carousel-dots"></div>
     </div>
-    <div class="carousel-controls" id="t-dots">
-        <div class="dot active" onclick="gotoDot(0)"></div>
-        <div class="dot" onclick="gotoDot(1)"></div>
-        <div class="dot" onclick="gotoDot(2)"></div>
-        <div class="dot" onclick="gotoDot(3)"></div>
-        <div class="dot" onclick="gotoDot(4)"></div>
-    </div>
-</div>
+</section>
 
-<div class="section-header"><h1>Global Connections</h1></div>
-<div id="logo-wall-container"></div>
+<!-- Global Connections -->
+<section class="snap-panel" id="section-logos">
+    <div class="section-header reveal"><h1>Global Connections</h1></div>
+    <div id="logo-wall-container" class="reveal"></div>
+</section>
 
-<div class="final-cta-wrapper" id="trigger-final">
-    <div class="brand-zone" id="brand-box">
-        <div class="ready-play-overlay">Ready to Play?</div>
-        <canvas id="traceCanvas"></canvas>
-        <img id="logo-reveal-img" src="https://cdn.kb.institute/KBI-logo-light.png" alt="KBI Logo">
+<!-- CTA + Footer -->
+<section class="snap-panel" id="section-final">
+    <div class="cta-section reveal">
+        <div class="cta-anim-bg" id="trigger-final">
+            <div class="brand-zone" id="brand-box">
+                <canvas id="traceCanvas"></canvas>
+                <img id="logo-reveal-img" src="https://cdn.kb.institute/KBI-logo-light.png" alt="KBI Logo">
+            </div>
+        </div>
+        <div class="cta-content">
+            <div class="cta-title">Ready to Compete?</div>
+            <p class="cta-sub">Join blockchain innovators from over 120 countries at IBCOL 2026.</p>
+            <a href="registration.html" class="cta-btn-hero">
+                Register Now
+                <i data-lucide="play"></i>
+            </a>
+        </div>
     </div>
-    <div class="cta-zone">
-        <a href="registration.html" class="cta-btn-hero">
-            Register Now
-            <i data-lucide="play"></i>
-        </a>
-    </div>
-</div>
+</section>
 
-</div><!-- .page-content -->
+</main>
 
 <footer>
     <div class="footer-divider"></div>
@@ -327,26 +546,36 @@
     </div>
 </footer>
 
-<script src="js/bg-canvas.js"></script>
+<script src="js/bg-canvas-home.js"></script>
 <script src="js/nav.js"></script>
 <script>
 lucide.createIcons();
 
-// Countdown
+/* Countdown */
 const target = new Date('2026-07-01T00:00:00');
 function updateCountdown() {
     const now = new Date();
     const diff = target - now;
-    if (diff <= 0) { document.getElementById('days').textContent = '00'; return; }
-    document.getElementById('days').textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');
-    document.getElementById('hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
-    document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
-    document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+    if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').textContent = String(d).padStart(2, '0');
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Typed text
+/* Typed text */
 const lines = ['Blockchain & Trust Technologies.', 'Global. Open. Competitive.', 'Join IBCOL 2026.'];
 let li = 0, ci = 0, deleting = false;
 function typeWriter() {
@@ -361,52 +590,78 @@ function typeWriter() {
     }
     setTimeout(typeWriter, deleting ? 45 : 80);
 }
-typeWriter();
+setTimeout(typeWriter, 1800);
 
-// Stats counter
-const statsEl = document.getElementById('stats-container');
+/* Counter animation */
+function animateCounter(el, target) {
+    const dur = 2000, step = 20;
+    let cur = 0;
+    const inc = target / (dur / step);
+    const t = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        el.textContent = (target >= 1000 ? Math.floor(cur).toLocaleString() : Math.floor(cur)) + '+';
+        if (cur >= target) clearInterval(t);
+    }, step);
+}
+
 const statsObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-        statsEl.classList.add('active');
-        statsEl.querySelectorAll('.stat-number').forEach(el => {
-            const target = +el.dataset.target;
-            let cur = 0;
-            const step = target / 80;
-            const t = setInterval(() => {
-                cur = Math.min(cur + step, target);
-                el.textContent = (cur >= target ? target : Math.floor(cur)) + (target >= 1000 ? '+' : '+');
-                if (cur >= target) clearInterval(t);
-            }, 20);
-        });
-        statsObs.disconnect();
-    }
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            entry.target.querySelectorAll('.stat-number').forEach(el => {
+                animateCounter(el, parseInt(el.getAttribute('data-target'), 10));
+            });
+            statsObs.unobserve(entry.target);
+        }
+    });
 }, { threshold: 0.3 });
-statsObs.observe(statsEl);
+const statsEl = document.getElementById('stats-container');
+if (statsEl) statsObs.observe(statsEl);
 
-// Roadmap steps
-const steps = document.querySelectorAll('.step');
-const stepObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-}, { threshold: 0.2 });
-steps.forEach(s => stepObs.observe(s));
-
-// Testimonial slider
-let tIdx = 0;
-const tTrack = document.getElementById('t-track');
-const tDots = document.querySelectorAll('.dot');
-const tTotal = tDots.length;
-function updateSlider() {
-    tTrack.style.transform = `translateX(-${tIdx * 100}%)`;
-    tDots.forEach((d, i) => d.classList.toggle('active', i === tIdx));
+const journeyEl = document.getElementById('section-journey');
+if (journeyEl) {
+    const journeyObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                journeyObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    journeyObs.observe(journeyEl);
 }
-function moveSlide(dir) {
-    tIdx = (tIdx + dir + tTotal) % tTotal;
-    updateSlider();
-}
-function gotoDot(i) { tIdx = i; updateSlider(); }
-setInterval(() => moveSlide(1), 6000);
 
-// Logo wall
+/* Testimonial slider */
+let curSlide = 0, totalSlides = 0, autoSlide;
+function buildDots() {
+    const track = document.getElementById('t-track');
+    if (!track) return;
+    totalSlides = track.children.length;
+    const dc = document.getElementById('carousel-dots');
+    if (!dc) return;
+    dc.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+        const d = document.createElement('span');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.onclick = () => goSlide(i);
+        dc.appendChild(d);
+    }
+}
+function goSlide(n) {
+    curSlide = (n + totalSlides) % totalSlides;
+    const track = document.getElementById('t-track');
+    if (track) track.style.transform = `translateX(-${curSlide * 100}%)`;
+    document.querySelectorAll('#carousel-dots .dot').forEach((d, i) => d.classList.toggle('active', i === curSlide));
+}
+window.moveSlide = (dir) => { goSlide(curSlide + dir); resetAuto(); };
+function resetAuto() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(() => goSlide(curSlide + 1), 5000);
+}
+buildDots();
+resetAuto();
+
+/* Global connections logo wall */
 const LOGO_SOURCES = [
     "https://cdn.kb.institute/logo/ABN-AMRO.png","https://cdn.kb.institute/logo/Alchemy.png","https://cdn.kb.institute/logo/Alibaba.png",
     "https://cdn.kb.institute/logo/Amazon.png","https://cdn.kb.institute/logo/Apple.png","https://cdn.kb.institute/logo/ASML.png",
@@ -423,48 +678,107 @@ const LOGO_SOURCES = [
     "https://cdn.kb.institute/logo/The-University-of-Hong-Kong-(HKU).png","https://cdn.kb.institute/logo/University-of-Waterloo-(UW).png",
     "https://cdn.kb.institute/logo/Waymo.png","https://cdn.kb.institute/logo/Zoox.png","https://cdn.kb.institute/logo/S&P-Global.png"
 ];
-const LOGOS_PER_PAGE = 20;
-let logoPage = 0, logoForward = true;
-const container = document.getElementById('logo-wall-container');
-function renderLogoPage() {
-    const start = logoPage * LOGOS_PER_PAGE;
-    const slice = LOGO_SOURCES.slice(start, start + LOGOS_PER_PAGE);
-    container.innerHTML = `<div class="logo-wall show-front">${slice.map(src=>`<div class="logo-container"><img src="${src}" alt="" loading="lazy"></div>`).join('')}</div>`;
-}
-renderLogoPage();
-setInterval(() => {
-    const total = Math.ceil(LOGO_SOURCES.length / LOGOS_PER_PAGE);
-    if (logoForward) { logoPage++; if (logoPage >= total - 1) logoForward = false; }
-    else { logoPage--; if (logoPage <= 0) logoForward = true; }
-    renderLogoPage();
-}, 4000);
 
-// Trace canvas CTA
-const tCanvas = document.getElementById('traceCanvas');
-const tCtx = tCanvas.getContext('2d');
-const pts = [{x:230,y:120},{x:370,y:310},{x:90,y:310},{x:230,y:120}];
-let traceProg = 0, traceStarted = false;
-function runTrace() {
-    tCanvas.width = 460; tCanvas.height = 460; tCtx.clearRect(0,0,460,460);
-    const cur = Math.floor(traceProg * 3), sub = (traceProg * 3) % 1;
-    tCtx.lineWidth = 2; tCtx.strokeStyle = "rgba(92,201,231,0.4)";
-    for (let i = 0; i < cur; i++) {
-        tCtx.beginPath(); tCtx.moveTo(pts[i].x, pts[i].y); tCtx.lineTo(pts[i+1].x, pts[i+1].y); tCtx.stroke();
+const logoWallContainer = document.getElementById('logo-wall-container');
+if (logoWallContainer) {
+    const logoWall = document.createElement('div');
+    logoWall.className = 'logo-wall show-front';
+    logoWallContainer.appendChild(logoWall);
+
+    const ITEMS_PER_PAGE = 21;
+    let rotationIndex = 0;
+
+    function populateWall(page) {
+        const fragment = document.createDocumentFragment();
+        const start = page * ITEMS_PER_PAGE;
+        const end = Math.min(start + ITEMS_PER_PAGE, LOGO_SOURCES.length);
+        for (let i = start; i < end; i++) {
+            const container = document.createElement('div');
+            container.className = 'logo-container';
+            container.style.animationDelay = `${(i - start) * 35}ms`;
+            const img = document.createElement('img');
+            img.src = LOGO_SOURCES[i];
+            img.alt = 'Partner logo';
+            img.loading = 'lazy';
+            container.appendChild(img);
+            fragment.appendChild(container);
+        }
+        logoWall.replaceChildren(fragment);
     }
-    if (traceProg < 1) {
-        tCtx.beginPath(); tCtx.moveTo(pts[cur].x, pts[cur].y);
-        tCtx.lineTo(pts[cur].x + (pts[cur+1].x-pts[cur].x)*sub, pts[cur].y + (pts[cur+1].y-pts[cur].y)*sub);
-        tCtx.stroke();
-        traceProg += 0.008;
-        requestAnimationFrame(runTrace);
-    } else {
-        document.getElementById('brand-box').classList.add('revealed-inner');
-    }
+
+    populateWall(0);
+    setInterval(() => {
+        logoWall.classList.replace('show-front', 'show-back');
+        setTimeout(() => {
+            rotationIndex = (rotationIndex + 1) % Math.ceil(LOGO_SOURCES.length / ITEMS_PER_PAGE);
+            populateWall(rotationIndex);
+            logoWall.classList.replace('show-back', 'show-front');
+        }, 500);
+    }, 5000);
 }
-const finalObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !traceStarted) { traceStarted = true; runTrace(); finalObs.disconnect(); }
-}, { threshold: 0.4 });
-finalObs.observe(document.getElementById('trigger-final'));
+
+/* End CTA trace animation */
+const triggerFinal = document.getElementById('trigger-final');
+const brandBox = document.getElementById('brand-box');
+const traceCanvas = document.getElementById('traceCanvas');
+if (triggerFinal && brandBox && traceCanvas) {
+    const tCtx = traceCanvas.getContext('2d');
+    const pts = [{ x: 250, y: 135 }, { x: 393, y: 342 }, { x: 107, y: 342 }, { x: 250, y: 135 }];
+    let traceStarted = false;
+    let traceProg = 0;
+
+    function runTrace() {
+        traceCanvas.width = 500;
+        traceCanvas.height = 500;
+        tCtx.clearRect(0, 0, 500, 500);
+        const cur = Math.floor(traceProg * 3);
+        const sub = (traceProg * 3) % 1;
+
+        tCtx.lineWidth = 2;
+        tCtx.strokeStyle = 'rgba(92,201,231,0.4)';
+        for (let i = 0; i < cur; i++) {
+            tCtx.beginPath();
+            tCtx.moveTo(pts[i].x, pts[i].y);
+            tCtx.lineTo(pts[i + 1].x, pts[i + 1].y);
+            tCtx.stroke();
+        }
+
+        if (traceProg < 1) {
+            tCtx.beginPath();
+            tCtx.moveTo(pts[cur].x, pts[cur].y);
+            tCtx.lineTo(
+                pts[cur].x + (pts[cur + 1].x - pts[cur].x) * sub,
+                pts[cur].y + (pts[cur + 1].y - pts[cur].y) * sub
+            );
+            tCtx.strokeStyle = '#e0f7ff';
+            tCtx.stroke();
+            traceProg += 0.025;
+            requestAnimationFrame(runTrace);
+        } else {
+            brandBox.classList.add('revealed-inner');
+        }
+    }
+
+    const finalObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting && !traceStarted) {
+                traceStarted = true;
+                runTrace();
+            }
+        });
+    }, { threshold: 0.35 });
+
+    finalObs.observe(triggerFinal);
+}
+</script>
+<script>
+(function () {
+    'use strict';
+    const panel = document.getElementById('section-final');
+    const footer = document.querySelector('footer');
+    if (panel && footer) panel.appendChild(footer);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+})();
 </script>
 </body>
 </html>

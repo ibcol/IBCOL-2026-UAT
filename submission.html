@@ -18,6 +18,8 @@
         .spec-card ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
         .spec-card li { font-size: 0.94rem; margin-bottom: 18px; padding-left: 28px; position: relative; line-height: 1.58; }
         .spec-card li::before { content: "■"; position: absolute; left: 0; color: var(--teal-mid); font-size: 1.1rem; }
+        .spec-card:nth-child(1) li,
+        .spec-card:nth-child(4) li { margin-bottom: 26px; padding-top: 4px; padding-bottom: 4px; }
         .spec-card b { color: var(--icy-highlight); }
         .spec-card a { color: var(--primary-teal); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.25s ease; }
         .spec-card a:hover { color: var(--icy-highlight); border-bottom-color: var(--primary-teal); }
@@ -111,22 +113,23 @@
     <div class="section-header reveal"><h2>Submission Roadmap</h2></div>
     <div class="reveal">
         <table class="roadmap-table">
-            <thead><tr><th>Phase</th><th>Mandatory Requirements</th><th>Optional Expansion</th></tr></thead>
+            <thead><tr><th>Phase</th><th>Mandatory Requirements</th></tr></thead>
             <tbody>
                 <tr>
-                    <td>Phase 0<br><small>Trial Period</small></td>
-                    <td><b class="roadmap-h">Minimum Requirement</b><p class="sub-text">May submit at least one:</p><p class="sub-text">• <span class="white-item">Pitch Deck</span></p><p class="sub-text">• <span class="white-item">Whitepaper</span></p></td>
-                    <td><p class="sub-text">• Prototype (if available)</p></td>
+                    <td>Phase 0<br><small>Pre-IBCOL</small></td>
+                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text"><span class="white-item">N/A</span></p></td>
                 </tr>
                 <tr>
-                    <td>Phase 1<br><small>Qualifier Round</small></td>
-                    <td><b class="roadmap-h">Mandatory (Revised or New)</b><p class="sub-text">Must submit:</p><p class="sub-text">• <span class="white-item">Pitch Deck</span></p><p class="sub-text">• <span class="white-item">Whitepaper</span></p></td>
-                    <td><p class="sub-text">• Prototype (if applicable)</p></td>
+                    <td>Phase 1<br><small>IBCOL Qualifiers</small></td>
+                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text">• <span class="white-item">Whitepaper</span></p><p class="sub-text">• <span class="white-item">Prototype</span> (dev track only)</p></td>
                 </tr>
                 <tr>
-                    <td>Phase 2<br><small>Final Round</small></td>
-                    <td><b class="roadmap-h">Final Requirements</b><p class="sub-text">• <span class="white-item">Pitch Deck (Revised or New)</span></p><p class="sub-text">• <span class="white-item">Whitepaper (Revised &amp; Required)</span></p><p class="sub-text">• <span class="white-item">Posterboard (Required)</span></p></td>
-                    <td><p class="sub-text">• Prototype (if applicable)</p></td>
+                    <td>Phase 2<br><small>ETO</small></td>
+                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text">• <span class="white-item">Pitch Deck</span></p><p class="sub-text">• <span class="white-item">Posterboard</span></p></td>
+                </tr>
+                <tr>
+                    <td>Phase 3<br><small>IBCOL Finals</small></td>
+                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text">• <span class="white-item">Revised Whitepaper</span></p><p class="sub-text">• <span class="white-item">Prototype</span> (dev track only)</p></td>
                 </tr>
             </tbody>
         </table>
