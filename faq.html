@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | IBCOL 2026</title>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        .section-header { margin: 80px 0 60px; }
+        .section-header h2 { font-size: clamp(2rem, 6vw, 2.7rem); letter-spacing: 10px; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 100px;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 600px) {
+            .section-header h2 { font-size: 1.8rem; letter-spacing: 5px; }
+        }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<div class="page-content">
+    <div class="section-header reveal" style="text-align:center;padding:0 20px;">
+        <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="container">
+        <div class="faq-list reveal">
+            <div class="faq-item">
+                <button class="faq-trigger" type="button">
+                    When does IBCOL 2026 registration officially open?
+                    <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
+                </button>
+                <div class="faq-answer">Official registration opens in mid-2026. We encourage teams to register their interest now to receive early notifications and preparation resources. Use the <a href="registration.html">Registration</a> page to stay updated.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-trigger" type="button">
+                    Can teams from any country participate?
+                    <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
+                </button>
+                <div class="faq-answer">Yes, IBCOL 2026 is open to participants from all countries. The competition has previously welcomed teams from over 120 nations. There are no geographic restrictions on eligibility.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-trigger" type="button">
+                    What language must submissions be in?
+                    <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
+                </button>
+                <div class="faq-answer">All submissions, presentations, and communications must be in English. This ensures fair assessment by our international panel of judges.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-trigger" type="button">
+                    How long does it take to hear back after submission?
+                    <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
+                </button>
+                <div class="faq-answer">After the Qualifier Round closes in October 2026, results (invitation, conditional invitation, or rejection) are communicated within four to six weeks. Teams in the Trial Period (July–August 2026) receive feedback within approximately two weeks.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-trigger" type="button">
+                    Why are fees levied?
+                    <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
+                </button>
+                <div class="faq-answer">Fees support competition operations including review, logistics, and event materials. <em>No profits are extracted from these fees.</em> See the <a href="registration.html">Registration</a> page for pricing details.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-trigger" type="button">
+                    Who do I contact if I have a technical problem with my submission?
+                    <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
+                </button>
+                <div class="faq-answer">Please email <a href="mailto:2026@ibcol.org?subject=Technical%20Submission%20Issue%20%E2%80%93%20%5BTeam%20Name%5D">2026@ibcol.org</a> with the subject line &ldquo;Technical Submission Issue – [Team Name]&rdquo;. Our team will respond within 48 business hours.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.faq-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!isOpen) item.classList.add('active');
+        });
+    });
+</script>
+<footer>
+    <div class="footer-divider"></div>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>IBCOL: International Blockchain Olympiad</h4>
+                <div class="footer-icons">
+                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>KBI: Königsberger Bridges Institute</h4>
+                <div class="footer-icons">
+                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/registration-fee.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

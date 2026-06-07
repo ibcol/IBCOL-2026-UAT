@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | IBCOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
         h2 {
@@ -139,6 +139,25 @@
 </div>
 </div>
 
+<script src="js/bg-canvas.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/footer.js"></script>
+<script>
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            if (entry.target.querySelector('.committee-grid')) {
+                entry.target.querySelectorAll('.member-card').forEach((card, i) => {
+                    setTimeout(() => card.classList.add('revealed'), i * 200 + 100);
+                });
+            }
+        }
+    });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
 <footer>
     <div class="footer-divider"></div>
     <div class="footer-inner">
@@ -163,24 +182,9 @@
         <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
     </div>
 </footer>
-
 <script src="js/bg-canvas.js"></script>
 <script src="js/nav.js"></script>
-<script>
-lucide.createIcons();
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            if (entry.target.querySelector('.committee-grid')) {
-                entry.target.querySelectorAll('.member-card').forEach((card, i) => {
-                    setTimeout(() => card.classList.add('revealed'), i * 200 + 100);
-                });
-            }
-        }
-    });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-</script>
+<script src="js/registration-fee.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

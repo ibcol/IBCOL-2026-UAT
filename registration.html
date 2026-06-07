@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration | IBCOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
         .roi-container { margin: 50px auto; max-width: 800px; }
@@ -42,6 +42,62 @@
         .fee-section { margin-bottom: 28px; }
         .fee-section b { color: var(--icy-highlight); display: block; margin-bottom: 10px; font-size: 1.05rem; }
         .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--teal-dark); font-size: 0.85rem; line-height: 1.7; }
+        .pricing-table { width: 100%; border-collapse: collapse; background: var(--glass-frost); border: 1px solid var(--border-teal); margin: 24px 0; font-size: 0.95rem; }
+        .pricing-table th, .pricing-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-teal); text-align: left; }
+        .pricing-table th { background: rgba(92,201,231,0.12); color: var(--icy-highlight); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.78rem; font-weight: 800; }
+        .pricing-table td:last-child, .pricing-table th:last-child { text-align: right; }
+        .payment-callout {
+            background: rgba(92,201,231,0.1); border: 1px solid var(--primary-teal); padding: 24px 28px;
+            border-radius: 8px; margin: 30px auto; max-width: 720px;
+        }
+        .payment-callout h3 { margin: 0 0 12px; color: var(--icy-highlight); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
+        .fee-content { max-width: 900px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 24px; }
+        .fee-subsection {
+            background: var(--glass-frost);
+            border: 1px solid var(--border-teal); border-radius: 8px;
+            padding: 28px 32px; backdrop-filter: blur(15px); text-align: center;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+        .fee-subsection-head {
+            color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px;
+            font-size: 1rem; font-weight: 800; margin: 0 0 18px; padding-bottom: 12px;
+            border-bottom: 1px solid var(--teal-mid);
+        }
+        .fee-subsection p { color: var(--slate-grey); line-height: 1.7; margin: 0 0 16px; }
+        .fee-subsection p:last-child { margin-bottom: 0; }
+        .fee-subsection .pricing-table { margin: 16px 0 0; }
+        .fee-subsection .collapsible-container { margin-top: 20px; margin-bottom: 0; }
+        .price-high { color: #e87070; font-weight: 700; }
+        .price-low { color: #6dd49a; font-weight: 700; }
+        .calc-panel {
+            background: var(--glass-frost);
+            border: 1px solid var(--border-teal); backdrop-filter: blur(15px);
+            padding: 32px; border-radius: 8px; max-width: 640px; margin: 0 auto 50px;
+        }
+        .calc-panel h3 { color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 24px; font-size: 1.2rem; }
+        .calc-field { margin-bottom: 18px; }
+        .calc-field label { display: block; color: var(--icy-highlight); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .calc-field input, .calc-field select {
+            width: 100%; padding: 12px 14px; background: rgba(0,0,0,0.35); border: 1px solid var(--border-teal);
+            color: var(--slate-grey); font-family: var(--font-main); font-size: 1rem; border-radius: 4px;
+        }
+        .calc-mode { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+        .calc-mode label { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--slate-grey); font-weight: 600; }
+        .calc-btn {
+            width: 100%; padding: 14px; margin-top: 8px; background: var(--primary-teal); color: var(--bg-deep);
+            border: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; font-family: var(--font-main); transition: all 0.3s ease;
+        }
+        .calc-btn:hover { background: var(--icy-highlight); }
+        .calc-output { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-teal); text-align: center; }
+        .calc-breakdown { font-size: 0.9rem; line-height: 1.9; color: var(--slate-grey); text-align: center; }
+        .calc-breakdown .calc-line strong { font-weight: 800; color: var(--icy-highlight); }
+        .calc-divider { border: none; border-top: 1px solid var(--border-teal); margin: 14px auto; max-width: 280px; }
+        .calc-spacer { height: 0.65em; }
+        .calc-total { font-size: 1.8rem; font-weight: 900; color: var(--icy-highlight); margin-top: 16px; margin-bottom: 0; }
+        .calc-total.calc-total--hint { font-size: 0.95rem; font-weight: 600; color: var(--slate-grey); margin-top: 10px; }
+        .calc-warning { color: #f0a0a0; font-weight: 700; }
+        #calc-category-wrap[hidden], #calc-reg-fields[hidden], #calc-resub-fields[hidden] { display: none !important; }
         @media (max-width: 850px) { .info-grid { grid-template-columns: 1fr; } .roi-card h3 { font-size: 1.5rem; } }
     </style>
 </head>
@@ -63,69 +119,119 @@
         </a>
     </div>
     <div class="divider reveal"></div>
-    <div class="section-header reveal"><h2>Registration Fee</h2></div>
-    <div class="info-grid reveal">
-        <div class="info-box">
-            <h3>How are fees levied?</h3>
-            <p>Registration fees are <b>only collected from teams invited to the IBCOL finals</b>. Payment details are provided with the invitation letter. Fee depends on country income level:</p>
-            <ul class="category-list">
-                <li>Category A: High income.</li>
-                <li>Category B: Upper middle income.</li>
-                <li>Category C: Low and lower middle income.</li>
+    <div class="section-header reveal"><h2>Registration Fee</h2><p>IBCOL 2026 Qualifiers — per team</p></div>
+
+    <div class="fee-content">
+        <div class="payment-callout reveal">
+            <h3>Payment</h3>
+            <p>We accept <b>wire transfer</b> or <b>Stripe</b> only. Invoices are issued in <b>EUR (Euro)</b> or <b>HKD (Hong Kong Dollar)</b> — no other currencies.</p>
+        </div>
+
+        <div class="fee-subsection reveal">
+            <h3 class="fee-subsection-head">Standard team pricing</h3>
+            <p>Member 1 is included in the team fee. Each additional teammate is charged by tier (2nd–4th at the mid rate; 5th and beyond at the lower rate).</p>
+            <table class="pricing-table">
+                <thead>
+                    <tr><th>Item</th><th>EUR</th><th>HKD</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>One team (includes 1 member)</td><td>€123</td><td>$1,000</td></tr>
+                    <tr><td>Additional members 2–4 (each)</td><td>€67</td><td>$500</td></tr>
+                    <tr><td>Additional members 5+ (each)</td><td>€55</td><td>$375</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fee-subsection reveal">
+            <h3 class="fee-subsection-head">Country categories</h3>
+            <p>Your country’s income category adjusts the team total for both EUR and HKD invoices:</p>
+            <ul class="category-list" style="display:inline-block;text-align:left;">
+                <li>Category A: <span class="price-high">+20% (×1.2)</span></li>
+                <li>Category B: standard (×1.0)</li>
+                <li>Category C: <span class="price-low">−20% (×0.8)</span></li>
             </ul>
+            <div class="collapsible-container">
+                <div class="collapsible-item">
+                    <button class="collapsible-trigger">View countries by category <i data-lucide="chevron-down"></i></button>
+                    <div class="collapsible-content" style="text-align:left;">
+                        <div class="fee-section"><b class="price-high">Category A (+20%)</b>American Samoa, Andorra, Antigua &amp; Barbuda, Aruba, Australia, Austria, Bahamas, Bahrain, Barbados, Belgium, Bermuda, British Virgin Is., Brunei, Bulgaria, Canada, Cayman Is., Channel Is., Chile, Croatia, Curaçao, Cyprus, Czech Rep., Denmark, Estonia, Faroe Is., Finland, France, French Polynesia, Germany, Gibraltar, Greece, Greenland, Guam, Guyana, Hong Kong, Hungary, Iceland, Ireland, Isle of Man, Israel, Italy, Japan, Korea Rep., Kuwait, Latvia, Liechtenstein, Lithuania, Luxembourg, Macao, Malta, Monaco, Nauru, Netherlands, New Caledonia, New Zealand, Northern Mariana Is., Norway, Oman, Palau, Panama, Poland, Portugal, Puerto Rico, Qatar, Romania, Russian Fed., San Marino, Saudi Arabia, Seychelles, Singapore, Sint Maarten, Slovak Rep., Slovenia, Spain, St. Kitts and Nevis, St. Martin, Sweden, Switzerland, Taiwan, Trinidad and Tobago, Turks and Caicos Islands, United Arab Emirates, United Kingdom, United States, Uruguay, Virgin Islands (US).</div>
+                        <div class="fee-section"><b>Category B (standard)</b>Albania, Algeria, Argentina, Armenia, Azerbaijan, Belarus, Belize, Bosnia and Herzegovina, Botswana, Brazil, China, Colombia, Costa Rica, Cuba, Dominica, Dominican Republic, Ecuador, El Salvador, Equatorial Guinea, Fiji, Gabon, Georgia, Grenada, Guatemala, Indonesia, Iran, Iraq, Jamaica, Kazakhstan, Kosovo, Libya, Malaysia, Maldives, Marshall Is., Mauritius, Mexico, Moldova, Mongolia, Montenegro, Namibia, North Macedonia, Paraguay, Peru, Serbia, South Africa, St. Lucia, St. Vincent and the Grenadines, Suriname, Thailand, Tonga, Türkiye, Turkmenistan, Tuvalu, Ukraine.</div>
+                        <div class="fee-section"><b class="price-low">Category C (−20%)</b>Afghanistan, Angola, Bangladesh, Benin, Bhutan, Bolivia, Burkina Faso, Burundi, Cabo Verde, Cambodia, Cameroon, Central African Rep., Chad, Comoros, Congo Dem. Rep., Congo Rep., Côte d'Ivoire, Djibouti, Egypt, Eritrea, Eswatini, Ethiopia, Gambia, Ghana, Guinea, Guinea-Bissau, Haiti, Honduras, India, Jordan, Kenya, Kiribati, Korea (Dem. People's Rep.), Kyrgyzstan, Lao PDR, Lebanon, Lesotho, Liberia, Madagascar, Malawi, Mali, Mauritania, Micronesia, Morocco, Mozambique, Myanmar, Nepal, Nicaragua, Niger, Nigeria, Pakistan, Palestine, Papua New Guinea, Philippines, Rwanda, Samoa, São Tomé and Principe, Senegal, Sierra Leone, Solomon Is., Somalia, South Sudan, Sri Lanka, Sudan, Syria, Tajikistan, Tanzania, Timor-Leste, Togo, Tunisia, Uganda, Uzbekistan, Vanuatu, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="info-box">
-            <h3>Why are fees levied?</h3>
-            <p>The fees contribute to costs including logistics, food, beverages, and posterboard printing. <i>No profits are extracted from these fees.</i></p>
+
+        <div class="fee-subsection reveal">
+            <h3 class="fee-subsection-head">Payment windows</h3>
+            <table class="pricing-table">
+                <thead>
+                    <tr><th>Window</th><th>Pay by</th><th>Adjustment</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Early bird</td><td>7 Jul 2026</td><td><span class="price-low">40% off total</span></td></tr>
+                    <tr><td>Regular</td><td>8 Aug 2026</td><td>Standard price</td></tr>
+                    <tr><td>Late bird</td><td>9 Sep 2026</td><td><span class="price-high">+10% on total</span></td></tr>
+                    <tr><td>After 9 Sep</td><td>—</td><td>Registration closed</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top:16px;font-size:0.9rem;color:var(--teal-dark);">Pay on or before each deadline to qualify for that window. Between 8 Jul and 8 Aug pays regular rate; between 9 Aug and 9 Sep pays late bird (<span class="price-high">+10%</span>).</p>
+        </div>
+
+        <div class="fee-subsection reveal">
+            <h3 class="fee-subsection-head">Whitepaper resubmission fee</h3>
+            <p>For Phase 3 (IBCOL International), late resubmissions after <b>30 Nov 2026</b> incur:</p>
+            <p><b>EUR:</b> <span class="price-high">€2.71828</span> × number of days past deadline<br>
+            <b>HKD:</b> <span class="price-high">HK$27.1828</span> × number of days past deadline</p>
+            <p style="font-size:0.9rem;color:var(--teal-dark);">Submissions on or before the deadline have <span class="price-low">no late fee</span>.</p>
         </div>
     </div>
-    <div class="collapsible-container reveal">
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">Country Category A <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content">American Samoa, Andorra, Antigua &amp; Barbuda, Aruba, Australia, Austria, Bahamas, Bahrain, Barbados, Belgium, Bermuda, British Virgin Is., Brunei, Bulgaria, Canada, Cayman Is., Channel Is., Chile, Croatia, Curaçao, Cyprus, Czech Rep., Denmark, Estonia, Faroe Is., Finland, France, French Polynesia, Germany, Gibraltar, Greece, Greenland, Guam, Guyana, Hong Kong, Hungary, Iceland, Ireland, Isle of Man, Israel, Italy, Japan, Korea Rep., Kuwait, Latvia, Liechtenstein, Lithuania, Luxembourg, Macao, Malta, Monaco, Nauru, Netherlands, New Caledonia, New Zealand, Northern Mariana Is., Norway, Oman, Palau, Panama, Poland, Portugal, Puerto Rico, Qatar, Romania, Russian Fed., San Marino, Saudi Arabia, Seychelles, Singapore, Sint Maarten, Slovak Rep., Slovenia, Spain, St. Kitts and Nevis, St. Martin, Sweden, Switzerland, Taiwan, Trinidad and Tobago, Turks and Caicos Islands, United Arab Emirates, United Kingdom, United States, Uruguay, Virgin Islands (US).</div>
-        </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">Country Category B <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content">Albania, Algeria, Argentina, Armenia, Azerbaijan, Belarus, Belize, Bosnia and Herzegovina, Botswana, Brazil, China, Colombia, Costa Rica, Cuba, Dominica, Dominican Republic, Ecuador, El Salvador, Equatorial Guinea, Fiji, Gabon, Georgia, Grenada, Guatemala, Indonesia, Iran, Iraq, Jamaica, Kazakhstan, Kosovo, Libya, Malaysia, Maldives, Marshall Is., Mauritius, Mexico, Moldova, Mongolia, Montenegro, Namibia, North Macedonia, Paraguay, Peru, Serbia, South Africa, St. Lucia, St. Vincent and the Grenadines, Suriname, Thailand, Tonga, Türkiye, Turkmenistan, Tuvalu, Ukraine.</div>
-        </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">Country Category C <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content">Afghanistan, Angola, Bangladesh, Benin, Bhutan, Bolivia, Burkina Faso, Burundi, Cabo Verde, Cambodia, Cameroon, Central African Rep., Chad, Comoros, Congo Dem. Rep., Congo Rep., Côte d'Ivoire, Djibouti, Egypt, Eritrea, Eswatini, Ethiopia, Gambia, Ghana, Guinea, Guinea-Bissau, Haiti, Honduras, India, Jordan, Kenya, Kiribati, Korea (Dem. People's Rep.), Kyrgyzstan, Lao PDR, Lebanon, Lesotho, Liberia, Madagascar, Malawi, Mali, Mauritania, Micronesia, Morocco, Mozambique, Myanmar, Nepal, Nicaragua, Niger, Nigeria, Pakistan, Palestine, Papua New Guinea, Philippines, Rwanda, Samoa, São Tomé and Principe, Senegal, Sierra Leone, Solomon Is., Somalia, South Sudan, Sri Lanka, Sudan, Syria, Tajikistan, Tanzania, Timor-Leste, Togo, Tunisia, Uganda, Uzbekistan, Vanuatu, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.</div>
-        </div>
-    </div>
+
     <div class="divider reveal"></div>
-    <div class="section-header reveal"><h2>Fee Structures</h2><p>Anticipated standard fees for 2026 (per team)</p></div>
-    <div class="collapsible-container reveal">
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇺🇸 USD: US Dollar <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $408.41</li><li>Category B: $353.38</li><li>Category C: $183.85</li></ul></div></div>
+    <div class="section-header reveal"><h2>Fee Calculator</h2><p>Estimate registration or resubmission costs</p></div>
+    <div class="calc-panel reveal" id="fee-calculator">
+        <h3>Calculate your fee</h3>
+        <div class="calc-mode">
+            <label><input type="radio" name="calc-mode" value="registration" checked> Registration fee</label>
+            <label><input type="radio" name="calc-mode" value="resubmission"> Resubmission fee</label>
         </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇪🇺 EUR: Euro <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: €314.16</li><li>Category B: €271.83</li><li>Category C: €141.42</li></ul></div></div>
+        <div class="calc-field">
+            <label for="calc-currency">Currency</label>
+            <select id="calc-currency" aria-label="Currency">
+                <option value="EUR">EUR (Euro)</option>
+                <option value="HKD">HKD (Hong Kong Dollar)</option>
+            </select>
         </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇭🇰 HKD: Hong Kong Dollar <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $3,141.59</li><li>Category B: $2,718.28</li><li>Category C: $1,414.21</li></ul></div></div>
+        <div id="calc-reg-fields">
+            <div class="calc-field" id="calc-category-wrap">
+                <label for="calc-category">Country category (EUR &amp; HKD)</label>
+                <select id="calc-category" aria-label="Country category">
+                    <option value="A">A — +20%</option>
+                    <option value="B" selected>B — standard</option>
+                    <option value="C">C — −20%</option>
+                </select>
+            </div>
+            <div class="calc-field">
+                <label for="calc-team-size">Team size (members)</label>
+                <input type="number" id="calc-team-size" min="1" value="1" aria-label="Team size">
+            </div>
+            <div class="calc-field">
+                <label for="calc-pay-date">Payment date</label>
+                <input type="date" id="calc-pay-date" min="2026-06-01" max="2026-12-31" aria-label="Payment date">
+            </div>
         </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇯🇵 JPY: Japanese Yen <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: ¥62,832</li><li>Category B: ¥54,366</li><li>Category C: ¥28,284</li></ul></div></div>
+        <div id="calc-resub-fields" hidden>
+            <div class="calc-field">
+                <label for="calc-submit-date">Submission date</label>
+                <input type="date" id="calc-submit-date" min="2026-11-01" max="2027-12-18" aria-label="Submission date">
+            </div>
         </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇨🇦 CAD: Canadian Dollar <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $565.49</li><li>Category B: $489.29</li><li>Category C: $254.56</li></ul></div></div>
-        </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇦🇺 AUD: Australian Dollar <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $628.32</li><li>Category B: $543.66</li><li>Category C: $282.84</li></ul></div></div>
-        </div>
-        <div class="collapsible-item">
-            <button class="collapsible-trigger">🇳🇿 NZD: New Zealand Dollar <i data-lucide="chevron-down"></i></button>
-            <div class="collapsible-content"><div class="fee-section"><b>Standard Fee:</b><ul class="category-list"><li>Category A: $691.15</li><li>Category B: $598.02</li><li>Category C: $311.13</li></ul></div></div>
+        <button type="button" class="calc-btn" id="calc-run">Calculate</button>
+        <div class="calc-output" aria-live="polite">
+            <div class="calc-breakdown" id="calc-breakdown"></div>
+            <div class="calc-total calc-total--hint" id="calc-result">—</div>
         </div>
     </div>
-    <div class="note-box">Source: Gross national income (GNI) per capita classification. The World Bank, July 1, 2024.</div>
 </div>
 </div>
 
@@ -155,18 +261,7 @@
 </footer>
 <script src="js/bg-canvas.js"></script>
 <script src="js/nav.js"></script>
-<script>
-lucide.createIcons();
-document.querySelectorAll('.collapsible-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-        const item = trigger.parentElement;
-        const isOpen = item.classList.contains('active');
-        item.classList.toggle('active');
-        const icon = trigger.querySelector('[data-lucide]');
-        icon.setAttribute('data-lucide', isOpen ? 'chevron-down' : 'chevron-up');
-        lucide.createIcons();
-    });
-});
-</script>
+<script src="js/registration-fee.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

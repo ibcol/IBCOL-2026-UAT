@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>International Blockchain Olympiad 2026 | IBCOL</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
     <style>
@@ -32,6 +32,7 @@
         }
 
         .home-snap .snap-panel {
+            position: relative;
             min-height: calc(100vh - var(--nav-height));
             min-height: calc(100dvh - var(--nav-height));
             scroll-snap-align: start;
@@ -94,11 +95,17 @@
         @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
         @keyframes blink { 0%, 100% { opacity:1; } 50% { opacity:0; } }
 
-        .main-logo { width: min(420px, 70vw); max-width: 88%; height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 25px rgba(92,201,231,0.35)); }
+        .hero-brand { display: flex; flex-direction: column; align-items: center; }
+        .main-logo {
+            width: min(420px, 70vw); max-width: 88%; height: auto;
+            margin-bottom: -14px; display: block;
+            filter: drop-shadow(0 0 25px rgba(92,201,231,0.35));
+        }
 
         .brand-title {
             font-size: 26px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase;
-            margin-bottom: 20px; text-shadow: 0 0 15px rgba(92,201,231,0.5); color: var(--icy-highlight);
+            margin: 0 0 20px; position: relative; z-index: 1;
+            text-shadow: 0 0 15px rgba(92,201,231,0.5); color: var(--icy-highlight);
         }
 
         .countdown-subheader {
@@ -111,8 +118,14 @@
 
         .time-box {
             display: flex; flex-direction: column; align-items: center;
-            background: var(--glass-frost); backdrop-filter: blur(10px);
-            border: 1px solid var(--border-teal); border-radius: 20px; width: 110px; padding: 20px 0;
+            background: var(--glass-frost);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-teal);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            width: 110px;
+            padding: 20px 0;
         }
         .time-value { font-size: 48px; font-weight: 900; line-height: 1; font-family: var(--font-mono); color: var(--icy-highlight); }
         .time-label { font-size: 10px; font-weight: 800; color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
@@ -128,8 +141,15 @@
         }
         .stats-section.revealed { opacity: 1; transform: translateY(0); }
         .stat-card {
-            background: var(--glass-frost); border: 1px solid var(--border-teal);
-            padding: 25px; border-radius: 20px; min-width: 220px; transition: all 0.3s ease;
+            background: var(--glass-frost);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-teal);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            padding: 25px;
+            border-radius: 20px;
+            min-width: 220px;
+            transition: all 0.3s ease;
         }
         .stat-card:hover { transform: translateY(-5px); border-color: var(--primary-teal); background: rgba(92,201,231,0.12); }
         .stat-number { display: block; font-size: 3rem; font-weight: 900; color: var(--icy-highlight); font-family: var(--font-mono); margin-bottom: 5px; }
@@ -141,7 +161,7 @@
             overflow-x: auto;
             overflow-y: visible;
             padding-bottom: 8px;
-            scroll-snap-stop: normal;
+            scroll-snap-stop: always;
         }
         #section-journey .section-header {
             opacity: 0;
@@ -175,9 +195,15 @@
             top: 50%;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--teal-dark) 15%, var(--primary-teal) 50%, var(--teal-dark) 85%, transparent);
-            transform: translateY(-50%);
+            transform: translateY(-50%) scaleX(0);
+            transform-origin: left center;
             z-index: 0;
             pointer-events: none;
+            transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 3.0;
+        }
+        #section-journey.revealed .roadmap-container::before {
+            transform: translateY(-50%) scaleX(1);
         }
         .step {
             position: relative;
@@ -189,12 +215,12 @@
             align-items: stretch;
             z-index: 1;
             opacity: 0;
-            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
         #section-journey.revealed .step:nth-child(1) { opacity: 1; transition-delay: 0.12s; }
-        #section-journey.revealed .step:nth-child(3) { opacity: 1; transition-delay: 0.42s; }
-        #section-journey.revealed .step:nth-child(5) { opacity: 1; transition-delay: 0.72s; }
-        #section-journey.revealed .step:nth-child(7) { opacity: 1; transition-delay: 1.02s; }
+        #section-journey.revealed .step:nth-child(3) { opacity: 1; transition-delay: 0.62s; }
+        #section-journey.revealed .step:nth-child(5) { opacity: 1; transition-delay: 1.12s; }
+        #section-journey.revealed .step:nth-child(7) { opacity: 1; transition-delay: 1.62s; }
         .step-card {
             position: relative;
             width: 100%;
@@ -241,12 +267,13 @@
             line-height: 1;
             z-index: 1;
             opacity: 0;
-            transition: opacity 0.45s ease;
+            transform: translateY(-5px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
         }
-        .roadmap-connector::before { content: '›'; }
-        #section-journey.revealed .roadmap-connector:nth-child(2) { opacity: 1; transition-delay: 0.28s; }
-        #section-journey.revealed .roadmap-connector:nth-child(4) { opacity: 1; transition-delay: 0.58s; }
-        #section-journey.revealed .roadmap-connector:nth-child(6) { opacity: 1; transition-delay: 0.88s; }
+        .roadmap-connector::before { content: '›'; display: block; transform: translateY(3px);}
+        #section-journey.revealed .roadmap-connector:nth-child(2) { opacity: 1; transform: translateY(-5px); transition-delay: 0.28s; }
+        #section-journey.revealed .roadmap-connector:nth-child(4) { opacity: 1; transform: translateY(-5px); transition-delay: 0.58s; }
+        #section-journey.revealed .roadmap-connector:nth-child(6) { opacity: 1; transform: translateY(-5px); transition-delay: 0.88s; }
 
         /* Testimonials */
         #section-testimonials .testimonial-slider { flex: 0 1 auto; width: 100%; }
@@ -335,10 +362,6 @@
             overflow: hidden;
             box-sizing: border-box;
         }
-        #section-final footer {
-            width: 100%;
-            flex-shrink: 0;
-        }
         .cta-anim-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 1; }
         .cta-content { position: relative; z-index: 4; }
         .cta-title {
@@ -367,6 +390,7 @@
 
         @media (max-width: 768px) {
             #hero-section { padding: 0.5rem 15px 2.5rem; }
+            .main-logo { margin-bottom: -10px; }
             .brand-title { font-size: 17px; letter-spacing: 3px; margin-bottom: 14px; }
             .time-box { width: 80px; padding: 15px 0; }
             .time-value { font-size: 32px; }
@@ -383,7 +407,11 @@
                 bottom: 8%;
                 width: 2px;
                 height: auto;
-                transform: translateX(-50%);
+                transform: translateX(-50%) scaleY(0);
+                transform-origin: top center;
+            }
+            #section-journey.revealed .roadmap-container::before {
+                transform: translateX(-50%) scaleY(1);
             }
             .step { flex: 0 0 auto; width: 100%; max-width: 520px; min-width: 0; }
             .step-card { min-height: 0; padding: 20px 18px; }
@@ -407,7 +435,7 @@
 
 <!-- Hero -->
 <section id="hero-section" class="snap-panel">
-    <div class="reveal-hero">
+    <div class="reveal-hero hero-brand">
         <img src="https://cdn.kb.institute/eto-2026/IBCOL/Logo/Square_Dark_Background_2026_500.png" class="main-logo" alt="IBCOL Logo">
         <div class="brand-title">International Blockchain Olympiad 2026</div>
     </div>
@@ -438,6 +466,9 @@
         <div class="stat-card"><span class="stat-number" data-target="1000">0</span><span class="stat-label">Global Participants</span></div>
         <div class="stat-card"><span class="stat-number" data-target="200">0</span><span class="stat-label">Academic Institutions</span></div>
     </div>
+    <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron">⌄</span>
+    </div>
 </section>
 
 <!-- Journey -->
@@ -451,6 +482,9 @@
         <div class="step"><div class="step-card"><h2>Creation</h2><p>Architect an original project that translates complex insights into real-world solutions.</p></div></div>
         <span class="roadmap-connector" aria-hidden="true"></span>
         <div class="step"><div class="step-card"><h2>Submission</h2><p>Finalize and upload your project for evaluation by our international board of experts.</p></div></div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron">⌄</span>
     </div>
 </section>
 
@@ -491,24 +525,32 @@
         </div>
         <div class="carousel-controls" id="carousel-dots"></div>
     </div>
+    <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron">⌄</span>
+    </div>
 </section>
 
 <!-- Global Connections -->
 <section class="snap-panel" id="section-logos">
     <div class="section-header reveal"><h1>Global Connections</h1></div>
     <div id="logo-wall-container" class="reveal"></div>
+    <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron">⌄</span>
+    </div>
 </section>
 
 <!-- CTA + Footer -->
 <section class="snap-panel" id="section-final">
-    <div class="cta-section reveal">
+    
+    <div class="cta-section">
         <div class="cta-anim-bg" id="trigger-final">
             <div class="brand-zone" id="brand-box">
                 <canvas id="traceCanvas"></canvas>
                 <img id="logo-reveal-img" src="https://cdn.kb.institute/KBI-logo-light.png" alt="KBI Logo">
             </div>
         </div>
-        <div class="cta-content">
+        
+        <div class="cta-content" id="cta-text-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease;">
             <div class="cta-title">Ready to Compete?</div>
             <p class="cta-sub">Join blockchain innovators from over 120 countries at IBCOL 2026.</p>
             <a href="registration.html" class="cta-btn-hero">
@@ -517,40 +559,40 @@
             </a>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-divider"></div>
+        <div class="footer-inner">
+            <div class="footer-cols">
+                <div class="footer-col">
+                    <h4>IBCOL: International Blockchain Olympiad</h4>
+                    <div class="footer-icons">
+                        <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                        <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                        <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>KBI: Königsberger Bridges Institute</h4>
+                    <div class="footer-icons">
+                        <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
+                        <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+                        <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </section>
 
 </main>
 
-<footer>
-    <div class="footer-divider"></div>
-    <div class="footer-inner">
-        <div class="footer-cols">
-            <div class="footer-col">
-                <h4>IBCOL: International Blockchain Olympiad</h4>
-                <div class="footer-icons">
-                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
-                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>KBI: Königsberger Bridges Institute</h4>
-                <div class="footer-icons">
-                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
-                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
-    </div>
-</footer>
-
 <script src="js/bg-canvas-home.js"></script>
 <script src="js/nav.js"></script>
+<script src="js/footer.js"></script>
 <script>
-lucide.createIcons();
-
 /* Countdown */
 const target = new Date('2026-07-01T00:00:00');
 function updateCountdown() {
@@ -675,8 +717,8 @@ const LOGO_SOURCES = [
     "https://cdn.kb.institute/logo/Open-AI.png","https://cdn.kb.institute/logo/Palantir.png","https://cdn.kb.institute/logo/PwC.png",
     "https://cdn.kb.institute/logo/Reddit.png","https://cdn.kb.institute/logo/Shopify.png","https://cdn.kb.institute/logo/TikTok.png",
     "https://cdn.kb.institute/logo/Massachusetts-Institute-of-Technology-(MIT).png","https://cdn.kb.institute/logo/National-University-of-Singapore-(NUS).png",
-    "https://cdn.kb.institute/logo/The-University-of-Hong-Kong-(HKU).png","https://cdn.kb.institute/logo/University-of-Waterloo-(UW).png",
-    "https://cdn.kb.institute/logo/Waymo.png","https://cdn.kb.institute/logo/Zoox.png","https://cdn.kb.institute/logo/S&P-Global.png"
+    "https://cdn.kb.institute/logo/S&P-Global.png", "https://cdn.kb.institute/logo/The-University-of-Hong-Kong-(HKU).png","https://cdn.kb.institute/logo/University-of-Waterloo-(UW).png",
+    "https://cdn.kb.institute/logo/Waymo.png","https://cdn.kb.institute/logo/Zoox.png"
 ];
 
 const logoWallContainer = document.getElementById('logo-wall-container');
@@ -721,6 +763,8 @@ if (logoWallContainer) {
 const triggerFinal = document.getElementById('trigger-final');
 const brandBox = document.getElementById('brand-box');
 const traceCanvas = document.getElementById('traceCanvas');
+const ctaTextContent = document.getElementById('cta-text-content');
+
 if (triggerFinal && brandBox && traceCanvas) {
     const tCtx = traceCanvas.getContext('2d');
     const pts = [{ x: 250, y: 135 }, { x: 393, y: 342 }, { x: 107, y: 342 }, { x: 250, y: 135 }];
@@ -731,6 +775,7 @@ if (triggerFinal && brandBox && traceCanvas) {
         traceCanvas.width = 500;
         traceCanvas.height = 500;
         tCtx.clearRect(0, 0, 500, 500);
+        
         const cur = Math.floor(traceProg * 3);
         const sub = (traceProg * 3) % 1;
 
@@ -755,7 +800,16 @@ if (triggerFinal && brandBox && traceCanvas) {
             traceProg += 0.025;
             requestAnimationFrame(runTrace);
         } else {
+            // 1. Trace completes: Reveal the KBI logo image inside the shape
             brandBox.classList.add('revealed-inner');
+            
+            // 2. Short sequential delay: Trigger text fade-in & slide-up animation
+            setTimeout(() => {
+                if (ctaTextContent) {
+                    ctaTextContent.style.opacity = '1';
+                    ctaTextContent.style.transform = 'translateY(0)';
+                }
+            }, 400); // 400ms delay after the logo reveal
         }
     }
 
@@ -766,19 +820,12 @@ if (triggerFinal && brandBox && traceCanvas) {
                 runTrace();
             }
         });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.2 }); // Trigger slightly earlier for responsive layouts
 
     finalObs.observe(triggerFinal);
 }
 </script>
-<script>
-(function () {
-    'use strict';
-    const panel = document.getElementById('section-final');
-    const footer = document.querySelector('footer');
-    if (panel && footer) panel.appendChild(footer);
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-})();
-</script>
+
+<script>lucide.createIcons();</script>
 </body>
 </html>
