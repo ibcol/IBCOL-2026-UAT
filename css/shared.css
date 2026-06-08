@@ -63,12 +63,12 @@ nav#main-nav {
     margin-right: 30px;
 }
 .nav-logo img {
-    height: 36px;
+    height: 50px;
     width: auto;
     filter: drop-shadow(0 0 8px rgba(92, 201, 231, 0.4));
 }
 .nav-logo-text {
-    font-size: 0.82rem;
+    font-size: 1.0rem;
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -100,7 +100,7 @@ nav#main-nav {
     padding: 8px 14px;
     text-decoration: none;
     color: var(--slate-grey);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;

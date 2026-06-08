@@ -99,13 +99,32 @@
         .calc-warning { color: #f0a0a0; font-weight: 700; }
         #calc-category-wrap[hidden], #calc-reg-fields[hidden], #calc-resub-fields[hidden] { display: none !important; }
         @media (max-width: 850px) { .info-grid { grid-template-columns: 1fr; } .roi-card h3 { font-size: 1.5rem; } }
+        footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 0px 20px;
+            box-sizing: border-box;
+            
+            background: var(--glass-frost); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 <div class="page-content">
 <div class="container">
-    <div class="section-header reveal"><h1>Registration</h1><p>IBCOL 2026 Participation</p></div>
+    <div class="section-header reveal" style="margin-top: 0; padding-top: 0;">
+        <h1>Registration</h1>
+        <p>IBCOL 2026 Participation</p>
+    </div>
     <div class="reveal" style="text-align:center; color:var(--slate-grey); max-width:900px; margin:0 auto 30px; font-size:1.05rem;">
         <p>Spots are limited. Teams that register early gain priority access to the official handbook, competition portal, and preparation resources before the general public.</p>
     </div>
@@ -155,7 +174,7 @@
                     <button class="collapsible-trigger">View countries by category <i data-lucide="chevron-down"></i></button>
                     <div class="collapsible-content" style="text-align:left;">
                         <div class="fee-section"><b class="price-high">Category A (+20%)</b>American Samoa, Andorra, Antigua &amp; Barbuda, Aruba, Australia, Austria, Bahamas, Bahrain, Barbados, Belgium, Bermuda, British Virgin Is., Brunei, Bulgaria, Canada, Cayman Is., Channel Is., Chile, Croatia, Curaçao, Cyprus, Czech Rep., Denmark, Estonia, Faroe Is., Finland, France, French Polynesia, Germany, Gibraltar, Greece, Greenland, Guam, Guyana, Hong Kong, Hungary, Iceland, Ireland, Isle of Man, Israel, Italy, Japan, Korea Rep., Kuwait, Latvia, Liechtenstein, Lithuania, Luxembourg, Macao, Malta, Monaco, Nauru, Netherlands, New Caledonia, New Zealand, Northern Mariana Is., Norway, Oman, Palau, Panama, Poland, Portugal, Puerto Rico, Qatar, Romania, Russian Fed., San Marino, Saudi Arabia, Seychelles, Singapore, Sint Maarten, Slovak Rep., Slovenia, Spain, St. Kitts and Nevis, St. Martin, Sweden, Switzerland, Taiwan, Trinidad and Tobago, Turks and Caicos Islands, United Arab Emirates, United Kingdom, United States, Uruguay, Virgin Islands (US).</div>
-                        <div class="fee-section"><b>Category B (standard)</b>Albania, Algeria, Argentina, Armenia, Azerbaijan, Belarus, Belize, Bosnia and Herzegovina, Botswana, Brazil, China, Colombia, Costa Rica, Cuba, Dominica, Dominican Republic, Ecuador, El Salvador, Equatorial Guinea, Fiji, Gabon, Georgia, Grenada, Guatemala, Indonesia, Iran, Iraq, Jamaica, Kazakhstan, Kosovo, Libya, Malaysia, Maldives, Marshall Is., Mauritius, Mexico, Moldova, Mongolia, Montenegro, Namibia, North Macedonia, Paraguay, Peru, Serbia, South Africa, St. Lucia, St. Vincent and the Grenadines, Suriname, Thailand, Tonga, Türkiye, Turkmenistan, Tuvalu, Ukraine.</div>
+                        <div class="fee-section"><b>Category B (Standard)</b>Albania, Algeria, Argentina, Armenia, Azerbaijan, Belarus, Belize, Bosnia and Herzegovina, Botswana, Brazil, China, Colombia, Costa Rica, Cuba, Dominica, Dominican Republic, Ecuador, El Salvador, Equatorial Guinea, Fiji, Gabon, Georgia, Grenada, Guatemala, Indonesia, Iran, Iraq, Jamaica, Kazakhstan, Kosovo, Libya, Malaysia, Maldives, Marshall Is., Mauritius, Mexico, Moldova, Mongolia, Montenegro, Namibia, North Macedonia, Paraguay, Peru, Serbia, South Africa, St. Lucia, St. Vincent and the Grenadines, Suriname, Thailand, Tonga, Türkiye, Turkmenistan, Tuvalu, Ukraine.</div>
                         <div class="fee-section"><b class="price-low">Category C (−20%)</b>Afghanistan, Angola, Bangladesh, Benin, Bhutan, Bolivia, Burkina Faso, Burundi, Cabo Verde, Cambodia, Cameroon, Central African Rep., Chad, Comoros, Congo Dem. Rep., Congo Rep., Côte d'Ivoire, Djibouti, Egypt, Eritrea, Eswatini, Ethiopia, Gambia, Ghana, Guinea, Guinea-Bissau, Haiti, Honduras, India, Jordan, Kenya, Kiribati, Korea (Dem. People's Rep.), Kyrgyzstan, Lao PDR, Lebanon, Lesotho, Liberia, Madagascar, Malawi, Mali, Mauritania, Micronesia, Morocco, Mozambique, Myanmar, Nepal, Nicaragua, Niger, Nigeria, Pakistan, Palestine, Papua New Guinea, Philippines, Rwanda, Samoa, São Tomé and Principe, Senegal, Sierra Leone, Solomon Is., Somalia, South Sudan, Sri Lanka, Sudan, Syria, Tajikistan, Tanzania, Timor-Leste, Togo, Tunisia, Uganda, Uzbekistan, Vanuatu, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.</div>
                     </div>
                 </div>

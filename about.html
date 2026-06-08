@@ -71,6 +71,22 @@
             .committee-grid { grid-template-columns: 1fr; }
             h2 { font-size: 2.1rem; letter-spacing: 8px; }
         }
+        footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 0px 20px;
+            box-sizing: border-box;
+            
+            background: var(--glass-frost); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +96,7 @@
 
     <section class="flex-grid reveal">
         <div class="flex-half" style="text-align:center;">
-            <img src="https://cdn.kb.institute/KBI-logo-light.png" class="side-logo" alt="KBI Logo">
+            <img src="https://cdn.kb.institute/KBI-logo-light.png" class="side-logo" alt="KBI Logo" style="max-width: 400px;">
         </div>
         <div class="flex-half">
             <h2>Our Story</h2>
@@ -139,9 +155,6 @@
 </div>
 </div>
 
-<script src="js/bg-canvas.js"></script>
-<script src="js/nav.js"></script>
-<script src="js/footer.js"></script>
 <script>
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
