@@ -44,7 +44,7 @@
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
-            padding: 0 20px;
+            padding: 60px 20px !important; /* Added more space between sections */
         }
 
         .home-snap .section-header { margin: 1.5rem 0 1rem; }
@@ -304,24 +304,24 @@
         .dot.active { background: var(--icy-highlight); transform: scale(1.4); }
         .carousel-controls { display: flex; justify-content: center; gap: 15px; margin-top: 16px; }
 
-        /* Logo wall */
+        /* Logo wall - Redefined to prevent shifting */
         #logo-wall-container {
             width: 100%;
-            min-height: 580px;
             position: relative;
-            flex: 0 0 auto;
+            display: block;
         }
         .logo-wall {
-            margin-top: 0;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 1250px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0;
-            min-height: inherit;
             align-content: flex-start;
+            padding: 0;
         }
         @keyframes logoFadeIn { 0% { opacity:0; transform:scale(0.96); } 100% { opacity:1; transform:scale(1); } }
         @keyframes logoFadeOut { 0% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(0.96); } }
@@ -334,14 +334,18 @@
         .show-front .logo-container { animation-name: logoFadeIn; }
         .show-back .logo-container { animation-name: logoFadeOut; }
         .logo-container img { object-fit: contain; width: 80%; height: 80%; }
-        @media (min-width: 1200px) { .logo-container { width: calc(20% - 16px); } }
+        
+        @media (min-width: 1200px) { 
+            .logo-container { width: calc(20% - 16px); }
+            #logo-wall-container { min-height: 380px !important; } 
+        }
         @media (min-width: 600px) and (max-width: 1199px) {
             .logo-container { width: calc(33% - 16px); }
-            #logo-wall-container { min-height: 812px; }
+            #logo-wall-container { min-height: 780px !important; }
         }
         @media (max-width: 599px) {
             .logo-container { width: calc(50% - 16px); height: 80px; }
-            #logo-wall-container { min-height: 400px; overflow: hidden; }
+            #logo-wall-container { min-height: 840px !important; }
         }
 
         /* CTA + footer final panel stacked layouts */
@@ -377,13 +381,19 @@
             background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--primary-teal);
         }
         .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
+        
+        /* Upscaled CTA Branding Zone */
         .brand-zone {
-            position: relative; width: 300px; height: 300px;
+            position: relative; 
+            width: 380px !important; 
+            height: 380px !important;
             display: flex; justify-content: center; align-items: center; 
         }
         #traceCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; transition: opacity 1s ease; }
         #logo-reveal-img {
-            width: 300px; height: 300px; z-index: 1; opacity: 0; transform: scale(0.85);
+            width: 380px !important; 
+            height: 380px !important; 
+            z-index: 1; opacity: 0; transform: scale(0.85);
             filter: drop-shadow(0 0 35px rgba(92,201,231,0.55)); transition: all 1.2s cubic-bezier(0.16,1,0.3,1);
         }
         .brand-zone.revealed-inner #logo-reveal-img { opacity: 1; transform: scale(1); }
@@ -391,7 +401,15 @@
 
         @media (max-width: 768px) {
             html { scroll-snap-type: none !important; }
-            .home-snap .snap-panel { scroll-snap-align: none !important; }
+            .home-snap .snap-panel { 
+                scroll-snap-align: none !important; 
+                padding: 40px 15px !important; /* Unified dynamic padding across sections */
+            }
+            
+            /* Remove the chevron down arrow on mobile devices */
+            .scroll-hint {
+                display: none !important;
+            }
             
             #hero-section { padding: 0.5rem 15px 2.5rem; }
             #hero-section.snap-panel { padding-top: 0.5rem; }
@@ -432,27 +450,27 @@
             .stat-card { min-width: 140px; padding: 15px; }
             .stat-number { font-size: 2rem; }
             
-            /* CTA Section Mobile Fixes */
+            /* CTA Section Mobile Sizing Adaptations */
             #section-final .cta-section {
                 margin-top: 0 !important;
                 gap: 15px;
                 padding: 20px 15px;
             }
             .brand-zone { 
-                width: 140px !important; 
-                height: 140px !important; 
+                width: 220px !important; 
+                height: 220px !important; 
             }
             #logo-reveal-img { 
-                width: 140px !important; 
-                height: 140px !important; 
+                width: 220px !important; 
+                height: 220px !important; 
             }
             #cta-text-content { 
                 top: 0 !important; 
                 transform: translateY(0) !important;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
             }
             #cta-btn-content { 
-                margin-top: 15px !important; 
+                margin-top: 20px !important; 
                 transform: translateY(0) !important;
             }
             .cta-btn-hero { 
@@ -476,11 +494,9 @@
             margin-top: auto;
             padding: 0px 20px;
             box-sizing: border-box;
-            
             background: var(--glass-frost); 
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            
         }
         .footer-inner {
             max-width: 1200px;
@@ -600,7 +616,7 @@
     
     <div class="cta-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         
-        <div class="cta-content" id="cta-text-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; position: relative; top: 55px; z-index: 10; text-align: center;">
+        <div class="cta-content" id="cta-text-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; position: relative; top: 35px; z-index: 10; text-align: center;">
             <div class="cta-title">Ready to Compete?</div>
             <p class="cta-sub">Join blockchain innovators from over 120 countries at IBCOL 2026.</p>
         </div>
@@ -612,7 +628,7 @@
             </div>
         </div>
         
-        <div class="cta-content" id="cta-btn-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; margin-top: -30px; position: relative; z-index: 10; text-align: center;">
+        <div class="cta-content" id="cta-btn-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; margin-top: -10px; position: relative; z-index: 10; text-align: center;">
             <a href="registration.html" class="cta-btn-hero">
                 Register Now
                 <i data-lucide="play"></i>
@@ -828,14 +844,16 @@ const ctaBtnContent = document.getElementById('cta-btn-content');
 
 if (triggerFinal && brandBox && traceCanvas) {
     const tCtx = traceCanvas.getContext('2d');
-    const pts = [{ x: 250, y: 135 }, { x: 393, y: 342 }, { x: 107, y: 342 }, { x: 250, y: 135 }];
+    
+    // Proportional node path mapping upscaled dynamically matching the new 380px bounding canvas box dimensions
+    const pts = [{ x: 190, y: 102 }, { x: 298, y: 260 }, { x: 81, y: 260 }, { x: 190, y: 102 }];
     let traceStarted = false;
     let traceProg = 0;
 
     function runTrace() {
-        traceCanvas.width = 500;
-        traceCanvas.height = 500;
-        tCtx.clearRect(0, 0, 500, 500);
+        traceCanvas.width = 380;
+        traceCanvas.height = 380;
+        tCtx.clearRect(0, 0, 380, 380);
         
         const cur = Math.floor(traceProg * 3);
         const sub = (traceProg * 3) % 1;
@@ -862,10 +880,8 @@ if (triggerFinal && brandBox && traceCanvas) {
             traceProg += 0.04; 
             requestAnimationFrame(runTrace);
         } else {
-            // 1. Trace completes: Reveal the KBI logo image inside the canvas frame
             brandBox.classList.add('revealed-inner');
             
-            // 2. Display header elements above the logo
             setTimeout(() => {
                 if (ctaTextContent) {
                     ctaTextContent.style.opacity = '1';
@@ -873,7 +889,6 @@ if (triggerFinal && brandBox && traceCanvas) {
                 }
             }, 300);
 
-            // 3. Display the action button below the logo shortly after
             setTimeout(() => {
                 if (ctaBtnContent) {
                     ctaBtnContent.style.opacity = '1';
