@@ -390,14 +390,16 @@
         .brand-zone.revealed-inner #traceCanvas { opacity: 0; pointer-events: none; }
 
         @media (max-width: 768px) {
-            html { scroll-snap-type: y proximity; }
-            #section-final { scroll-snap-align: none; }
-            #hero-section.snap-panel { padding-top: 0.5rem; }
+            html { scroll-snap-type: none !important; }
+            .home-snap .snap-panel { scroll-snap-align: none !important; }
+            
             #hero-section { padding: 0.5rem 15px 2.5rem; }
+            #hero-section.snap-panel { padding-top: 0.5rem; }
             .main-logo { margin-bottom: -10px; }
             .brand-title { font-size: 17px; letter-spacing: 3px; margin-bottom: 14px; }
             .time-box { width: 80px; padding: 15px 0; }
             .time-value { font-size: 32px; }
+            
             .roadmap-container {
                 flex-direction: column;
                 align-items: center;
@@ -421,13 +423,53 @@
             .step-card { min-height: 0; padding: 20px 18px; }
             .roadmap-connector { width: auto; padding: 4px 0; }
             .roadmap-connector::before { content: '⌄'; }
+            
             .testimonial-slider { padding: 12px 10px; }
             .t-card { padding: 28px 18px; }
             .t-body { font-size: 0.95rem; }
             .arrow { width: 40px; height: 40px; }
+            
             .stat-card { min-width: 140px; padding: 15px; }
             .stat-number { font-size: 2rem; }
-            .brand-zone { width: min(75vw, 320px); height: min(55vw, 260px); }
+            
+            /* CTA Section Mobile Fixes */
+            #section-final .cta-section {
+                margin-top: 0 !important;
+                gap: 15px;
+                padding: 20px 15px;
+            }
+            .brand-zone { 
+                width: 140px !important; 
+                height: 140px !important; 
+            }
+            #logo-reveal-img { 
+                width: 140px !important; 
+                height: 140px !important; 
+            }
+            #cta-text-content { 
+                top: 0 !important; 
+                transform: translateY(0) !important;
+                margin-bottom: 10px;
+            }
+            #cta-btn-content { 
+                margin-top: 15px !important; 
+                transform: translateY(0) !important;
+            }
+            .cta-btn-hero { 
+                padding: 10px 20px !important; 
+                font-size: 0.8rem !important; 
+                letter-spacing: 1px !important;
+                gap: 6px !important;
+            }
+            .cta-title {
+                font-size: 1.2rem !important;
+                letter-spacing: 3px !important;
+                margin-bottom: 5px !important;
+            }
+            .cta-sub {
+                font-size: 0.8rem !important;
+                margin-bottom: 10px !important;
+            }
         }
         footer {
             width: 100%;
@@ -816,7 +858,8 @@ if (triggerFinal && brandBox && traceCanvas) {
             );
             tCtx.strokeStyle = '#e0f7ff';
             tCtx.stroke();
-            traceProg += 0.03;
+            
+            traceProg += 0.04; 
             requestAnimationFrame(runTrace);
         } else {
             // 1. Trace completes: Reveal the KBI logo image inside the canvas frame
