@@ -54,6 +54,11 @@
             .eligibility-table td:last-child { border-bottom: none; }
             .arena-content, .validity-grid { grid-template-columns: 1fr; }
             .section-header h2 { font-size: 2.1rem; letter-spacing: 8px; }
+            
+            /* Center text for elements except bulleted lists */
+            .arena-header { justify-content: center; text-align: center; }
+            .arena-cell { text-align: center; }
+            .validity-box h3 { text-align: center; }
         }
         @media (max-width: 480px) {
             .eligibility-table td { padding: 14px 14px; }
@@ -116,7 +121,7 @@
         <div class="arena-header"><i data-lucide="layers" size="20"></i><h3>Solution Architecture (ARC)</h3></div>
         <div class="arena-content">
             <div class="arena-cell"><span class="label-pill">Schoolers Stream</span><p class="sub-text">The competition arena for Schoolers Stream Olympiad Projects submitted according to the parameters for the ARC Stream.</p></div>
-            <div class="arena-cell"><span class="label-pill">Students Stream</span><p class="sub-text">The competition arena for Students Stream Olympiad Projects submitted according to the parameters for the ARC Stream.</p></div>
+            <div class="arena-cell"><span class="label-pill">Students Stream</span><p class="sub-text">The competition arena for Students Stream Olympiad Projects submitted according to the parameters for the DEV Stream.</p></div>
         </div>
     </div>
     <div class="arena-block reveal">

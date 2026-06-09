@@ -67,6 +67,17 @@
         .member-role { color: var(--primary-teal); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; font-weight: 700; }
         @media (max-width: 850px) {
             .flex-grid { flex-direction: column; text-align: center; gap: 40px; }
+            /* First section specific overrides for mobile layout switching */
+            .container > section.flex-grid:first-of-type {
+                flex-direction: column-reverse;
+            }
+            .container > section.flex-grid:first-of-type .section-subheading {
+                text-align: center;
+            }
+            /* Second section specific overrides for text-first layout */
+            section[style*="flex-direction:row-reverse"] {
+                flex-direction: column !important;
+            }
             .side-logo { max-width: 320px; }
             .committee-grid { grid-template-columns: 1fr; }
             h2 { font-size: 2.1rem; letter-spacing: 8px; }
@@ -88,11 +99,9 @@
             margin-top: auto;
             padding: 0px 20px;
             box-sizing: border-box;
-            
             background: var(--glass-frost); 
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            
         }
         .footer-inner {
             max-width: 1200px;
