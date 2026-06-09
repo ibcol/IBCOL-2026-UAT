@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Blockchain Olympiad 2026 | IBCOL</title>
     <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
@@ -11,6 +5,9 @@
         html {
             scroll-snap-type: y mandatory;
             scroll-padding-top: var(--nav-height);
+        }
+        @media (max-width: 768px) {
+            html { scroll-snap-type: y proximity; }
         }
 
         body {
@@ -378,12 +375,12 @@
         }
         .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
         .brand-zone {
-            position: relative; width: 300px; height: 300px;
-            display: flex; justify-content: center; align-items: center; 
+            position: relative; width: clamp(180px, 50vw, 300px); height: clamp(180px, 50vw, 300px);
+            max-width: 100%; display: flex; justify-content: center; align-items: center;
         }
         #traceCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; transition: opacity 1s ease; }
         #logo-reveal-img {
-            width: 300px; height: 300px; z-index: 1; opacity: 0; transform: scale(0.85);
+            width: 100%; height: 100%; max-width: 300px; max-height: 300px; z-index: 1; opacity: 0; transform: scale(0.85);
             filter: drop-shadow(0 0 35px rgba(92,201,231,0.55)); transition: all 1.2s cubic-bezier(0.16,1,0.3,1);
         }
         .brand-zone.revealed-inner #logo-reveal-img { opacity: 1; transform: scale(1); }
@@ -424,7 +421,16 @@
             .arrow { width: 40px; height: 40px; }
             .stat-card { min-width: 140px; padding: 15px; }
             .stat-number { font-size: 2rem; }
-            .brand-zone { width: min(75vw, 320px); height: min(55vw, 260px); }
+            .brand-zone { width: clamp(160px, 55vw, 280px); height: clamp(160px, 55vw, 280px); }
+        }
+
+        @media (max-width: 480px) {
+            .brand-zone { width: clamp(140px, 52vw, 220px); height: clamp(140px, 52vw, 220px); }
+            .cta-section { margin-top: -40px; gap: 14px; padding: 24px 16px 16px; }
+            #cta-text-content { top: 20px; }
+            #cta-btn-content { margin-top: 0; }
+            .cta-title { letter-spacing: 4px; margin-bottom: 10px; }
+            .cta-sub { margin-bottom: 14px; font-size: 0.95rem; }
         }
         footer {
             width: 100%;

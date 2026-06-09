@@ -45,9 +45,20 @@
         .cta-btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
         .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--teal-dark); font-size: 0.95rem; line-height: 1.7; }
         @media (max-width: 850px) {
-            .eligibility-table, .eligibility-table tbody, .eligibility-table tr, .eligibility-table td { display: block; width: 100% !important; }
+            .eligibility-table, .eligibility-table tbody, .eligibility-table tr { display: block; width: 100%; box-sizing: border-box; }
+            .eligibility-table thead { display: none; }
+            .eligibility-table tr { margin-bottom: 16px; border: 1px solid var(--border-teal); border-radius: 4px; overflow: hidden; background: var(--glass-frost); }
+            .eligibility-table td { display: block; width: 100% !important; box-sizing: border-box; padding: 16px 18px; text-align: center; }
+            .eligibility-table td:first-child { background: rgba(92,201,231,0.12); border-bottom: 1px solid var(--teal-mid); }
+            .eligibility-table td:not(:first-child) { border-bottom: 1px solid var(--border-teal); }
+            .eligibility-table td:last-child { border-bottom: none; }
             .arena-content, .validity-grid { grid-template-columns: 1fr; }
             .section-header h2 { font-size: 2.1rem; letter-spacing: 8px; }
+        }
+        @media (max-width: 480px) {
+            .eligibility-table td { padding: 14px 14px; }
+            .arena-cell { padding: 22px 18px; }
+            .validity-box { padding: 24px 18px; }
         }
         footer {
             width: 100%;

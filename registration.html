@@ -98,7 +98,21 @@
         .calc-total.calc-total--hint { font-size: 0.95rem; font-weight: 600; color: var(--slate-grey); margin-top: 10px; }
         .calc-warning { color: #f0a0a0; font-weight: 700; }
         #calc-category-wrap[hidden], #calc-reg-fields[hidden], #calc-resub-fields[hidden] { display: none !important; }
-        @media (max-width: 850px) { .info-grid { grid-template-columns: 1fr; } .roi-card h3 { font-size: 1.5rem; } }
+        @media (max-width: 850px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .roi-card h3 { font-size: 1.5rem; }
+            .pricing-table, .pricing-table tbody, .pricing-table tr { display: block; width: 100%; box-sizing: border-box; }
+            .pricing-table thead { display: none; }
+            .pricing-table tr { margin-bottom: 14px; border: 1px solid var(--border-teal); border-radius: 4px; overflow: hidden; }
+            .pricing-table th, .pricing-table td { display: block; width: 100% !important; box-sizing: border-box; padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-teal); }
+            .pricing-table td:last-child { border-bottom: none; }
+            .pricing-table td:last-child, .pricing-table th:last-child { text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .pricing-table th, .pricing-table td { padding: 10px 12px; font-size: 0.88rem; }
+            .fee-subsection { padding: 22px 18px; }
+            .calc-panel { padding: 22px 18px; }
+        }
         footer {
             width: 100%;
             margin-top: auto;

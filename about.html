@@ -70,6 +70,18 @@
             .side-logo { max-width: 320px; }
             .committee-grid { grid-template-columns: 1fr; }
             h2 { font-size: 2.1rem; letter-spacing: 8px; }
+            .section-subheading { letter-spacing: 2px; }
+            .flex-half { min-width: 0; }
+        }
+        @media (max-width: 480px) {
+            .side-logo { max-width: 240px; }
+            .flex-grid { gap: 28px; margin-bottom: 50px; }
+            h2 { font-size: 1.6rem; letter-spacing: 4px; padding-bottom: 10px; }
+            .section-subheading { font-size: 0.82rem; letter-spacing: 1.5px; }
+            .sub-text { font-size: 0.9rem; line-height: 1.65; }
+            .member-card { padding: 24px 16px; }
+            .member-card img { width: 100px; height: 100px; }
+            .container > section.flex-grid:first-of-type { min-height: 0; }
         }
         footer {
             width: 100%;
