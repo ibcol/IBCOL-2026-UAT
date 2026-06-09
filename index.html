@@ -44,7 +44,7 @@
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
-            padding: 3rem 20px; /* Added more space between sections */
+            padding: 0 20px;
         }
 
         .home-snap .section-header { margin: 1.5rem 0 1rem; }
@@ -58,12 +58,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: clamp(2.5rem, 8vh, 5rem) 20px 3rem;
+            padding: 1rem 20px 2.5rem;
             text-align: center;
             box-sizing: border-box;
         }
         #hero-section.snap-panel {
             justify-content: flex-start;
+            padding-top: clamp(2.5rem, 8vh, 5rem);
         }
 
         .scroll-hint {
@@ -199,7 +200,7 @@
             z-index: 0;
             pointer-events: none;
             transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-            transition-delay: 3.0s;
+            transition-delay: 0.4s;
         }
         #section-journey.revealed .roadmap-container::before {
             transform: translateY(-50%) scaleX(1);
@@ -306,10 +307,9 @@
         /* Logo wall */
         #logo-wall-container {
             width: 100%;
-            height: 580px; /* Changed from min-height to fixed height to prevent layout shift */
+            min-height: 580px;
             position: relative;
             flex: 0 0 auto;
-            overflow: hidden;
         }
         .logo-wall {
             margin-top: 0;
@@ -320,7 +320,7 @@
             margin-left: auto;
             margin-right: auto;
             padding: 0;
-            height: 100%; /* Match container height */
+            min-height: inherit;
             align-content: flex-start;
         }
         @keyframes logoFadeIn { 0% { opacity:0; transform:scale(0.96); } 100% { opacity:1; transform:scale(1); } }
@@ -337,17 +337,17 @@
         @media (min-width: 1200px) { .logo-container { width: calc(20% - 16px); } }
         @media (min-width: 600px) and (max-width: 1199px) {
             .logo-container { width: calc(33% - 16px); }
-            #logo-wall-container { height: 812px; }
+            #logo-wall-container { min-height: 812px; }
         }
         @media (max-width: 599px) {
             .logo-container { width: calc(50% - 16px); height: 80px; }
-            #logo-wall-container { height: 400px; }
+            #logo-wall-container { min-height: 400px; overflow: hidden; }
         }
 
         /* CTA + footer final panel stacked layouts */
         #section-final {
             max-width: 100%;
-            padding: 3rem 0 0;
+            padding: 0;
             justify-content: space-between;
         }
         #section-final .cta-section {
@@ -391,7 +391,7 @@
 
         @media (max-width: 768px) {
             html { scroll-snap-type: none !important; }
-            .home-snap .snap-panel { scroll-snap-align: none !important; padding: 2rem 15px; }
+            .home-snap .snap-panel { scroll-snap-align: none !important; }
             
             #hero-section { padding: 0.5rem 15px 2.5rem; }
             #hero-section.snap-panel { padding-top: 0.5rem; }
@@ -421,7 +421,8 @@
             }
             .step { flex: 0 0 auto; width: 100%; max-width: 520px; min-width: 0; }
             .step-card { min-height: 0; padding: 20px 18px; }
-            .roadmap-connector { display: none; } /* Removed chevron entirely on mobile */
+            .roadmap-connector { width: auto; padding: 4px 0; }
+            .roadmap-connector::before { content: '⌄'; }
             
             .testimonial-slider { padding: 12px 10px; }
             .t-card { padding: 28px 18px; }
@@ -438,12 +439,12 @@
                 padding: 20px 15px;
             }
             .brand-zone { 
-                width: 220px !important; /* Increased size */
-                height: 220px !important; 
+                width: 140px !important; 
+                height: 140px !important; 
             }
             #logo-reveal-img { 
-                width: 220px !important; /* Increased size */
-                height: 220px !important; 
+                width: 140px !important; 
+                height: 140px !important; 
             }
             #cta-text-content { 
                 top: 0 !important; 
@@ -455,19 +456,19 @@
                 transform: translateY(0) !important;
             }
             .cta-btn-hero { 
-                padding: 12px 24px !important; 
-                font-size: 0.85rem !important; 
-                letter-spacing: 2px !important;
-                gap: 8px !important;
+                padding: 10px 20px !important; 
+                font-size: 0.8rem !important; 
+                letter-spacing: 1px !important;
+                gap: 6px !important;
             }
             .cta-title {
-                font-size: 1.3rem !important;
-                letter-spacing: 4px !important;
-                margin-bottom: 8px !important;
+                font-size: 1.2rem !important;
+                letter-spacing: 3px !important;
+                margin-bottom: 5px !important;
             }
             .cta-sub {
-                font-size: 0.85rem !important;
-                margin-bottom: 12px !important;
+                font-size: 0.8rem !important;
+                margin-bottom: 10px !important;
             }
         }
         footer {
@@ -857,11 +858,14 @@ if (triggerFinal && brandBox && traceCanvas) {
             );
             tCtx.strokeStyle = '#e0f7ff';
             tCtx.stroke();
-            traceProg += 0.06;
+            
+            traceProg += 0.04; 
             requestAnimationFrame(runTrace);
         } else {
+            // 1. Trace completes: Reveal the KBI logo image inside the canvas frame
             brandBox.classList.add('revealed-inner');
             
+            // 2. Display header elements above the logo
             setTimeout(() => {
                 if (ctaTextContent) {
                     ctaTextContent.style.opacity = '1';
@@ -869,6 +873,7 @@ if (triggerFinal && brandBox && traceCanvas) {
                 }
             }, 300);
 
+            // 3. Display the action button below the logo shortly after
             setTimeout(() => {
                 if (ctaBtnContent) {
                     ctaBtnContent.style.opacity = '1';
