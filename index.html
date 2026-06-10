@@ -44,10 +44,10 @@
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
-            padding: 60px 20px !important; /* Added more space between sections */
+            padding: 120px 20px !important; /* SIGNIFICANTLY MORE SPACE ADDED BETWEEN SECTIONS */
         }
 
-        .home-snap .section-header { margin: 1.5rem 0 1rem; }
+        .home-snap .section-header { margin: 1.5rem 0 2rem; }
 
         /* Hero */
         #hero-section {
@@ -133,10 +133,10 @@
         .typed-line { font-family: var(--font-mono); font-size: 1rem; color: var(--icy-highlight); margin-top: 12px; margin-bottom: 10px; padding: 0 10px; }
         .cursor { display: inline-block; background-color: var(--icy-highlight); width: 3px; height: 20px; margin-left: 5px; animation: blink 1s infinite; vertical-align: middle; }
 
-        /* Stats */
-        .stats-wrapper { width: 100%; max-width: 1000px; margin: 0 auto; text-align: center; padding: 0; }
+        /* Stats - FIXED TO SECURE EQUAL HEIGHTS & LENGTHS */
+        .stats-wrapper { width: 100%; max-width: 1100px; margin: 0 auto; text-align: center; padding: 0; }
         .stats-section {
-            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px;
+            display: flex; justify-content: center; align-items: stretch; gap: 24px; flex-wrap: wrap; margin-top: 10px;
             opacity: 0; transform: translateY(30px); transition: all 1s ease;
         }
         .stats-section.revealed { opacity: 1; transform: translateY(0); }
@@ -146,14 +146,20 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--border-teal);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-            padding: 25px;
+            padding: 35px 25px;
             border-radius: 20px;
-            min-width: 220px;
+            flex: 1 1 280px;
+            max-width: 320px;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
             transition: all 0.3s ease;
         }
         .stat-card:hover { transform: translateY(-5px); border-color: var(--primary-teal); background: rgba(92,201,231,0.12); }
-        .stat-number { display: block; font-size: 3rem; font-weight: 900; color: var(--icy-highlight); font-family: var(--font-mono); margin-bottom: 5px; }
-        .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-grey); opacity: 0.9; }
+        .stat-number { display: block; font-size: 3rem; font-weight: 900; color: var(--icy-highlight); font-family: var(--font-mono); margin-bottom: 8px; }
+        .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-grey); opacity: 0.9; line-height: 1.3; }
 
         /* Journey roadmap */
         #section-journey {
@@ -340,15 +346,15 @@
             #logo-wall-container { min-height: 380px !important; } 
         }
         @media (min-width: 600px) and (max-width: 1199px) {
-            .logo-container { width: calc(33% - 16px); }
-            #logo-wall-container { min-height: 780px !important; }
+            .logo-container { width: calc(25% - 16px); }
+            #logo-wall-container { min-height: 520px !important; }
         }
         @media (max-width: 599px) {
             .logo-container { width: calc(50% - 16px); height: 80px; }
-            #logo-wall-container { min-height: 840px !important; }
+            #logo-wall-container { min-height: 420px !important; }
         }
 
-        /* CTA + footer final panel stacked layouts */
+        /* CTA FINAL RESTRUCTURE - RESOLVES LOGO TERRITORY AND POSITIONING COHERENCY */
         #section-final {
             max-width: 100%;
             padding: 0;
@@ -361,19 +367,20 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 40px 20px 24px;
+            padding: 60px 20px;
             text-align: center;
             box-sizing: border-box;
-            margin-top: -80px;
-            gap: 20px;
+            /* NOTE: Adjust this top margin value if you want the total module shifted vertically */
+            margin-top: 10px; 
+            gap: 35px;
         }
         .cta-anim-bg { position: relative; display: flex; align-items: center; justify-content: center; z-index: 1; }
-        .cta-content { position: relative; z-index: 4; }
+        .cta-content { position: relative; z-index: 4; width: 100%; }
         .cta-title {
-            font-size: clamp(1.5rem, 5vw, 2.2rem); letter-spacing: 6px; text-transform: uppercase;
-            color: var(--icy-highlight); margin-bottom: 15px; font-weight: 900;
+            font-size: clamp(1.8rem, 5vw, 2.6rem); letter-spacing: 6px; text-transform: uppercase;
+            color: var(--icy-highlight); margin-bottom: 12px; font-weight: 900;
         }
-        .cta-sub { color: var(--slate-grey); margin-bottom: 24px; font-size: 1rem; }
+        .cta-sub { color: var(--slate-grey); margin-bottom: 0; font-size: 1.1rem; }
         .cta-btn-hero {
             display: inline-flex; padding: 18px 50px; border-radius: 50px; text-decoration: none;
             text-transform: uppercase; letter-spacing: 4px; font-weight: 800; font-size: 1rem;
@@ -403,14 +410,10 @@
             html { scroll-snap-type: none !important; }
             .home-snap .snap-panel { 
                 scroll-snap-align: none !important; 
-                padding: 40px 15px !important; /* Unified dynamic padding across sections */
+                padding: 60px 15px !important;
             }
             
-            /* Remove the chevron down arrow on mobile devices */
-            .scroll-hint {
-                display: none !important;
-            }
-            
+            .scroll-hint { display: none !important; }
             #hero-section { padding: 0.5rem 15px 2.5rem; }
             #hero-section.snap-panel { padding-top: 0.5rem; }
             .main-logo { margin-bottom: -10px; }
@@ -425,84 +428,40 @@
                 gap: 8px;
             }
             .roadmap-container::before {
-                left: 50%;
-                right: auto;
-                top: 8%;
-                bottom: 8%;
-                width: 2px;
-                height: auto;
-                transform: translateX(-50%) scaleY(0);
-                transform-origin: top center;
+                left: 50%; right: auto; top: 8%; bottom: 8%; width: 2px; height: auto;
+                transform: translateX(-50%) scaleY(0); transform-origin: top center;
             }
-            #section-journey.revealed .roadmap-container::before {
-                transform: translateX(-50%) scaleY(1);
-            }
+            #section-journey.revealed .roadmap-container::before { transform: translateX(-50%) scaleY(1); }
             .step { flex: 0 0 auto; width: 100%; max-width: 520px; min-width: 0; }
             .step-card { min-height: 0; padding: 20px 18px; }
             .roadmap-connector { width: auto; padding: 4px 0; }
             .roadmap-connector::before { content: '⌄'; }
             
-            .testimonial-slider { padding: 12px 10px; }
-            .t-card { padding: 28px 18px; }
+            /* MOVE TESTIMONIAL ARROWS TO TOP CORNERS ON MOBILE PANELS */
+            .testimonial-slider { padding: 75px 10px 12px; position: relative; }
+            .arrow { top: 35px; transform: none; width: 45px; height: 45px; }
+            .arrow.prev { left: 15px; }
+            .arrow.next { right: 15px; }
+            .t-card { padding: 24px 16px; }
             .t-body { font-size: 0.95rem; }
-            .arrow { width: 40px; height: 40px; }
             
-            .stat-card { min-width: 140px; padding: 15px; }
-            .stat-number { font-size: 2rem; }
+            .stat-card { min-width: 100%; max-width: 100%; min-height: auto; padding: 25px 20px; }
+            .stat-number { font-size: 2.4rem; }
             
             /* CTA Section Mobile Sizing Adaptations */
-            #section-final .cta-section {
-                margin-top: 0 !important;
-                gap: 15px;
-                padding: 20px 15px;
-            }
-            .brand-zone { 
-                width: 220px !important; 
-                height: 220px !important; 
-            }
-            #logo-reveal-img { 
-                width: 220px !important; 
-                height: 220px !important; 
-            }
-            #cta-text-content { 
-                top: 0 !important; 
-                transform: translateY(0) !important;
-                margin-bottom: 20px;
-            }
-            #cta-btn-content { 
-                margin-top: 20px !important; 
-                transform: translateY(0) !important;
-            }
-            .cta-btn-hero { 
-                padding: 10px 20px !important; 
-                font-size: 0.8rem !important; 
-                letter-spacing: 1px !important;
-                gap: 6px !important;
-            }
-            .cta-title {
-                font-size: 1.2rem !important;
-                letter-spacing: 3px !important;
-                margin-bottom: 5px !important;
-            }
-            .cta-sub {
-                font-size: 0.8rem !important;
-                margin-bottom: 10px !important;
-            }
+            #section-final .cta-section { margin-top: 0 !important; gap: 24px; padding: 40px 15px; }
+            .brand-zone, #logo-reveal-img { width: 260px !important; height: 260px !important; }
+            #cta-text-content { top: 0 !important; transform: translateY(0) !important; margin-bottom: 5px; }
+            #cta-btn-content { margin-top: 5px !important; transform: translateY(0) !important; }
+            .cta-btn-hero { padding: 12px 32px !important; font-size: 0.85rem !important; letter-spacing: 2px !important; }
+            .cta-title { font-size: 1.4rem !important; letter-spacing: 3px !important; }
+            .cta-sub { font-size: 0.9rem !important; }
         }
         footer {
-            width: 100%;
-            margin-top: auto;
-            padding: 0px 20px;
-            box-sizing: border-box;
-            background: var(--glass-frost); 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            width: 100%; margin-top: auto; padding: 0px 20px; box-sizing: border-box;
+            background: var(--glass-frost); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
     </style>
 </head>
 <body>
@@ -614,21 +573,20 @@
 
 <section class="snap-panel" id="section-final">
     
-    <div class="cta-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        
-        <div class="cta-content" id="cta-text-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; position: relative; top: 35px; z-index: 10; text-align: center;">
+    <div class="cta-section">
+        <div class="cta-content" id="cta-text-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; text-align: center;">
             <div class="cta-title">Ready to Compete?</div>
             <p class="cta-sub">Join blockchain innovators from over 120 countries at IBCOL 2026.</p>
         </div>
 
-        <div class="cta-anim-bg" id="trigger-final" style="position: relative; z-index: 5;">
+        <div class="cta-anim-bg" id="trigger-final">
             <div class="brand-zone" id="brand-box">
                 <canvas id="traceCanvas"></canvas>
                 <img id="logo-reveal-img" src="https://cdn.kb.institute/KBI-logo-light.png" alt="KBI Logo">
             </div>
         </div>
         
-        <div class="cta-content" id="cta-btn-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; margin-top: -10px; position: relative; z-index: 10; text-align: center;">
+        <div class="cta-content" id="cta-btn-content" style="opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; text-align: center;">
             <a href="registration.html" class="cta-btn-hero">
                 Register Now
                 <i data-lucide="play"></i>
@@ -803,13 +761,22 @@ if (logoWallContainer) {
     logoWall.className = 'logo-wall show-front';
     logoWallContainer.appendChild(logoWall);
 
-    const ITEMS_PER_PAGE = 21;
     let rotationIndex = 0;
+
+    // DYNAMIC RETRIEVAL OF LOGO WALL COUNT DEPENDENT ON SCREEN CONFIGURATION
+    function getItemsPerPage() {
+        const width = window.innerWidth;
+        if (width < 600) return 8;   // Mobile devices get 8 items
+        if (width < 1200) return 12; // Tablet displays get 12 items
+        return 21;                  // Default desktop environment gets 21 items
+    }
 
     function populateWall(page) {
         const fragment = document.createDocumentFragment();
-        const start = page * ITEMS_PER_PAGE;
-        const end = Math.min(start + ITEMS_PER_PAGE, LOGO_SOURCES.length);
+        const itemsPerPage = getItemsPerPage();
+        const start = page * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, LOGO_SOURCES.length);
+        
         for (let i = start; i < end; i++) {
             const container = document.createElement('div');
             container.className = 'logo-container';
@@ -828,11 +795,17 @@ if (logoWallContainer) {
     setInterval(() => {
         logoWall.classList.replace('show-front', 'show-back');
         setTimeout(() => {
-            rotationIndex = (rotationIndex + 1) % Math.ceil(LOGO_SOURCES.length / ITEMS_PER_PAGE);
+            const itemsPerPage = getItemsPerPage();
+            rotationIndex = (rotationIndex + 1) % Math.ceil(LOGO_SOURCES.length / itemsPerPage);
             populateWall(rotationIndex);
             logoWall.classList.replace('show-back', 'show-front');
         }, 500);
     }, 5000);
+
+    window.addEventListener('resize', () => {
+        populateWall(0);
+        rotationIndex = 0;
+    });
 }
 
 /* End CTA trace animation */
@@ -844,8 +817,6 @@ const ctaBtnContent = document.getElementById('cta-btn-content');
 
 if (triggerFinal && brandBox && traceCanvas) {
     const tCtx = traceCanvas.getContext('2d');
-    
-    // Proportional node path mapping upscaled dynamically matching the new 380px bounding canvas box dimensions
     const pts = [{ x: 190, y: 102 }, { x: 298, y: 260 }, { x: 81, y: 260 }, { x: 190, y: 102 }];
     let traceStarted = false;
     let traceProg = 0;
