@@ -8,11 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
     <style>
-        html {
-            scroll-snap-type: y mandatory;
-            scroll-padding-top: var(--nav-height);
-        }
-
         body {
             background:
                 radial-gradient(ellipse at 50% 25%, rgba(92,201,231,0.055) 0%, rgba(92,201,231,0.012) 45%, transparent 50%),
@@ -35,8 +30,6 @@
             position: relative;
             min-height: calc(100vh - var(--nav-height));
             min-height: calc(100dvh - var(--nav-height));
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,10 +37,15 @@
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
-            padding: 120px 20px !important; /* SIGNIFICANTLY MORE SPACE ADDED BETWEEN SECTIONS */
+            padding: 3rem 20px;
         }
 
         .home-snap .section-header { margin: 1.5rem 0 2rem; }
+
+        .snap-panel-body {
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         /* Hero */
         #hero-section {
@@ -63,8 +61,7 @@
             box-sizing: border-box;
         }
         #hero-section.snap-panel {
-            justify-content: flex-start;
-            padding-top: clamp(2.5rem, 8vh, 5rem);
+            box-sizing: border-box;
         }
 
         .scroll-hint {
@@ -343,36 +340,25 @@
         
         @media (min-width: 1200px) { 
             .logo-container { width: calc(20% - 16px); }
-            #logo-wall-container { min-height: 380px !important; } 
+            #logo-wall-container { min-height: 620px !important; } 
         }
         @media (min-width: 600px) and (max-width: 1199px) {
             .logo-container { width: calc(25% - 16px); }
-            #logo-wall-container { min-height: 520px !important; }
+            #logo-wall-container { min-height: 760px !important; }
         }
         @media (max-width: 599px) {
             .logo-container { width: calc(50% - 16px); height: 80px; }
-            #logo-wall-container { min-height: 420px !important; }
+            #logo-wall-container { min-height: 480px !important; }
         }
 
-        /* CTA FINAL RESTRUCTURE - RESOLVES LOGO TERRITORY AND POSITIONING COHERENCY */
-        #section-final {
-            max-width: 100%;
-            padding: 0;
-            justify-content: space-between;
-        }
+        /* CTA final panel */
         #section-final .cta-section {
-            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 60px 20px;
             text-align: center;
             box-sizing: border-box;
-            /* NOTE: Adjust this top margin value if you want the total module shifted vertically */
-            margin-top: 10px; 
-            gap: 35px;
         }
         .cta-anim-bg { position: relative; display: flex; align-items: center; justify-content: center; z-index: 1; }
         .cta-content { position: relative; z-index: 4; width: 100%; }
@@ -406,11 +392,181 @@
         .brand-zone.revealed-inner #logo-reveal-img { opacity: 1; transform: scale(1); }
         .brand-zone.revealed-inner #traceCanvas { opacity: 0; pointer-events: none; }
 
+        @media (min-width: 769px) {
+            html {
+                scroll-snap-type: y mandatory;
+                scroll-padding-top: var(--nav-height);
+            }
+            .home-snap .snap-panel {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+            .home-snap .stats-wrapper.snap-panel {
+                align-items: center;
+                padding: 0 20px 3rem !important;
+            }
+            .stats-wrapper .stats-content {
+                width: 100%;
+            }
+            .stats-wrapper .section-header {
+                margin: 0 0 1.5rem;
+            }
+            .home-snap #section-testimonials.snap-panel {
+                padding: 4rem 20px !important;
+            }
+            #hero-section.snap-panel {
+                padding: 2rem 20px 0 !important;
+            }
+            #hero-section .main-logo {
+                margin-top: 28px;
+            }
+            #hero-section .snap-panel-body,
+            #section-journey .snap-panel-body {
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                min-height: 0;
+            }
+            #section-journey.snap-panel {
+                justify-content: flex-start;
+                padding: 4rem 20px 1rem !important;
+            }
+            #section-journey .snap-panel-body {
+                gap: 0;
+            }
+            #section-journey .section-header {
+                margin: 0 0 1.5rem;
+            }
+            /* Pin scroll chevrons to bottom of each snap viewport (desktop) */
+            .home-snap .snap-panel:has(> .scroll-hint) {
+                position: relative !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                height: calc(100dvh - var(--nav-height));
+                min-height: calc(100dvh - var(--nav-height));
+                max-height: calc(100dvh - var(--nav-height));
+                overflow: hidden;
+                box-sizing: border-box;
+            }
+            .home-snap .snap-panel:has(> .scroll-hint) > .scroll-hint {
+                position: absolute !important;
+                bottom: 0.75rem !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                margin-top: 0 !important;
+                align-self: auto !important;
+                flex-shrink: 0;
+                z-index: 3;
+                padding: 0;
+            }
+            #hero-section.snap-panel:has(> .scroll-hint) {
+                height: calc(100dvh - var(--nav-height)) !important;
+                min-height: calc(100dvh - var(--nav-height)) !important;
+                max-height: calc(100dvh - var(--nav-height)) !important;
+                justify-content: flex-start !important;
+                padding-bottom: 0 !important;
+            }
+            #hero-section.snap-panel:has(> .scroll-hint) > .scroll-hint {
+                position: absolute !important;
+                bottom: 0.75rem !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+            }
+            #hero-section .snap-panel-body {
+                padding-bottom: 2.5rem;
+            }
+            /* Competition Impact: vertically center content block; chevron stays absolute */
+            .home-snap .stats-wrapper.snap-panel:has(> .scroll-hint) {
+                justify-content: center !important;
+            }
+            #section-logos.snap-panel {
+                padding: 2rem 20px 1rem !important;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            #section-logos .section-header {
+                margin: 0 0 1rem;
+                flex-shrink: 0;
+            }
+            #section-logos #logo-wall-container {
+                flex: 1 1 auto;
+                min-height: 0 !important;
+                width: 100%;
+                overflow: hidden;
+            }
+            #section-final.snap-panel {
+                max-width: 100%;
+                padding: 0 !important;
+                height: calc(100dvh - var(--nav-height));
+                min-height: calc(100dvh - var(--nav-height));
+                max-height: calc(100dvh - var(--nav-height));
+                overflow: hidden;
+                justify-content: space-between;
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+            #section-final .cta-section {
+                flex: 1 1 auto;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                padding: 16px 20px 8px;
+                text-align: center;
+                box-sizing: border-box;
+                gap: 12px;
+            }
+            #section-final .brand-zone,
+            #section-final #logo-reveal-img {
+                width: 320px !important;
+                height: 320px !important;
+            }
+            #section-final .cta-title {
+                font-size: clamp(1.4rem, 3vw, 2rem);
+                margin-bottom: 6px;
+            }
+            #section-final .cta-sub {
+                font-size: 0.95rem;
+            }
+            #section-final footer {
+                width: 100%;
+                flex-shrink: 0;
+                margin-top: 0;
+                padding: 0 16px;
+            }
+            #section-final .footer-inner {
+                padding: 16px 12px;
+            }
+            #section-final .footer-cols {
+                gap: 24px;
+                margin-bottom: 12px;
+            }
+        }
+
         @media (max-width: 768px) {
-            html { scroll-snap-type: none !important; }
+            html {
+                scroll-snap-type: none !important;
+                scroll-padding-top: 0 !important;
+            }
             .home-snap .snap-panel { 
-                scroll-snap-align: none !important; 
+                scroll-snap-align: none !important;
+                scroll-snap-stop: normal !important;
+                min-height: auto !important;
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
                 padding: 60px 15px !important;
+            }
+            .home-snap .snap-panel:has(> .scroll-hint) {
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
             }
             
             .scroll-hint { display: none !important; }
@@ -449,6 +605,20 @@
             .stat-number { font-size: 2.4rem; }
             
             /* CTA Section Mobile Sizing Adaptations */
+            #section-final.snap-panel {
+                justify-content: flex-start !important;
+                padding: 60px 15px 0 !important;
+                height: auto !important;
+                max-height: none !important;
+                min-height: auto !important;
+                overflow: visible !important;
+            }
+            #section-logos #logo-wall-container {
+                flex: none;
+                min-height: 480px !important;
+                overflow: visible;
+            }
+            #section-final footer { margin-top: 40px; }
             #section-final .cta-section { margin-top: 0 !important; gap: 24px; padding: 40px 15px; }
             .brand-zone, #logo-reveal-img { width: 260px !important; height: 260px !important; }
             #cta-text-content { top: 0 !important; transform: translateY(0) !important; margin-bottom: 5px; }
@@ -471,6 +641,7 @@
 <main class="home-snap">
 
 <section id="hero-section" class="snap-panel">
+    <div class="snap-panel-body">
     <div class="reveal-hero hero-brand">
         <img src="https://cdn.kb.institute/eto-2026/IBCOL/Logo/Square_Dark_Background_2026_500.png" class="main-logo" alt="IBCOL Logo">
         <div class="brand-title">International Blockchain Olympiad 2026</div>
@@ -489,17 +660,20 @@
             &gt; <span id="typed-text"></span><span class="cursor"></span>
         </div>
     </div>
+    </div>
     <div class="scroll-hint" aria-hidden="true">
         <span class="scroll-chevron">⌄</span>
     </div>
 </section>
 
 <section class="stats-wrapper snap-panel">
+    <div class="stats-content">
     <div class="section-header"><h2>Competition Impact</h2></div>
     <div class="stats-section" id="stats-container">
         <div class="stat-card"><span class="stat-number" data-target="120">0</span><span class="stat-label">Participating Countries</span></div>
         <div class="stat-card"><span class="stat-number" data-target="1000">0</span><span class="stat-label">Global Participants</span></div>
         <div class="stat-card"><span class="stat-number" data-target="200">0</span><span class="stat-label">Academic Institutions</span></div>
+    </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
         <span class="scroll-chevron">⌄</span>
@@ -507,6 +681,7 @@
 </section>
 
 <section class="snap-panel" id="section-journey">
+    <div class="snap-panel-body">
     <div class="section-header"><h1>The Journey</h1></div>
     <div class="roadmap-container">
         <div class="step"><div class="step-card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IBCOL ecosystem.</p></div></div>
@@ -516,6 +691,7 @@
         <div class="step"><div class="step-card"><h2>Creation</h2><p>Architect an original project that translates complex insights into real-world solutions.</p></div></div>
         <span class="roadmap-connector" aria-hidden="true"></span>
         <div class="step"><div class="step-card"><h2>Submission</h2><p>Finalize and upload your project for evaluation by our international board of experts.</p></div></div>
+    </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
         <span class="scroll-chevron">⌄</span>
@@ -625,7 +801,6 @@
 
 <script src="js/bg-canvas-home.js"></script>
 <script src="js/nav.js"></script>
-<script src="js/footer.js"></script>
 <script>
 /* Countdown */
 const target = new Date('2026-07-01T00:00:00');
