@@ -292,6 +292,8 @@
         .t-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-teal); margin-bottom: 12px; }
         .t-info h3 { margin: 0; font-size: 1.4rem; color: #fff; }
         .t-info span { color: var(--icy-highlight); font-size: 0.9rem; font-weight: 700; }
+        .t-affil { display: inline; }
+        .t-affil + .t-affil::before { content: ' '; }
         .t-body { font-size: 1rem; line-height: 1.55; color: var(--slate-grey); font-style: italic; max-width: 750px; margin-top: 12px; }
         .t-body p { margin: 0; }
         .arrow {
@@ -464,10 +466,11 @@
                 padding: 0;
             }
             #hero-section.snap-panel:has(> .scroll-hint) {
-                height: calc(100dvh - var(--nav-height)) !important;
-                min-height: calc(100dvh - var(--nav-height)) !important;
-                max-height: calc(100dvh - var(--nav-height)) !important;
+                height: 100dvh !important;
+                min-height: 100dvh !important;
+                max-height: 100dvh !important;
                 justify-content: flex-start !important;
+                padding-top: var(--nav-height) !important;
                 padding-bottom: 0 !important;
             }
             #hero-section.snap-panel:has(> .scroll-hint) > .scroll-hint {
@@ -593,11 +596,13 @@
             .roadmap-connector { width: auto; padding: 4px 0; }
             .roadmap-connector::before { content: '⌄'; }
             
-            /* MOVE TESTIMONIAL ARROWS TO TOP CORNERS ON MOBILE PANELS */
-            .testimonial-slider { padding: 75px 10px 12px; position: relative; }
-            .arrow { top: 35px; transform: none; width: 45px; height: 45px; }
-            .arrow.prev { left: 15px; }
-            .arrow.next { right: 15px; }
+            /* MOVE TESTIMONIAL ARROWS INSIDE CARD TOP CORNERS ON MOBILE */
+            .testimonial-slider { padding: 14px 10px 12px; position: relative; }
+            .arrow { top: 22px; transform: none; width: 45px; height: 45px; }
+            .arrow.prev { left: 20px; }
+            .arrow.next { right: 20px; }
+            .t-affil { display: block; }
+            .t-affil + .t-affil::before { content: none; }
             .t-card { padding: 24px 16px; }
             .t-body { font-size: 0.95rem; }
             
@@ -707,27 +712,27 @@
             <div class="testimonial-track" id="t-track">
                 <div class="t-card">
                     <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-brian-kim.jpg" class="t-img" alt="Brian Kim">
-                    <div class="t-info"><h3>Brian Kim</h3><span>🇺🇸 Cornell University (CU)</span></div>
+                    <div class="t-info"><h3>Brian Kim</h3><span><span class="t-affil">🇺🇸 Cornell University (CU)</span></span></div>
                     <div class="t-body"><p>"IBCOL acted as a bridge, bringing together like-minded, passionate builders from around the world."</p></div>
                 </div>
                 <div class="t-card">
                     <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-sophia-liu.jpg" class="t-img" alt="Sophia Liu">
-                    <div class="t-info"><h3>Sophia Liu</h3><span>🇭🇰 Diocesan Girls' School (DGS) 🇺🇸 Lawrenceville School</span></div>
+                    <div class="t-info"><h3>Sophia Liu</h3><span><span class="t-affil">🇭🇰 Diocesan Girls' School (DGS)</span><span class="t-affil">🇺🇸 Lawrenceville School</span></span></div>
                     <div class="t-body"><p>"IBCOL educators bestowed imparted state-of-the-art knowledge to young women indiscriminately, with a purpose to making this field more inclusive and representative of diverse perspectives."</p></div>
                 </div>
                 <div class="t-card">
                     <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-danielle-cadoret.jpg" class="t-img" alt="Danielle Cadoret">
-                    <div class="t-info"><h3>Danielle Cadoret</h3><span>🇨🇦 University of Waterloo (UW)</span></div>
+                    <div class="t-info"><h3>Danielle Cadoret</h3><span><span class="t-affil">🇨🇦 University of Waterloo (UW)</span></span></div>
                     <div class="t-body"><p>"The blockchain training program was a very eye-opening experience. Besides adding privacy and blockchain into my thesis, I also explored the idea of blockchain in healthcare, and decided to tackle a problem that is very personal for me."</p></div>
                 </div>
                 <div class="t-card">
                     <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-aniruddha-ganguly.jpg" class="t-img" alt="Aniruddha Ganguly">
-                    <div class="t-info"><h3>Aniruddha Ganguly</h3><span>🇧🇩 Bangladesh University of Engineering and Technology (BUET) 🇺🇸 Stony Brook University (SBU)</span></div>
+                    <div class="t-info"><h3>Aniruddha Ganguly</h3><span><span class="t-affil">🇧🇩 Bangladesh University of Engineering and Technology (BUET)</span><span class="t-affil">🇺🇸 Stony Brook University (SBU)</span></span></div>
                     <div class="t-body"><p>"After IBCOL, I was placed as a blockchain developer in the Advanced Blockchain Development Internship, supervised by KBI subject matter experts."</p></div>
                 </div>
                 <div class="t-card">
                     <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-adrian-alexandrescu.jpg" class="t-img" alt="Dr. Prof. Adrian Alexandrescu">
-                    <div class="t-info"><h3>Dr. Prof. Adrian Alexandrescu</h3><span>🇷🇴 Gheorghe Asachi Technical University of Iași (TUIASI)</span></div>
+                    <div class="t-info"><h3>Dr. Prof. Adrian Alexandrescu</h3><span><span class="t-affil">🇷🇴 Gheorghe Asachi Technical University of Iași (TUIASI)</span></span></div>
                     <div class="t-body"><p>"Participating at IBCOL as team coordinator was a wonderful experience. It gave me the opportunity to explore a variety of innovative projects and be part of an open and supportive community, even among competitors."</p></div>
                 </div>
             </div>
