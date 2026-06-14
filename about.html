@@ -31,6 +31,19 @@
             font-weight: 700;
         }
         .flex-half .section-subheading { text-align: left; }
+        .flex-half--headings-center { text-align: center; }
+        .flex-half--headings-center .section-subheading { text-align: center; }
+        .flex-half--headings-center .sub-text { text-align: center; }
+        .flex-half--headings-center .org-list {
+            list-style: none;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
+            padding-left: clamp(28px, 12%, 20px);
+            text-align: left;
+        }
+        .flex-half--headings-center .org-list li,
+        .flex-half--headings-center .org-list .sub-text { text-align: left; }
         section[style*="text-align:center"] .section-subheading { text-align: center; }
         .sub-text { font-size: 0.95rem; color: var(--slate-grey); line-height: 1.75; }
         .flex-grid { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; margin-bottom: 70px; }
@@ -119,7 +132,7 @@
         <div class="flex-half" style="text-align:center; margin-bottom: -40px;">
             <img src="https://cdn.kb.institute/KBI-logo-light.png" class="side-logo" alt="KBI Logo" style="max-width: 400px; margin-bottom: -20px;">
         </div>
-        <div class="flex-half">
+        <div class="flex-half flex-half--headings-center">
             <h2>Our Story</h2>
             <p class="section-subheading">Foundations &amp; Vision</p>
             <p class="sub-text">
@@ -131,9 +144,9 @@
     <div class="divider reveal"></div>
 
     <section class="flex-grid reveal" style="flex-direction:row-reverse;">
-        <div class="flex-half">
+        <div class="flex-half flex-half--headings-center">
             <h2>Official Organizer</h2>
-            <p class="section-subheading" style="text-align: center;">Flagship Competitions</p>
+            <p class="section-subheading">Flagship Competitions</p>
             <p class="sub-text">KBI is the official organizer of three flagship global competitions and two conferences:</p>
             <ul class="org-list">                
                 <li class="sub-text"><strong>IBCOL 2026</strong> — International Blockchain Olympiad</li>
@@ -155,7 +168,7 @@
 
     <section style="text-align:center; padding-top:60px;" class="reveal">
         <h2>Organizing Committee</h2>
-        <p class="section-subheading">2026 Competitions Committee Chairs</p>
+        <p class="section-subheading">2026 Competitions Committee Convenors</p>
         <div class="committee-grid">
             <div class="member-card">
                 <img src="https://cdn.kb.institute/eto-2026/general/personnel/kbi-profile-marina-danylyuk.jpg" alt="Maryna Danylyuk">

@@ -7,58 +7,123 @@
     <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
-        .deliverables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(280px,100%,480px),1fr)); gap: 25px; margin-bottom: 40px; }
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+
+        .deliverables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 100%, 480px), 1fr)); gap: 25px; margin-bottom: 40px; }
         .spec-card {
             background: var(--glass-frost); border: 1px solid var(--border-teal);
-            padding: clamp(25px,5vw,40px); border-radius: 4px; backdrop-filter: blur(15px);
+            padding: clamp(25px, 5vw, 40px); border-radius: 4px; backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             position: relative; overflow: hidden; display: flex; flex-direction: column;
         }
         .optional-tag { position: absolute; top: 15px; right: 15px; font-size: 0.6rem; background: var(--teal-dark); color: white; padding: 4px 10px; border-radius: 3px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         .spec-card h3 { color: var(--primary-teal); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 25px; font-weight: 800; border-bottom: 1px solid var(--teal-mid); padding-bottom: 12px; }
         .spec-card ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
-        .spec-card li { font-size: 0.94rem; margin-bottom: 18px; padding-left: 28px; position: relative; line-height: 1.58; }
+        .spec-card li { font-size: 0.94rem; margin-bottom: 18px; padding-left: 28px; position: relative; line-height: 1.58; color: var(--slate-grey); }
         .spec-card li::before { content: "■"; position: absolute; left: 0; color: var(--teal-mid); font-size: 1.1rem; }
         .spec-card:nth-child(1) li,
         .spec-card:nth-child(4) li { margin-bottom: 26px; padding-top: 4px; padding-bottom: 4px; }
+        .spec-card:nth-child(2) li,
+        .spec-card:nth-child(3) li { margin-bottom: 26px; padding-top: 4px; padding-bottom: 4px; }
         .spec-card b { color: var(--icy-highlight); }
         .spec-card a { color: var(--primary-teal); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.25s ease; }
         .spec-card a:hover { color: var(--icy-highlight); border-bottom-color: var(--primary-teal); }
         .sub-link { display: block; font-size: 0.86rem; color: var(--slate-grey); margin-top: 6px; padding-left: 14px; border-left: 1.5px solid var(--teal-mid); }
-        .roadmap-table { width: 100%; border-collapse: collapse; background: var(--glass-frost); border: 1px solid var(--border-teal); backdrop-filter: blur(15px); border-radius: 4px; overflow: hidden; margin-bottom: 80px; }
-        .roadmap-table th { background: rgba(92,201,231,0.12); color: var(--icy-highlight); text-transform: uppercase; letter-spacing: 2px; padding: 15px; text-align: left; font-size: 0.8rem; font-weight: 800; border-bottom: 1px solid var(--teal-mid); }
-        .roadmap-table td { padding: 20px 15px; border-bottom: 1px solid var(--border-teal); vertical-align: top; color: var(--slate-grey); }
-        .roadmap-table td:first-child { width: 22%; font-weight: 800; color: var(--primary-teal); text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; background: rgba(0,0,0,0.18); vertical-align: middle; }
-        .roadmap-h { color: var(--icy-highlight); margin-bottom: 8px; font-size: 0.95rem; display: block; font-weight: 700; }
-        .sub-text { font-size: 0.9rem; color: var(--slate-grey); margin: 0; line-height: 1.5; }
-        .white-item { color: var(--icy-highlight); }
-        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; margin-bottom: 80px; }
-        .criteria-card { border: 1px solid var(--border-teal); padding: clamp(25px,5vw,45px); background: var(--glass-frost); border-radius: 4px; backdrop-filter: blur(15px); }
-        .criteria-card h3 { color: var(--primary-teal); margin-top: 0; letter-spacing: clamp(2px,1vw,5px); text-transform: uppercase; font-size: clamp(1.1rem,4vw,1.4rem); border-bottom: 1px solid var(--teal-mid); padding-bottom: 15px; margin-bottom: 35px; text-align: center; font-weight: 900; }
+
+        .roadmap-block {
+            display: grid;
+            width: max-content;
+            max-width: 100%;
+            margin: 0 auto 60px;
+        }
+        .roadmap-block .section-header { margin: 80px 0 36px; }
+        .roadmap-block .section-header h2 { white-space: nowrap; }
+        .roadmap-table-wrap { width: 88%; margin-inline: auto; }
+        .roadmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(92,201,231,0.03);
+            border: 1px solid var(--border-teal);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            table-layout: fixed;
+        }
+        .roadmap-table th {
+            background: rgba(92,201,231,0.12);
+            color: var(--icy-highlight);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 0.88rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--primary-teal);
+        }
+        .roadmap-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-teal);
+            vertical-align: middle;
+            color: var(--slate-grey);
+            font-size: 0.88rem;
+        }
+        .roadmap-table td:first-child {
+            width: 34%;
+            font-weight: 800;
+            color: var(--primary-teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.82rem;
+            line-height: 1.4;
+            background: rgba(0,0,0,0.2);
+        }
+        .roadmap-table td:first-child small {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.74rem;
+            letter-spacing: 1.5px;
+            color: var(--icy-highlight);
+            font-weight: 700;
+        }
+        .roadmap-table .sub-text { font-size: 0.92rem; color: var(--slate-grey); margin: 0 0 6px; line-height: 1.45; }
+        .roadmap-table .sub-text:last-child { margin-bottom: 0; }
+        .white-item { color: var(--icy-highlight); font-weight: 600; }
+
+        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .criteria-card { border: 1px solid var(--border-teal); padding: clamp(25px, 5vw, 45px); background: var(--glass-frost); border-radius: 4px; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        .criteria-card h3 { color: var(--primary-teal); margin-top: 0; letter-spacing: clamp(2px, 1vw, 5px); text-transform: uppercase; font-size: clamp(1.1rem, 4vw, 1.4rem); border-bottom: 1px solid var(--teal-mid); padding-bottom: 15px; margin-bottom: 35px; text-align: center; font-weight: 900; }
         .metric-block { margin-bottom: 40px; }
         .metric-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
         .metric-title { color: var(--icy-highlight); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; font-size: 0.9rem; }
-        .metric-pct { color: var(--primary-teal); font-weight: 900; font-size: clamp(1.8rem,6vw,2.8rem); line-height: 1; }
+        .metric-pct { color: var(--primary-teal); font-weight: 900; font-size: clamp(1.8rem, 6vw, 2.8rem); line-height: 1; }
         .metric-question { display: block; font-style: italic; color: var(--slate-grey); font-size: 0.85rem; margin-bottom: 15px; line-height: 1.4; }
         .metric-details { list-style: none; padding-left: 0; margin: 0; }
         .metric-details li { font-size: 0.9rem; color: var(--slate-grey); margin-bottom: 10px; padding-left: 18px; position: relative; }
         .metric-details li::before { content: "⁃"; position: absolute; left: 0; color: var(--primary-teal); }
         .bar-bg { height: 2px; background: rgba(92,201,231,0.15); margin-top: 20px; }
         .bar-fill { height: 100%; background: var(--primary-teal); box-shadow: 0 0 15px rgba(92,201,231,0.5); }
-        .final-cta { text-align: center; padding: clamp(60px,10vw,100px) 20px; }
-        .final-cta h2 { font-size: clamp(1.5rem,6vw,2.4rem); letter-spacing: clamp(3px,1vw,8px); text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
-        .cta-btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
         .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--teal-dark); font-size: 0.95rem; line-height: 1.7; }
-        @media (max-width: 768px) {
-            .roadmap-table, .roadmap-table tbody, .roadmap-table tr, .roadmap-table td { display: block; width: 100% !important; box-sizing: border-box; text-align: center; }
-            .roadmap-table th { display: none; }
-            .roadmap-table td:first-child { background: var(--teal-dark); color: white; width: 100% !important; padding: 12px 20px; }
-            .roadmap-table tr { border-bottom: 4px solid var(--border-teal); }
+
+        .final-cta { text-align: center; padding: clamp(60px, 10vw, 100px) 20px; }
+        .final-cta h2 { font-size: clamp(1.5rem, 6vw, 2.4rem); letter-spacing: clamp(3px, 1vw, 8px); text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
+        .cta-btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 850px) {
+            .roadmap-block {
+                width: 100%;
+            }
+            .roadmap-block .section-header h2 { white-space: normal; }
+            .roadmap-table-wrap { width: 100%; }
+            .roadmap-table { table-layout: auto; }
+            .roadmap-table thead { display: none; }
+            .roadmap-table, .roadmap-table tbody, .roadmap-table tr { display: block; width: 100%; }
+            .roadmap-table tr { margin-bottom: 30px; border: 1px solid var(--border-teal); background: rgba(10,17,28,0.5); }
+            .roadmap-table td { display: block; width: 100% !important; box-sizing: border-box; border-bottom: 1px solid var(--border-teal); white-space: normal; }
+            .roadmap-table td:first-child { background: var(--teal-dark); color: #fff; padding: 12px 20px; font-size: 0.9rem; text-align: center; }
         }
         @media (max-width: 480px) {
-            .roadmap-table td { padding: 14px 14px !important; }
-            .roadmap-table td:first-child { padding: 10px 14px !important; }
-            .roadmap-table tr { margin-bottom: 12px; }
             .spec-card, .criteria-card { padding: 20px 16px; }
+            .cta-btn-group { flex-direction: column; align-items: center; }
         }
         footer {
             width: 100%;
@@ -85,6 +150,32 @@
     <div class="section-header reveal"><h2>Submission Materials</h2></div>
     <div class="deliverables-grid">
         <div class="spec-card reveal">
+            <h3>Whitepaper</h3>
+            <ul>
+                <li><b>Template:</b> <a href="https://docs.google.com/document/d/1UmzEw4dKngAsjqxF5SwmBm9sk_LY5ENqcEsgsgtArmE/" target="_blank" rel="noopener" class="sub-link">IEEE Conference &amp; KBI Annex Format</a></li>
+                <li><b>Format Guide:</b>
+                    <a href="https://drive.google.com/file/d/1b26be0NIibOe7bLdKp6-FyRDQgbiZE_-/view" target="_blank" rel="noopener" class="sub-link">Headings Guide</a>
+                    <a href="https://drive.google.com/file/d/1AoAV_RHz8XM9Y5sDSb-zgoPpL0NAXYUN/view" target="_blank" rel="noopener" class="sub-link">Overall Format Details (4.2mm columns)</a>
+                </li>
+                <li><b>Samples:</b>
+                    <a href="https://drive.google.com/file/d/1NEfZBhRexOKgOc3Y7xHv_F3eCfNby1ED/view" target="_blank" rel="noopener" class="sub-link">Sample Whitepaper PDF</a>
+                    <a href="https://drive.google.com/file/d/17Uh1GNPkTOI5JzJspfBTTzbL11AXioah/view" target="_blank" rel="noopener" class="sub-link">Sample Annex 1</a>
+                </li>
+                <li><b>Limits:</b> Max 6 pages; unlimited appendices.</li>
+                <li><b>Size:</b> A4 Portrait, Compressed PDF.</li>
+            </ul>
+        </div>
+        <div class="spec-card reveal">
+            <span class="optional-tag">DEV ONLY</span>
+            <h3>Prototype</h3>
+            <ul>
+                <li><b>Nature:</b> Proof of Concept or Product demonstration.</li>
+                <li><b>Objective:</b> Showcasing practical BCTT engineering.</li>
+                <li><b>Evaluation:</b> Complements the technical Whitepaper.</li>
+                <li><b>Submission:</b> Via digital link or recorded demo.</li>
+            </ul>
+        </div>
+        <div class="spec-card reveal">
             <h3>Pitch Deck</h3>
             <ul>
                 <li><b>Dimensions:</b> 16:9 Landscape orientation.</li>
@@ -94,67 +185,44 @@
             </ul>
         </div>
         <div class="spec-card reveal">
-            <h3>Whitepaper</h3>
-            <ul>
-                <li><b>Template:</b> <a href="https://docs.google.com/document/d/1UmzEw4dKngAsjqxF5SwmBm9sk_LY5ENqcEsgsgtArmE/" target="_blank" class="sub-link">IEEE Conference &amp; KBI Annex Format</a></li>
-                <li><b>Format Guide:</b>
-                    <a href="https://drive.google.com/file/d/1b26be0NIibOe7bLdKp6-FyRDQgbiZE_-/view" target="_blank" class="sub-link">Headings Guide</a>
-                    <a href="https://drive.google.com/file/d/1AoAV_RHz8XM9Y5sDSb-zgoPpL0NAXYUN/view" target="_blank" class="sub-link">Overall Format Details (4.2mm columns)</a>
-                </li>
-                <li><b>Samples:</b>
-                    <a href="https://drive.google.com/file/d/1NEfZBhRexOKgOc3Y7xHv_F3eCfNby1ED/view" target="_blank" class="sub-link">Sample Whitepaper PDF</a>
-                    <a href="https://drive.google.com/file/d/17Uh1GNPkTOI5JzJspfBTTzbL11AXioah/view" target="_blank" class="sub-link">Sample Annex 1</a>
-                </li>
-                <li><b>Limits:</b> Max 6 pages; unlimited appendices.</li>
-                <li><b>Size:</b> A4 Portrait, Compressed PDF.</li>
-            </ul>
-        </div>
-        <div class="spec-card reveal">
             <h3>Posterboard</h3>
             <ul>
-                <li><b>Template:</b> <a href="https://docs.google.com/presentation/d/1rMnxOlOv4-eNQALD-SwpsWlvH5dY44XxQsZZictEQvs/edit" target="_blank" class="sub-link">KBI Conference Poster Format</a></li>
-                <li><b>Sample:</b> <a href="https://drive.google.com/file/d/1b_vcUYGwTosI4SCdG42M_mtXgkOPvY9q/view" target="_blank" class="sub-link">Sample Posterboard &amp; Tips</a></li>
+                <li><b>Template:</b> <a href="https://docs.google.com/presentation/d/1rMnxOlOv4-eNQALD-SwpsWlvH5dY44XxQsZZictEQvs/edit" target="_blank" rel="noopener" class="sub-link">KBI Conference Poster Format</a></li>
+                <li><b>Sample:</b> <a href="https://drive.google.com/file/d/1b_vcUYGwTosI4SCdG42M_mtXgkOPvY9q/view" target="_blank" rel="noopener" class="sub-link">Sample Posterboard &amp; Tips</a></li>
                 <li><b>Dimensions:</b> A0 Landscape.</li>
                 <li><b>Content:</b> 1 page; Concise visual overview.</li>
-                <li><b>Format:</b> Compressed PDF (Required for Phase 2).</li>
-            </ul>
-        </div>
-        <div class="spec-card reveal">
-            <span class="optional-tag">OPTIONAL</span>
-            <h3>Prototype</h3>
-            <ul>
-                <li><b>Nature:</b> Proof of Concept or Product demonstration.</li>
-                <li><b>Objective:</b> Showcasing practical BCTT engineering.</li>
-                <li><b>Evaluation:</b> Complements the technical Whitepaper.</li>
-                <li><b>Submission:</b> Via digital link or recorded demo.</li>
+                <li><b>Format:</b> Compressed PDF.</li>
             </ul>
         </div>
     </div>
 
     <div class="divider reveal"></div>
-    <div class="section-header reveal"><h2>Submission Roadmap</h2></div>
-    <div class="reveal">
+
+    <div class="roadmap-block reveal">
+        <div class="section-header"><h2>Submission Roadmap</h2></div>
+        <div class="roadmap-table-wrap">
         <table class="roadmap-table">
-            <thead><tr><th>Phase</th><th>Mandatory Requirements</th></tr></thead>
+            <thead><tr><th>Phase</th><th>Requirements</th></tr></thead>
             <tbody>
                 <tr>
                     <td>Phase 0<br><small>Pre-IBCOL</small></td>
-                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text"><span class="white-item">N/A</span></p></td>
+                    <td><p class="sub-text"><span class="white-item">N/A</span></p></td>
                 </tr>
                 <tr>
                     <td>Phase 1<br><small>IBCOL Qualifiers</small></td>
-                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text">• <span class="white-item">Whitepaper</span></p><p class="sub-text">• <span class="white-item">Prototype</span> (dev track only)</p></td>
+                    <td><p class="sub-text">• <span class="white-item">Whitepaper</span></p><p class="sub-text">• <span class="white-item">Prototype</span> (DEV Track ONLY)</p></td>
                 </tr>
                 <tr>
                     <td>Phase 2<br><small>ETO</small></td>
-                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text">• <span class="white-item">Pitch Deck</span></p><p class="sub-text">• <span class="white-item">Posterboard</span></p></td>
+                    <td><p class="sub-text">• <span class="white-item">Pitch Deck</span></p><p class="sub-text">• <span class="white-item">Posterboard</span></p></td>
                 </tr>
                 <tr>
                     <td>Phase 3<br><small>IBCOL Finals</small></td>
-                    <td><b class="roadmap-h">Mandatory</b><p class="sub-text">• <span class="white-item">Revised Whitepaper</span></p><p class="sub-text">• <span class="white-item">Prototype</span> (dev track only)</p></td>
+                    <td><p class="sub-text">• <span class="white-item">Revised Whitepaper</span></p><p class="sub-text">• <span class="white-item">Prototype</span> (DEV Track ONLY)</p></td>
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 
     <div class="divider reveal"></div>
@@ -239,7 +307,7 @@
             </div>
         </div>
     </div>
-    <div class="note-box">KBI reserves the right to amend or disqualify a team or project if these parameters are not met or if amendments are not accepted.</div>
+    <div class="note-box reveal">KBI reserves the right to amend or disqualify a team or project if these parameters are not met or if amendments are not accepted.</div>
     <div class="final-cta reveal">
         <h2>Ready to compete?</h2>
         <div class="cta-btn-group">
