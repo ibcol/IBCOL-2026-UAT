@@ -385,7 +385,6 @@
         }
         .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
         .hero-register-btn { margin-top: 20px; }
-        #hero-section .snap-panel-body { transform: translateY(-4rem); }
         
         /* Upscaled CTA Branding Zone */
         .brand-zone {
@@ -404,7 +403,7 @@
         .brand-zone.revealed-inner #logo-reveal-img { opacity: 1; transform: scale(1); }
         .brand-zone.revealed-inner #traceCanvas { opacity: 0; pointer-events: none; }
 
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
             html {
                 scroll-snap-type: y mandatory;
                 scroll-padding-top: var(--nav-height);
@@ -562,7 +561,56 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            #hero-section.snap-panel:has(> .scroll-hint) {
+                padding-top: calc(var(--nav-height) + 0.75rem) !important;
+            }
+            #hero-section .snap-panel-body {
+                transform: none;
+                justify-content: flex-start;
+                padding-top: 0.5rem;
+                padding-bottom: 3.25rem;
+            }
+            #hero-section .snap-panel-body .hero-register-btn {
+                flex-shrink: 0;
+                margin-bottom: 0.25rem;
+            }
+            #hero-section .main-logo {
+                width: min(320px, 42vw);
+                margin-top: 8px;
+                margin-bottom: -32px;
+            }
+            .brand-title { font-size: 20px; letter-spacing: 3px; margin-top: 0; margin-bottom: 10px; line-height: 1.25; }
+            .countdown-subheader { font-size: 14px; letter-spacing: 4px; margin-top: 12px; margin-bottom: 10px; padding-bottom: 8px; }
+            .countdown-container { gap: 12px; margin-bottom: 16px; margin-top: 0; }
+            .time-box { width: 88px; padding: 12px 0; border-radius: 16px; }
+            .time-value { font-size: 36px; }
+            .time-label { font-size: 9px; }
+            .typed-line { font-size: 0.88rem; margin-top: 6px; margin-bottom: 4px; }
+            .hero-register-btn { margin-top: 8px; }
+            .cta-btn-hero { padding: 14px 36px; font-size: 0.9rem; letter-spacing: 3px; }
+        }
+
+        @media (min-width: 1281px) {
+            #hero-section .snap-panel-body {
+                transform: translateY(-4rem);
+                justify-content: center;
+                padding-top: 0;
+                padding-bottom: 2.5rem;
+            }
+            #hero-section .main-logo {
+                width: min(420px, 70vw);
+                max-width: 88%;
+                margin-top: 28px;
+                margin-bottom: -50px;
+            }
+            #hero-section.snap-panel:has(> .scroll-hint) {
+                padding-top: var(--nav-height) !important;
+            }
+            .hero-register-btn { margin-top: 20px; }
+        }
+
+        @media (max-width: 1024px) {
             html {
                 scroll-snap-type: none !important;
                 scroll-padding-top: 0 !important;
@@ -583,11 +631,11 @@
             }
             
             .scroll-hint { display: none !important; }
-            #hero-section { padding: 0.5rem 15px 2.5rem; }
-            #hero-section.snap-panel { padding-top: 0.5rem; }
-            #hero-section .snap-panel-body { transform: translateY(-2rem); }
-            .main-logo { margin-bottom: -10px; }
-            .brand-title { font-size: 17px; letter-spacing: 3px; margin-bottom: 14px; }
+            #hero-section { padding: 1rem 15px 2.5rem; }
+            #hero-section.snap-panel { padding-top: 1rem; }
+            #hero-section .snap-panel-body { transform: none; }
+            .main-logo { margin-top: 12px; margin-bottom: -40px; }
+            .brand-title { font-size: 17px; letter-spacing: 3px; margin-top: 0; margin-bottom: 10px; line-height: 1.25; }
             .time-box { width: 80px; padding: 15px 0; }
             .time-value { font-size: 32px; }
             
@@ -608,7 +656,11 @@
             .roadmap-connector::before { content: '⌄'; }
             
             /* MOVE TESTIMONIAL ARROWS INSIDE CARD TOP CORNERS ON MOBILE */
-            .testimonial-slider { padding: 14px 10px 12px; position: relative; }
+            .testimonial-slider {
+                padding: 14px 10px 12px;
+                position: relative;
+                max-width: min(800px, calc(100% - 24px));
+            }
             .arrow { top: 22px; transform: none; width: 45px; height: 45px; }
             .arrow.prev { left: 20px; }
             .arrow.next { right: 20px; }
@@ -617,7 +669,14 @@
             .t-card { padding: 24px 16px; }
             .t-body { font-size: 0.95rem; }
             
-            .stat-card { min-width: 100%; max-width: 100%; min-height: auto; padding: 25px 20px; }
+            .stat-card {
+                flex: 0 1 auto;
+                min-width: 0;
+                width: min(320px, 100%);
+                max-width: 320px;
+                min-height: auto;
+                padding: 25px 20px;
+            }
             .stat-number { font-size: 2.4rem; }
             
             /* CTA Section Mobile Sizing Adaptations */
@@ -961,7 +1020,7 @@ if (logoWallContainer) {
     // DYNAMIC RETRIEVAL OF LOGO WALL COUNT DEPENDENT ON SCREEN CONFIGURATION
     function getItemsPerPage() {
         const width = window.innerWidth;
-        if (width < 600) return 8;   // Mobile devices get 8 items
+        if (width < 1025) return 8;   // Mobile devices get 8 items
         if (width < 1200) return 12; // Tablet displays get 12 items
         return 21;                  // Default desktop environment gets 21 items
     }
@@ -1077,6 +1136,6 @@ if (triggerFinal && brandBox && traceCanvas) {
 }
 </script>
 
-<script>lucide.createIcons();</script>
+<script src="js/shared.js"></script>
 </body>
 </html>

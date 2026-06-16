@@ -40,9 +40,16 @@
         .param-item::before { content: "■"; position: absolute; left: 0; color: var(--teal-mid); font-size: 1.1rem; }
         .param-item b { color: var(--icy-highlight); font-size: 0.97rem; display: block; margin-bottom: 4px; }
         .param-item p { margin: 0; font-size: 0.92rem; color: var(--slate-grey); }
-        .final-cta { text-align: center; padding: 100px 20px; }
-        .final-cta h2 { font-size: 2.4rem; letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
-        .cta-btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .cta-section { text-align: center; padding: 100px 20px; }
+        .cta-title { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
+        .signup-btn {
+            display: inline-block; padding: clamp(14px,4vw,18px) clamp(32px,8vw,50px);
+            border-radius: 50px; text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: 800; font-size: clamp(0.85rem,4vw,0.95rem); transition: all 0.3s ease;
+            background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--icy-highlight);
+            box-shadow: 0 10px 30px rgba(220,242,255,0.2);
+        }
+        .signup-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(220,242,255,0.4); background: white; }
         .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--teal-dark); font-size: 0.95rem; line-height: 1.7; }
         @media (max-width: 850px) {
             .eligibility-table, .eligibility-table tbody, .eligibility-table tr { display: block; width: 100%; box-sizing: border-box; }
@@ -155,43 +162,15 @@
         </div>
     </div>
     <div class="note-box">KBI reserves the right to amend or disqualify a team or project if these parameters are not met or if amendments are not accepted.</div>
-    <div class="final-cta reveal">
-        <h2>Innovate the Future</h2>
-        <div class="cta-btn-group">
-            <a href="timeline.html" class="btn btn-outline">View Timeline</a>
-            <a href="registration.html" class="btn btn-primary">Register Now!</a>
-        </div>
+    <div class="cta-section reveal">
+        <h2 class="cta-title">Innovate the Future</h2>
+        <a href="registration.html" class="signup-btn">Register NOW!</a>
     </div>
 </div>
 </div>
 
 
-<footer>
-    <div class="footer-divider"></div>
-    <div class="footer-inner">
-        <div class="footer-cols">
-            <div class="footer-col">
-                <h4>IBCOL: International Blockchain Olympiad</h4>
-                <div class="footer-icons">
-                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
-                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>KBI: Königsberger Bridges Institute</h4>
-                <div class="footer-icons">
-                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
-                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
-    </div>
-</footer>
-<script src="js/bg-canvas.js"></script>
 <script src="js/nav.js"></script>
-<script>lucide.createIcons();</script>
+<script src="js/shared.js"></script>
 </body>
 </html>

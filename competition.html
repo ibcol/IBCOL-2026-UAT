@@ -74,8 +74,15 @@
         .arena-info h3 { margin: 0 0 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary-teal); font-size: 1.1rem; font-weight: 800; }
         .arena-info p { margin: 0; font-size: 0.95rem; color: var(--slate-grey); line-height: 1.5; }
         .cta-section { text-align: center; padding: 80px 20px 100px; }
-        .cta-section h2 { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: clamp(4px,1.8vw,8px); text-transform: uppercase; margin-bottom: 16px; color: var(--icy-highlight); font-weight: 900; }
-        .cta-section p { font-size: 1.05rem; color: var(--slate-grey); opacity: 0.9; margin-bottom: 35px; }
+        .cta-title { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: clamp(4px,1.8vw,8px); text-transform: uppercase; margin-bottom: 40px; color: var(--icy-highlight); font-weight: 900; text-shadow: 0 0 20px rgba(92,201,231,0.4); }
+        .signup-btn {
+            display: inline-block; padding: clamp(14px,4vw,18px) clamp(32px,8vw,50px);
+            border-radius: 50px; text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: 800; font-size: clamp(0.85rem,4vw,0.95rem); transition: all 0.3s ease;
+            background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--icy-highlight);
+            box-shadow: 0 10px 30px rgba(220,242,255,0.2);
+        }
+        .signup-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(220,242,255,0.4); background: white; }
         .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
         @media (max-width: 850px) {
             .hero-split, .arena-card { grid-template-columns: 1fr; }
@@ -154,44 +161,14 @@
         </div>
     </div>
     <div class="cta-section reveal">
-        <h2>Design the Future</h2>
-        <p>Is your project elite enough to qualify for IBCOL 2026?</p>
-        <div class="btn-group">
-            <a href="eligibility.html" class="btn btn-outline">View Requirements</a>
-            <a href="registration.html" class="btn btn-primary">Register Now!</a>
-        </div>
+        <h2 class="cta-title">Design the Future</h2>
+        <a href="registration.html" class="signup-btn">Register NOW!</a>
     </div>
 </div>
 </div>
 
 
-<footer>
-    <div class="footer-divider"></div>
-    <div class="footer-inner">
-        <div class="footer-cols">
-            <div class="footer-col">
-                <h4>IBCOL: International Blockchain Olympiad</h4>
-                <div class="footer-icons">
-                    <a href="https://2026.ibcol.org/ibcol" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
-                    <a href="https://ee.linkedin.com/company/ibcol-org" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.instagram.com/ibcol_org/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>KBI: Königsberger Bridges Institute</h4>
-                <div class="footer-icons">
-                    <a href="https://www.kb.institute/" target="_blank" rel="noopener"><i data-lucide="globe"></i></a>
-                    <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener"><i data-lucide="instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <p class="footer-copy">© 2017-2026 International Blockchain Olympiad (IBCOL Foundation). All Rights Reserved.</p>
-    </div>
-</footer>
-<script src="js/bg-canvas.js"></script>
 <script src="js/nav.js"></script>
-<script src="js/registration-fee.js"></script>
-<script>lucide.createIcons();</script>
+<script src="js/shared.js"></script>
 </body>
 </html>
