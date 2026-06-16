@@ -63,6 +63,9 @@
         #hero-section.snap-panel {
             box-sizing: border-box;
         }
+        #hero-section .snap-panel-body {
+            transform: translateY(1.25rem);
+        }
 
         .scroll-hint {
             position: absolute;
@@ -566,7 +569,7 @@
                 padding-top: calc(var(--nav-height) + 0.75rem) !important;
             }
             #hero-section .snap-panel-body {
-                transform: none;
+                transform: translateY(1.25rem);
                 justify-content: flex-start;
                 padding-top: 0.5rem;
                 padding-bottom: 3.25rem;
@@ -593,7 +596,7 @@
 
         @media (min-width: 1281px) {
             #hero-section .snap-panel-body {
-                transform: translateY(-4rem);
+                transform: translateY(-2.75rem);
                 justify-content: center;
                 padding-top: 0;
                 padding-bottom: 2.5rem;
@@ -633,7 +636,7 @@
             .scroll-hint { display: none !important; }
             #hero-section { padding: 1rem 15px 2.5rem; }
             #hero-section.snap-panel { padding-top: 1rem; }
-            #hero-section .snap-panel-body { transform: none; }
+            #hero-section .snap-panel-body { transform: translateY(1.25rem); }
             .main-logo { margin-top: 12px; margin-bottom: -40px; }
             .brand-title { font-size: 17px; letter-spacing: 3px; margin-top: 0; margin-bottom: 10px; line-height: 1.25; }
             .time-box { width: 80px; padding: 15px 0; }
