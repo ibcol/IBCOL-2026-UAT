@@ -87,6 +87,7 @@
         .reveal-hero { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(20px); animation: curtainReveal 1.4s cubic-bezier(0.19,1,0.22,1) forwards; }
         .reveal-header { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease forwards; animation-delay: 0.6s; }
         .reveal-delayed { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(20px); animation: curtainReveal 1.4s cubic-bezier(0.19,1,0.22,1) forwards; animation-delay: 1.1s; }
+        .reveal-register-btn { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease forwards; animation-delay: 2.6s; }
 
         @keyframes curtainReveal { 0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(20px); } 100% { opacity:1; clip-path:inset(0% 0 0 0); transform:translateY(0); } }
         @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
@@ -258,6 +259,13 @@
             padding-bottom: 10px;
         }
         .step-card p { color: var(--slate-grey); margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .step-register-btn {
+            display: inline-flex; margin-top: 16px; padding: 10px 22px; border-radius: 50px;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 800;
+            font-size: 0.75rem; transition: all 0.3s ease; align-items: center;
+            background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--primary-teal);
+        }
+        .step-register-btn:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
         .roadmap-connector {
             position: relative;
             flex: 0 0 auto;
@@ -376,6 +384,8 @@
             background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--primary-teal);
         }
         .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
+        .hero-register-btn { margin-top: 20px; }
+        #hero-section .snap-panel-body { transform: translateY(-4rem); }
         
         /* Upscaled CTA Branding Zone */
         .brand-zone {
@@ -575,6 +585,7 @@
             .scroll-hint { display: none !important; }
             #hero-section { padding: 0.5rem 15px 2.5rem; }
             #hero-section.snap-panel { padding-top: 0.5rem; }
+            #hero-section .snap-panel-body { transform: translateY(-2rem); }
             .main-logo { margin-bottom: -10px; }
             .brand-title { font-size: 17px; letter-spacing: 3px; margin-bottom: 14px; }
             .time-box { width: 80px; padding: 15px 0; }
@@ -665,6 +676,10 @@
             &gt; <span id="typed-text"></span><span class="cursor"></span>
         </div>
     </div>
+    <a href="registration.html" class="cta-btn-hero hero-register-btn reveal-register-btn">
+        Register Now
+        <i data-lucide="play"></i>
+    </a>
     </div>
     <div class="scroll-hint" aria-hidden="true">
         <span class="scroll-chevron">⌄</span>
@@ -689,7 +704,7 @@
     <div class="snap-panel-body">
     <div class="section-header"><h1>The Journey</h1></div>
     <div class="roadmap-container">
-        <div class="step"><div class="step-card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IBCOL ecosystem.</p></div></div>
+        <div class="step"><div class="step-card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IBCOL ecosystem.</p><a href="registration.html" class="step-register-btn">Register Now</a></div></div>
         <span class="roadmap-connector" aria-hidden="true"></span>
         <div class="step"><div class="step-card"><h2>Training</h2><p>Master advanced methodologies in KBI's Skillsprint to elevate your technical proficiency.</p></div></div>
         <span class="roadmap-connector" aria-hidden="true"></span>
