@@ -30,12 +30,25 @@
         .benefit-item i { color: var(--primary-teal); margin-bottom: 15px; }
         .benefit-item h4 { margin: 10px 0 8px; font-size: 0.95rem; text-transform: uppercase; color: var(--icy-highlight); letter-spacing: 1.5px; font-weight: 800; }
         .benefit-item p { font-size: 0.88rem; color: var(--slate-grey); margin: 0; line-height: 1.55; }
-        .academic-grid, .expanded-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; }
+        .academic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .expanded-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; }
         .academic-box, .feature-box {
             background: var(--glass-frost); border: 1px solid var(--border-teal); padding: 50px 40px;
             border-radius: 4px; text-align: center; backdrop-filter: blur(15px);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            display: flex; flex-direction: column; align-items: center;
         }
+        .academic-box { justify-content: flex-start; }
+        .feature-box { justify-content: center; }
+        .academic-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            color: var(--primary-teal);
+        }
+        .academic-icon svg { width: 48px; height: 48px; }
         .academic-box h3, .feature-box h2 { color: var(--primary-teal); text-transform: uppercase; letter-spacing: 3px; margin: 20px 0 15px; font-size: 1.35rem; font-weight: 900; }
         .academic-box p, .feature-box p { font-size: 0.94rem; color: var(--slate-grey); margin: 0; max-width: 420px; line-height: 1.6; }
         .institution-tag { background: rgba(92,201,231,0.12); color: var(--icy-highlight); border: 1px solid var(--primary-teal); padding: 6px 20px; font-size: 0.78rem; border-radius: 50px; display: inline-block; margin-top: 25px; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 800; }
@@ -80,30 +93,30 @@
             <span class="medal-icon">🥇</span>
             <h2 class="medal-title">Gold Medal</h2>
             <ul class="list-items">
-                <li>IBCOL 2026 2D ARC Gold</li>
-                <li>IBCOL 2026 2D DEV Gold</li>
-                <li>IBCOL 2026 3D ARC Gold</li>
-                <li>IBCOL 2026 3D DEV Gold</li>
+                <li>IBCOL 2026 SS ARC Gold</li>
+                <li>IBCOL 2026 SS DEV Gold</li>
+                <li>IBCOL 2026 PS ARC Gold</li>
+                <li>IBCOL 2026 PS DEV Gold</li>
             </ul>
         </div>
         <div class="tech-card reveal">
             <span class="medal-icon">🥈</span>
             <h2 class="medal-title">Silver Medal</h2>
             <ul class="list-items">
-                <li>IBCOL 2026 2D ARC Silver</li>
-                <li>IBCOL 2026 2D DEV Silver</li>
-                <li>IBCOL 2026 3D ARC Silver</li>
-                <li>IBCOL 2026 3D DEV Silver</li>
+                <li>IBCOL 2026 SS ARC Silver</li>
+                <li>IBCOL 2026 SS DEV Silver</li>
+                <li>IBCOL 2026 PS ARC Silver</li>
+                <li>IBCOL 2026 PS DEV Silver</li>
             </ul>
         </div>
         <div class="tech-card reveal">
             <span class="medal-icon">🥉</span>
             <h2 class="medal-title">Bronze Medal</h2>
             <ul class="list-items">
-                <li>IBCOL 2026 2D ARC Bronze</li>
-                <li>IBCOL 2026 2D DEV Bronze</li>
-                <li>IBCOL 2026 3D ARC Bronze</li>
-                <li>IBCOL 2026 3D DEV Bronze</li>
+                <li>IBCOL 2026 SS ARC Bronze</li>
+                <li>IBCOL 2026 SS DEV Bronze</li>
+                <li>IBCOL 2026 PS ARC Bronze</li>
+                <li>IBCOL 2026 PS DEV Bronze</li>
             </ul>
         </div>
     </section>
@@ -119,12 +132,17 @@
     <div class="section-header reveal"><h2>Project Standing</h2><p>Academic Merit &amp; Finalist Status</p></div>
     <div class="academic-grid">
         <div class="academic-box reveal">
-            <i data-lucide="star" size="48" style="color:var(--primary-teal)"></i>
-            <h3>Award of Merit</h3>
-            <p>Conferred to projects scoring above 75%. Provides a verifiable credential for research and internships.</p>
+            <div class="academic-icon"><i data-lucide="award"></i></div>
+            <h3>Award of Distinction</h3>
+            <p>A tier of recognition acknowledging competitors who are outstanding among the Award of Merit winners.</p>
         </div>
         <div class="academic-box reveal">
-            <i data-lucide="check-circle" size="48" style="color:var(--primary-teal)"></i>
+            <div class="academic-icon"><i data-lucide="star"></i></div>
+            <h3>Award of<br>Merit</h3>
+            <p>A tier of recognition acknowledging competitors who fall just below top-tier medals.</p>
+        </div>
+        <div class="academic-box reveal">
+            <div class="academic-icon"><i data-lucide="check-circle"></i></div>
             <h3>Olympiad Finalist</h3>
             <p>Issued to all projects that qualified, received and accepted the invitation to compete in the International Finals.</p>
         </div>

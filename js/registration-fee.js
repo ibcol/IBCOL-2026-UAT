@@ -4,7 +4,7 @@
     // ==========================================
     const CONFIG = {
         DEADLINES: {
-            earlyBird: '2026-07-07',
+            earlyBird: '2026-07-21',
             regular: '2026-08-08',
             lateBird: '2026-09-09',
             resubmission: '2026-11-30'

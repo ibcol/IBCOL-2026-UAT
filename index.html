@@ -91,10 +91,11 @@
         .reveal-hero { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(20px); animation: curtainReveal 1.4s cubic-bezier(0.19,1,0.22,1) forwards; }
         .reveal-header { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease forwards; animation-delay: 0.6s; }
         .reveal-delayed { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(20px); animation: curtainReveal 1.4s cubic-bezier(0.19,1,0.22,1) forwards; animation-delay: 1.1s; }
-        .reveal-register-btn { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease forwards; animation-delay: 2.6s; }
+        .reveal-register-btn { opacity: 0; animation: fadeInOpacity 1s ease forwards; animation-delay: 2.6s; }
 
         @keyframes curtainReveal { 0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(20px); } 100% { opacity:1; clip-path:inset(0% 0 0 0); transform:translateY(0); } }
         @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeInOpacity { to { opacity: 1; } }
         @keyframes blink { 0%, 100% { opacity:1; } 50% { opacity:0; } }
 
         .hero-brand { display: flex; flex-direction: column; align-items: center; }
@@ -388,6 +389,7 @@
             background: var(--icy-highlight); color: var(--bg-deep); border: 1px solid var(--primary-teal);
         }
         .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(92,201,231,0.4); }
+        .cta-btn-hero.hero-register-btn:hover { transform: translateY(-3px); }
         .hero-register-btn { margin-top: 20px; }
         
         /* Upscaled CTA Branding Zone */
@@ -726,7 +728,7 @@
         <div class="brand-title">International Blockchain Olympiad 2026</div>
     </div>
     <div class="reveal-header">
-        <div class="countdown-subheader">Competition Launch</div>
+        <div class="countdown-subheader">Registration Launch</div>
     </div>
     <div class="reveal-delayed">
         <div class="countdown-container">
@@ -886,7 +888,7 @@
 <script src="js/nav.js"></script>
 <script>
 /* Countdown */
-const target = new Date('2026-06-28T00:00:00');
+const target = new Date('2026-07-07T00:00:00');
 function updateCountdown() {
     const now = new Date();
     const diff = target - now;
