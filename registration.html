@@ -10,139 +10,80 @@
     <style>
         body { -webkit-tap-highlight-color: transparent; }
 
-        .i2ol-register { margin: 50px auto; max-width: 960px; }
-        .i2ol-register__banner {
-            display: flex;
-            align-items: stretch;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(92, 201, 231, 0.65);
-            border-radius: 14px;
-            text-decoration: none;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 0 0 1px rgba(92, 201, 231, 0.15) inset;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .i2ol-register {
+            width: 100%;
+            margin: 0 0 40px;
+            padding: 72px 20px 64px;
+            box-sizing: border-box;
         }
-        .i2ol-register__banner:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-teal);
-            box-shadow: 0 0 30px rgba(92, 201, 231, 0.35), 0 0 0 1px rgba(92, 201, 231, 0.25) inset;
-        }
-        .i2ol-register__main {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            padding: 64px 52px;
-            position: relative;
-            background: var(--glass-frost);
-            border-right: 2px dashed rgba(92, 201, 231, 0.5);
-        }
-        .i2ol-register__main::before,
-        .i2ol-register__main::after {
-            content: '';
-            position: absolute;
-            right: -11px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--bg-deep);
-            z-index: 2;
-        }
-        .i2ol-register__main::before {
-            top: 0;
-            transform: translateY(-50%);
-        }
-        .i2ol-register__main::after {
-            bottom: 0;
-            transform: translateY(50%);
-        }
-        .i2ol-register__content { flex: 1; min-width: 0; text-align: left; }
-        .i2ol-register__stub {
-            flex-shrink: 0;
-            width: 260px;
+        .i2ol-register .cta-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 20px;
-            padding: 48px 32px;
-            background:
-                linear-gradient(rgba(92, 201, 231, 0.08), rgba(92, 201, 231, 0.08)),
-                var(--glass-frost);
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            box-sizing: border-box;
         }
-        .i2ol-register__meta {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--primary-teal);
-            letter-spacing: 2px;
+        .i2ol-register .cta-title {
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            letter-spacing: 6px;
             text-transform: uppercase;
-        }
-        .i2ol-register__badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
-            color: var(--teal-mid);
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .i2ol-register__pulse {
-            width: 10px;
-            height: 10px;
-            flex-shrink: 0;
-            background: var(--primary-teal);
-            animation: i2ol-pulse-sq 2s infinite;
-        }
-        @keyframes i2ol-pulse-sq {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(92, 201, 231, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(92, 201, 231, 0); }
-            100% { transform: scale(0.9); }
-        }
-        .i2ol-register__title {
-            margin: 0 0 18px;
             color: var(--icy-highlight);
-            font-size: 2.35rem;
-            font-weight: 800;
+            margin-bottom: 12px;
+            font-weight: 900;
+        }
+        .i2ol-register .cta-sub {
+            color: var(--slate-grey);
+            margin-bottom: 0;
+            font-size: 1.1rem;
+        }
+        .i2ol-register .cta-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            text-align: center;
+            width: 100%;
+        }
+        .i2ol-register__logo {
+            width: min(340px, 72vw);
+            height: auto;
+            display: block;
+            margin: 24px 0 32px;
+            opacity: 0;
+            transform: scale(0.85);
+            filter: drop-shadow(0 0 35px rgba(92, 201, 231, 0.55));
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .i2ol-register__logo.revealed-inner {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .i2ol-register .cta-btn-hero {
+            display: inline-flex;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 4px;
-        }
-        .i2ol-register__text {
-            margin: 0;
-            color: var(--slate-grey);
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 560px;
-        }
-        .i2ol-register__action {
-            display: inline-flex;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
             align-items: center;
             gap: 12px;
-            flex-shrink: 0;
-            padding: 16px 36px;
-            background: var(--primary-teal);
-            color: var(--bg-deep);
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 15px rgba(92, 201, 231, 0.2);
-            transition: all 0.3s ease;
-        }
-        .i2ol-register__stub .i2ol-register__action {
-            padding: 18px 36px;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-        .i2ol-register__banner:hover .i2ol-register__action {
             background: var(--icy-highlight);
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--primary-teal);
+            color: var(--bg-deep);
+            border: 1px solid var(--primary-teal);
+        }
+        .i2ol-register .cta-btn-hero:hover {
+            transform: translateY(-3px);
+            background: white;
+            box-shadow: 0 15px 40px rgba(92, 201, 231, 0.4);
+        }
+        .i2ol-register .cta-btn-hero i {
+            width: 18px;
+            height: 18px;
         }
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin-bottom: 50px; }
         .info-box h3 { color: var(--primary-teal); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid var(--teal-mid); padding-bottom: 10px; margin-bottom: 15px; font-size: 1.25rem; font-weight: 800; }
@@ -220,40 +161,9 @@
         .calc-warning { color: #f0a0a0; font-weight: 700; }
         #calc-category-wrap[hidden], #calc-reg-fields[hidden], #calc-resub-fields[hidden] { display: none !important; }
         @media (max-width: 850px) {
-            .i2ol-register__banner {
-                flex-direction: column;
-            }
-            .i2ol-register__main {
-                padding: 48px 32px;
-                border-right: none;
-                border-bottom: 2px dashed rgba(92, 201, 231, 0.5);
-            }
-            .i2ol-register__main::before {
-                top: auto;
-                bottom: 0;
-                right: auto;
-                left: 0;
-                transform: translate(-50%, 50%);
-            }
-            .i2ol-register__main::after {
-                bottom: 0;
-                right: 0;
-                left: auto;
-                transform: translate(50%, 50%);
-            }
-            .i2ol-register__stub {
-                width: 100%;
-                padding: 36px 32px;
-            }
-            .i2ol-register__title { font-size: 1.75rem; letter-spacing: 3px; }
-            .i2ol-register__stub .i2ol-register__action {
-                padding: 16px 36px;
-                font-size: 1rem;
-                letter-spacing: 2px;
-                justify-content: center;
-                width: 100%;
-                box-sizing: border-box;
-            }
+            .i2ol-register { padding: 48px 16px 40px; }
+            .i2ol-register__logo { width: min(260px, 70vw); margin: 20px 0 28px; }
+            .i2ol-register .cta-btn-hero { padding: 14px 36px; font-size: 0.9rem; letter-spacing: 3px; }
             .info-grid { grid-template-columns: 1fr; }
             .pricing-table, .pricing-table tbody, .pricing-table tr { display: block; width: 100%; box-sizing: border-box; }
             .pricing-table thead { display: none; }
@@ -288,42 +198,29 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 <div class="page-content">
+    <div class="i2ol-register" id="reg-cta-trigger">
+        <div class="cta-section">
+            <div class="cta-content" id="reg-cta-text">
+                <div class="cta-title">Registration is now open</div>
+                <p class="cta-sub">Join blockchain innovators from over 120 countries at IBCOL 2026.</p>
+            </div>
+            <img class="i2ol-register__logo" id="reg-cta-logo" src="https://cdn.kb.institute/eto-2026/IBCOL/Logo/Square_Dark_Background_2026_500.png" alt="IBCOL 2026 logo">
+            <div class="cta-content" id="reg-cta-btn">
+                <a class="cta-btn-hero" href="https://join.i2ol.org/?competition=ibcol" target="_blank" rel="noopener noreferrer">
+                    Register Now
+                    <i data-lucide="play"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 <div class="container">
-    <div class="section-header reveal" style="margin-top: 0; padding-top: 0;">
-        <h1>Registration</h1>
-        <p>IBCOL 2026 Participation</p>
-    </div>
-    <div class="reveal" style="text-align:center; color:var(--slate-grey); max-width:900px; margin:0 auto 30px; font-size:1.05rem;">
-        <p>Registration is now open for the International Blockchain Olympiad 2026! Click the link below to start your registration!</p>
-    </div>
-    <div class="i2ol-register reveal">
-        <a class="i2ol-register__banner" href="https://join.i2ol.org/?competition=ibcol" target="_blank" rel="noopener noreferrer">
-            <div class="i2ol-register__main">
-                <div class="i2ol-register__content">
-                    <span class="i2ol-register__badge">
-                        <span class="i2ol-register__pulse" aria-hidden="true"></span>
-                        Registration Open
-                    </span>
-                    <h2 class="i2ol-register__title">International Blockchain Olympiad 2026</h2>
-                    <p class="i2ol-register__text">Complete your team registration on the official i2OL portal.</p>
-                </div>
-            </div>
-            <div class="i2ol-register__stub">
-                <span class="i2ol-register__meta">IBCOL · 2026</span>
-                <span class="i2ol-register__action">
-                    Register
-                    <i data-lucide="external-link" style="width:18px;height:18px;"></i>
-                </span>
-            </div>
-        </a>
-    </div>
     <div class="divider reveal"></div>
     <div class="section-header reveal"><h2>Registration Fee</h2><p>IBCOL 2026 Qualifiers — per team</p></div>
 
     <div class="fee-content">
         <div class="payment-callout reveal">
             <h3>Payment</h3>
-            <p>We accept <b>wire transfer</b> or <b>Stripe</b> only. Invoices are issued in <b>EUR (Euro)</b> or <b>HKD (Hong Kong Dollar)</b> only.</p>
+            <p>We accept <b>Stripe</b> only. Invoices are issued in <b>EUR (Euro)</b> or <b>HKD (Hong Kong Dollar)</b> only.</p>
         </div>
 
         <div class="fee-subsection reveal">
@@ -434,6 +331,42 @@
 </div>
 </div>
 
+<script>
+(function () {
+    const trigger = document.getElementById('reg-cta-trigger');
+    const logo = document.getElementById('reg-cta-logo');
+    const text = document.getElementById('reg-cta-text');
+    const btn = document.getElementById('reg-cta-btn');
+    if (!trigger || !logo || !text || !btn) return;
+
+    let started = false;
+    function runReveal() {
+        if (started) return;
+        started = true;
+        logo.classList.add('revealed-inner');
+
+        setTimeout(() => {
+            text.style.opacity = '1';
+            text.style.transform = 'translateY(0)';
+        }, 300);
+
+        setTimeout(() => {
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }, 850);
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                runReveal();
+                obs.disconnect();
+            }
+        });
+    }, { threshold: 0.2 });
+    obs.observe(trigger);
+})();
+</script>
 <script src="js/nav.js"></script>
 <script src="js/registration-fee.js"></script>
 <script src="js/shared.js"></script>
