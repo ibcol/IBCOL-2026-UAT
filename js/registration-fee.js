@@ -4,8 +4,8 @@
     // ==========================================
     const CONFIG = {
         DEADLINES: {
-            earlyBird: '2026-07-21',
-            regular: '2026-08-08',
+            earlyBird: '2026-08-01',
+            regular: '2026-08-15',
             lateBird: '2026-09-09',
             resubmission: '2026-11-30'
         },
@@ -116,7 +116,7 @@
 
             if (data.status === 'missing') {
                 breakdownEl.innerHTML = lines.join('');
-                resultEl.textContent = 'Select a payment date to see your total.';
+                resultEl.textContent = 'Select a registration date to see your total.';
                 resultEl.className = 'calc-total calc-total--hint';
                 return;
             }
