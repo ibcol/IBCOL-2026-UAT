@@ -728,7 +728,7 @@
         <div class="brand-title">International Blockchain Olympiad 2026</div>
     </div>
     <div class="reveal-header">
-        <div class="countdown-subheader">Early Bird Registration Deadline</div>
+        <div class="countdown-subheader">Registration Deadline</div>
     </div>
     <div class="reveal-delayed">
         <div class="countdown-container">
@@ -886,31 +886,8 @@
 
 <script src="js/bg-canvas-home.js"></script>
 <script src="js/nav.js"></script>
+<script src="js/countdown.js"></script>
 <script>
-/* Countdown */
-const target = new Date('2026-08-01T00:00:00');
-function updateCountdown() {
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        return;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('days').textContent = String(d).padStart(2, '0');
-    document.getElementById('hours').textContent = String(h).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
 /* Typed text */
 const lines = ['Blockchain & Trust Technologies.', 'Global. Open. Competitive.', 'Join IBCOL 2026.'];
 let li = 0, ci = 0, deleting = false;
