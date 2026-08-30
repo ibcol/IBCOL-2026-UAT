@@ -19,7 +19,7 @@
         return Number(Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0]);
     }
 
-    function parseDeadlines(html) {
+    function parseDeadlinesFromHtml(html) {
         const year = inferYear(html);
         const deadlines = [];
         let match;
@@ -30,14 +30,18 @@
             const label = match[3];
             if (month === undefined) continue;
 
-            const date = new Date(year, month, day);
             deadlines.push({
-                date,
+                iso: `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
                 title: label.replace(/\b\w/g, (char) => char.toUpperCase()) + ' Registration Deadline',
             });
         }
 
-        return deadlines.sort((a, b) => a.date - b.date);
+        return deadlines.sort((a, b) => a.iso.localeCompare(b.iso));
+    }
+
+    function toDate(iso) {
+        const [year, month, day] = iso.split('-').map(Number);
+        return new Date(year, month - 1, day);
     }
 
     function pickDeadline(deadlines) {
@@ -45,12 +49,15 @@
         today.setHours(0, 0, 0, 0);
 
         for (let i = 0; i < deadlines.length; i += 1) {
-            const candidate = new Date(deadlines[i].date);
+            const candidate = toDate(deadlines[i].iso);
             candidate.setHours(0, 0, 0, 0);
-            if (candidate >= today) return deadlines[i];
+            if (candidate >= today) {
+                return { date: candidate, title: deadlines[i].title };
+            }
         }
 
-        return deadlines[deadlines.length - 1];
+        const last = deadlines[deadlines.length - 1];
+        return { date: toDate(last.iso), title: last.title };
     }
 
     function pad(value) {
@@ -87,16 +94,22 @@
         setInterval(updateCountdown, 1000);
     }
 
+    async function loadDeadlines() {
+        if (Array.isArray(window.COUNTDOWN_DEADLINES) && window.COUNTDOWN_DEADLINES.length) {
+            return window.COUNTDOWN_DEADLINES;
+        }
+
+        const response = await fetch('timeline.html', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('timeline fetch failed');
+        return parseDeadlinesFromHtml(await response.text());
+    }
+
     async function init() {
         const labelEl = document.querySelector('.countdown-subheader');
         if (!labelEl) return;
 
         try {
-            const response = await fetch('timeline.html', { cache: 'no-cache' });
-            if (!response.ok) throw new Error('timeline fetch failed');
-
-            const html = await response.text();
-            const deadlines = parseDeadlines(html);
+            const deadlines = await loadDeadlines();
             if (!deadlines.length) throw new Error('no registration deadlines found');
 
             const selected = pickDeadline(deadlines);
