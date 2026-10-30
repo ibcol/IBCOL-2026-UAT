@@ -11,5 +11,10 @@ window.COUNTDOWN_DEADLINES = [
     {
         "iso": "2026-09-09",
         "title": "Late Bird Registration Deadline"
+    },
+    {
+        "iso": "2026-11-30",
+        "title": "Resubmission Deadline",
+        "datetime": "2026-11-30T23:59:59-10:00"
     }
 ];

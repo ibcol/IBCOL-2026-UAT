@@ -44,20 +44,25 @@
         return new Date(year, month - 1, day);
     }
 
+    function targetFor(deadline) {
+        if (deadline.datetime) return new Date(deadline.datetime);
+        const end = toDate(deadline.iso);
+        end.setHours(23, 59, 59, 999);
+        return end;
+    }
+
     function pickDeadline(deadlines) {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        const now = Date.now();
 
         for (let i = 0; i < deadlines.length; i += 1) {
-            const candidate = toDate(deadlines[i].iso);
-            candidate.setHours(0, 0, 0, 0);
-            if (candidate >= today) {
-                return { date: candidate, title: deadlines[i].title };
+            const target = targetFor(deadlines[i]);
+            if (target.getTime() >= now) {
+                return { date: target, title: deadlines[i].title };
             }
         }
 
         const last = deadlines[deadlines.length - 1];
-        return { date: toDate(last.iso), title: last.title };
+        return { date: targetFor(last), title: last.title };
     }
 
     function pad(value) {
